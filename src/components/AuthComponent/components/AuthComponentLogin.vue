@@ -6,8 +6,8 @@
         или войти через e-mail
       </span>
     </div>
-    <div class="input-wrap email">
-      <b-form-input size="lg" placeholder="Электронная почта" type="email"></b-form-input>
+    <div class="input-wrap email" :class="{ 'is-danger': $v.form.email.$invalid && (form.email || showFormErrors)}">
+      <b-form-input name="email" size="lg" placeholder="Электронная почта" type="email" v-model.trim="form.email"></b-form-input>
       <div class="icons">
         <span style="margin-right: 4px">
           <svg width="7" height="13" viewBox="0 0 7 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,24 +36,52 @@
         </span>
       </div>
     </div>
-    <div class="input-wrap password">
-      <b-form-input size="lg" placeholder="Пароль" type="password"></b-form-input>
+    <div class="input-wrap password" :class="{ 'is-danger': $v.form.password.$invalid && (form.password || showFormErrors)}">
+      <b-form-input name="password" size="lg" placeholder="Пароль" type="password" v-model="form.password"></b-form-input>
       <div class="link">
         <b-link :to="{ name: 'AuthComponentReset' }">Восстановить</b-link>
       </div>
     </div>
-    <basic-button text="Войти" />
+    <div style="width: 100%" @click="login">
+      <basic-button text="Войти"/>
+    </div>
   </div>
 </template>
 
 <script>
 import AuthComponentInstBtn from "./AuthComponentInstBtn";
+import { required, email } from "vuelidate/lib/validators";
 export default {
   name: "AuthComponentLogin",
   components: {
     instbtn: AuthComponentInstBtn
+  },
+  data() {
+    return {
+      form: {},
+      showFormErrors: false
+    };
+  },
+  validations: {
+    form: {
+      email: {
+        required,
+        email
+      },
+      password: {
+        required
+      }
+    }
+  },
+  methods: {
+    login() {
+      if(this.$v.form.$pending || this.$v.form.$error || this.$v.form.$invalid){
+        this.showFormErrors = true;
+        return;
+      }
+    }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -135,6 +163,12 @@ export default {
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
+      }
+    }
+    &.is-danger {
+      input {
+        border-color: #f04124 !important;
+        color: #f04124;
       }
     }
   }

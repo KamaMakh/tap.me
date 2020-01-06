@@ -9,13 +9,14 @@ import BasicButton from "@/components/Buttons/BasicButton";
 import PerfectScrollbar from "vue2-perfect-scrollbar";
 import "vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css";
 import GeneralComponentHeader from "@/components/GeneralComponent/GeneralComponentHeader";
-
-Vue.use(PerfectScrollbar);
+import Validations from "vuelidate";
 
 Vue.component("basic-button", BasicButton)
 Vue.component("general-header", GeneralComponentHeader)
 
 Vue.use(BootstrapVue);
+Vue.use(Validations);
+Vue.use(PerfectScrollbar);
 
 Vue.config.productionTip = false;
 

@@ -3,10 +3,12 @@
     <div class="title">
       Создайте свою ссылку
     </div>
-    <div class="input-wrap email">
-      <b-form-input size="lg" placeholder="tap.me/ anna" type="text"></b-form-input>
+    <div class="input-wrap email" :class="{ 'is-danger': $v.form.link.$invalid && (form.link || showFormErrors)}">
+      <b-form-input size="lg" placeholder="tap.me/anna" type="text" v-model.trim="form.link"></b-form-input>
     </div>
-    <basic-button text="Восстановить" />
+    <div style="width: 100%" @click="go">
+      <basic-button text="Продолжить" />
+    </div>
     <div class="text-block">
       Ваш пароль будет отправлен Вам на почту
     </div>
@@ -17,8 +19,30 @@
 </template>
 
 <script>
+import { required } from "vuelidate/lib/validators";
 export default {
-  name: "AuthComponentCreateLink"
+  name: "AuthComponentCreateLink",
+  data() {
+    return {
+      form: {},
+      showFormErrors: false
+    };
+  },
+  validations: {
+    form: {
+      link: {
+        required
+      }
+    }
+  },
+  methods: {
+    go() {
+      if(this.$v.form.$pending || this.$v.form.$error || this.$v.form.$invalid){
+        this.showFormErrors = true;
+        return;
+      }
+    }
+  }
 }
 </script>
 
@@ -61,6 +85,12 @@ export default {
           -webkit-box-shadow: none;
           -moz-box-shadow: none;
           box-shadow: none;
+        }
+      }
+      &.is-danger {
+        input {
+          border-color: #f04124 !important;
+          color: #f04124;
         }
       }
     }

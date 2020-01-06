@@ -3,10 +3,12 @@
     <div class="title">
       Восстановить пароль
     </div>
-    <div class="input-wrap email">
-      <b-form-input size="lg" placeholder="Электронная почта" type="email"></b-form-input>
+    <div class="input-wrap email" :class="{ 'is-danger': $v.form.email.$invalid && (form.email || showFormErrors)}">
+      <b-form-input size="lg" placeholder="Электронная почта" type="email" v-model.trim="form.email"></b-form-input>
     </div>
-    <basic-button text="Восстановить" />
+    <div style="width: 100%" @click="reset">
+      <basic-button text="Восстановить" />
+    </div>
     <div class="text-block">
       Ваш пароль будет отправлен Вам на почту
     </div>
@@ -17,8 +19,31 @@
 </template>
 
 <script>
+import { required, email } from "vuelidate/lib/validators";
 export default {
-  name: "AuthComponentReset"
+  name: "AuthComponentReset",
+  data() {
+    return {
+      form: {},
+      showFormErrors: false
+    };
+  },
+  validations: {
+    form: {
+      email: {
+        required,
+        email
+      }
+    }
+  },
+  methods: {
+    reset() {
+      if(this.$v.form.$pending || this.$v.form.$error || this.$v.form.$invalid){
+        this.showFormErrors = true;
+        return;
+      }
+    }
+  }
 };
 </script>
 
@@ -61,6 +86,12 @@ export default {
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
+      }
+    }
+    &.is-danger {
+      input {
+        border-color: #f04124 !important;
+        color: #f04124;
       }
     }
   }

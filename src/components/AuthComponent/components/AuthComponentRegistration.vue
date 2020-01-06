@@ -10,22 +10,51 @@
     <div class="or-text">
       <span>или</span>
     </div>
-    <div class="input-wrap email">
-      <b-form-input size="lg" placeholder="Электронная почта" type="email"></b-form-input>
+    <div class="input-wrap email" :class="{ 'is-danger': $v.form.email.$invalid && (form.email || showFormErrors)}">
+      <b-form-input size="lg" name="email" placeholder="Электронная почта" type="email" v-model.trim="form.email"></b-form-input>
     </div>
-    <div class="input-wrap password">
-      <b-form-input size="lg" placeholder="Пароль" type="password"></b-form-input>
+    <div class="input-wrap password" :class="{ 'is-danger': $v.form.password.$invalid && (form.password || showFormErrors)}">
+      <b-form-input name="password" size="lg" placeholder="Пароль" type="password" v-model="form.password"></b-form-input>
     </div>
-    <basic-button text="Зарегестрироваться" />
+    <div style="width: 100%" @click="register">
+      <basic-button text="Зарегестрироваться" />
+    </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
+import { required, email } from "vuelidate/lib/validators";
 import AuthComponentInstBtn from "./AuthComponentInstBtn";
 export default {
   name: "AuthComponentRegistration",
   components: {
     instbtn: AuthComponentInstBtn
+  },
+  data() {
+    return {
+      form: {},
+      showFormErrors: false
+    };
+  },
+  validations: {
+    form: {
+      email: {
+        required,
+        email
+      },
+      password: {
+        required
+      }
+    }
+  },
+  methods: {
+    register() {
+      if(this.$v.form.$pending || this.$v.form.$error || this.$v.form.$invalid){
+        this.showFormErrors = true;
+        return;
+      }
+    }
   }
 }
 </script>
@@ -86,6 +115,12 @@ export default {
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
         box-shadow: none;
+      }
+    }
+    &.is-danger {
+      input {
+        border-color: #f04124 !important;
+        color: #f04124;
       }
     }
   }
