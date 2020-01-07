@@ -6,10 +6,12 @@
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap&subset=cyrillic-ext");
-html,
+html {
+  height: 100%;
+}
 body,
 #app {
-  min-height: 100%;
+  height: 100%;
 }
 #app {
   font-family: "Montserrat", sans-serif !important;

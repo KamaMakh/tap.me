@@ -22,12 +22,13 @@ export default {
   background: url("../assets/authbackground.png") 50% no-repeat fixed;
   -webkit-background-size: cover;
   background-size: cover;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 60px 15px;
+  overflow: auto;
+  min-height: 100%;
   .inner {
     max-width: 1172px;
     max-height: 100%;
