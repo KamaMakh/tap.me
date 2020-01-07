@@ -19,14 +19,14 @@ export default {
   font-weight: 600;
   font-size: 16px;
   line-height: 30px;
-  color: #FFFFFF;
+  color: #ffffff;
   transition: all 0.3s;
   border-radius: 25px;
   padding: 10px 35px;
   text-decoration: none;
   cursor: pointer;
   &:hover {
-    color: #7F360D;
+    color: #7f360d;
     background: #fff;
   }
 }

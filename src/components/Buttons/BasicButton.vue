@@ -6,7 +6,7 @@
 export default {
   props: ["text"],
   name: "BasicButton"
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -14,11 +14,11 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FF5C03;
+  background: #ff5c03;
   box-shadow: 0px 0px 43px rgba(255, 92, 3, 0.54);
   font-weight: 600;
   font-size: 17px;
-  color: #FFFFFF;
+  color: #ffffff;
   border-radius: 5px;
   padding: 20px;
   -webkit-box-sizing: border-box;
@@ -28,7 +28,7 @@ export default {
   transition: all 0.3s;
   cursor: pointer;
   &:hover {
-    background: #DEDEDE;
+    background: #dedede;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;

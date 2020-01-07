@@ -1,20 +1,49 @@
 <template>
   <div class="auth-component-registration">
     <div class="top-text">
-      <span>Для регистрации, вам необходимо авторизоваться через Instagram профиль, для которого высоздаете страницу</span>
+      <span
+        >Для регистрации, вам необходимо авторизоваться через Instagram профиль,
+        для которого высоздаете страницу</span
+      >
     </div>
-    <instbtn/>
+    <instbtn />
     <div class="inst-info-text">
-      <span>Вы будете направлены на сайт instagram.com для авторизации в вашем аккаунте</span>
+      <span
+        >Вы будете направлены на сайт instagram.com для авторизации в вашем
+        аккаунте</span
+      >
     </div>
     <div class="or-text">
       <span>или</span>
     </div>
-    <div class="input-wrap email" :class="{ 'is-danger': $v.form.email.$invalid && (form.email || showFormErrors)}">
-      <b-form-input size="lg" name="email" placeholder="Электронная почта" type="email" v-model.trim="form.email"></b-form-input>
+    <div
+      class="input-wrap email"
+      :class="{
+        'is-danger': $v.form.email.$invalid && (form.email || showFormErrors)
+      }"
+    >
+      <b-form-input
+        size="lg"
+        name="email"
+        placeholder="Электронная почта"
+        type="email"
+        v-model.trim="form.email"
+      ></b-form-input>
     </div>
-    <div class="input-wrap password" :class="{ 'is-danger': $v.form.password.$invalid && (form.password || showFormErrors)}">
-      <b-form-input name="password" size="lg" placeholder="Пароль" type="password" v-model="form.password"></b-form-input>
+    <div
+      class="input-wrap password"
+      :class="{
+        'is-danger':
+          $v.form.password.$invalid && (form.password || showFormErrors)
+      }"
+    >
+      <b-form-input
+        name="password"
+        size="lg"
+        placeholder="Пароль"
+        type="password"
+        v-model="form.password"
+      ></b-form-input>
     </div>
     <div style="width: 100%" @click="register">
       <basic-button text="Зарегестрироваться" />

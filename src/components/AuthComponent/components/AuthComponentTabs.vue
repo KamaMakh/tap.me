@@ -3,10 +3,10 @@
     <b-card no-body>
       <b-tabs card fill>
         <b-tab title="Авторизация" active>
-          <Login/>
+          <Login />
         </b-tab>
         <b-tab title="Регистрация">
-          <Register/>
+          <Register />
         </b-tab>
       </b-tabs>
     </b-card>
@@ -22,7 +22,7 @@ export default {
     Login: AuthComponentLogin,
     Register: AuthComponentRegistration
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -48,7 +48,7 @@ export default {
     font-size: 15px;
     color: #666666;
     border: none;
-    background: #F2F2F2;
+    background: #f2f2f2;
     box-shadow: inset 2.1px -2.1px 3px rgba(0, 0, 0, 0.05);
     border-radius: 7px;
     height: 64px;
@@ -61,7 +61,7 @@ export default {
   .nav-tabs .nav-item.show .nav-link {
     font-weight: 600;
     font-size: 16px;
-    color: #2A2A2A;
+    color: #2a2a2a;
     background: transparent;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;

@@ -1,8 +1,8 @@
 <template>
   <div class="auth">
-    <general-header/>
+    <general-header />
     <div class="inner">
-      <AuthComponent/>
+      <AuthComponent />
     </div>
   </div>
 </template>

@@ -3,8 +3,18 @@
     <div class="title">
       Восстановить пароль
     </div>
-    <div class="input-wrap email" :class="{ 'is-danger': $v.form.email.$invalid && (form.email || showFormErrors)}">
-      <b-form-input size="lg" placeholder="Электронная почта" type="email" v-model.trim="form.email"></b-form-input>
+    <div
+      class="input-wrap email"
+      :class="{
+        'is-danger': $v.form.email.$invalid && (form.email || showFormErrors)
+      }"
+    >
+      <b-form-input
+        size="lg"
+        placeholder="Электронная почта"
+        type="email"
+        v-model.trim="form.email"
+      ></b-form-input>
     </div>
     <div style="width: 100%" @click="reset">
       <basic-button text="Восстановить" />
@@ -38,7 +48,11 @@ export default {
   },
   methods: {
     reset() {
-      if(this.$v.form.$pending || this.$v.form.$error || this.$v.form.$invalid){
+      if (
+        this.$v.form.$pending ||
+        this.$v.form.$error ||
+        this.$v.form.$invalid
+      ) {
         this.showFormErrors = true;
         return;
       }
@@ -62,7 +76,7 @@ export default {
     font-weight: 600;
     font-size: 16px;
     text-align: center;
-    color: #2A2A2A;
+    color: #2a2a2a;
   }
   .input-wrap {
     margin-top: 20px;
@@ -72,7 +86,7 @@ export default {
       margin-bottom: 18px;
     }
     input {
-      border: 1px solid #CCCCCC;
+      border: 1px solid #cccccc;
       box-sizing: border-box;
       border-radius: 0;
       padding: 1.6rem 1rem;
@@ -81,7 +95,7 @@ export default {
       font-weight: 600;
       color: #959595;
       &:focus {
-        border: 2px solid #1B3FC6;
+        border: 2px solid #1b3fc6;
         outline: none;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
@@ -101,7 +115,7 @@ export default {
     line-height: 19px;
     text-align: center;
     color: #434343;
-    background: #F2F2F2;
+    background: #f2f2f2;
     margin-top: 21px;
     border: 1px solid #e4e4e4;
     width: 100%;
@@ -112,7 +126,7 @@ export default {
     margin-top: 34px;
     font-size: 17px;
     text-align: center;
-    color: #D5D5D5;
+    color: #d5d5d5;
   }
 }
 </style>
