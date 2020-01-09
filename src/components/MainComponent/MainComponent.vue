@@ -26,6 +26,9 @@ export default {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  .my-row {
+    margin: 0;
+  }
   .left-nav {
     max-width: 376px;
     min-width: 376px;

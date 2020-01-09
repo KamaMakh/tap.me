@@ -9,6 +9,7 @@ import MainComponentMyPage from "@/components/MainComponent/components/MainCompo
 import MainComponentEdit from "@/components/MainComponent/components/MainComponentEdit";
 import MainComponentSocials from "@/components/MainComponent/components/MainComponentSocials";
 import MainComponentSocialEdit from "@/components/MainComponent/components/MainComponentSocialEdit";
+import MainComponentShare from "@/components/MainComponent/components/MainComponentShare";
 
 Vue.use(VueRouter);
 
@@ -57,6 +58,11 @@ const routes = [
         path: "soc-edit",
         name: "MainComponentSocialEdit",
         component: MainComponentSocialEdit
+      },
+      {
+        path: "share",
+        name: "MainComponentShare",
+        component: MainComponentShare
       }
     ]
   }
