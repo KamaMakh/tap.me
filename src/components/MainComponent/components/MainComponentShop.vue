@@ -166,6 +166,9 @@ export default {
     .list-group-item {
       padding: 0;
     }
+    .left {
+      display: flex;
+    }
     .handle {
       padding-top: 8px;
       padding-bottom: 8px;
@@ -176,6 +179,7 @@ export default {
       height: 35px;
       background: #999;
       border-radius: 2px;
+      display: block;
     }
     li {
       border: none;
