@@ -11,6 +11,7 @@ import MainComponentSocials from "@/components/MainComponent/components/MainComp
 import MainComponentSocialEdit from "@/components/MainComponent/components/MainComponentSocialEdit";
 import MainComponentShare from "@/components/MainComponent/components/MainComponentShare";
 import MainComponentCallBack from "@/components/MainComponent/components/MainComponentCallBack";
+import MainComponentAnalytics from "@/components/MainComponent/components/MainComponentAnalytics";
 
 Vue.use(VueRouter);
 
@@ -69,6 +70,11 @@ const routes = [
         path: "call-back",
         name: "MainComponentCallBack",
         component: MainComponentCallBack
+      },
+      {
+        path: "analytics",
+        name: "MainComponentAnalytics",
+        component: MainComponentAnalytics
       }
     ]
   }

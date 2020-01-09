@@ -1,6 +1,7 @@
 export default {
   user: {
     name: "Дмитрий Мусин",
+    pro: false,
     url: "mssg.me/muskindiman",
     instagram: "@instagram",
     avatar: "https://picsum.photos/600/300/?image=25",
