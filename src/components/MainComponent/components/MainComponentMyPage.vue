@@ -158,7 +158,7 @@
           </b-link>
         </b-list-group-item>
         <b-list-group-item>
-          <b-link to="/main">
+          <b-link :to="{ name: 'MainComponentCallBack' }">
             <span>
               <span class="icon">
                 <svg
