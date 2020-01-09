@@ -6,12 +6,14 @@ import BootstrapVue from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import BasicButton from "@/components/Buttons/BasicButton";
+import BlueButton from "@/components/Buttons/BlueButton";
 import PerfectScrollbar from "vue2-perfect-scrollbar";
 import "vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css";
 import GeneralComponentHeader from "@/components/GeneralComponent/GeneralComponentHeader";
 import Validations from "vuelidate";
 
 Vue.component("basic-button", BasicButton);
+Vue.component("blue-button", BlueButton);
 Vue.component("general-header", GeneralComponentHeader);
 
 Vue.use(BootstrapVue);
