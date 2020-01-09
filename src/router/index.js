@@ -12,6 +12,7 @@ import MainComponentSocialEdit from "@/components/MainComponent/components/MainC
 import MainComponentShare from "@/components/MainComponent/components/MainComponentShare";
 import MainComponentCallBack from "@/components/MainComponent/components/MainComponentCallBack";
 import MainComponentAnalytics from "@/components/MainComponent/components/MainComponentAnalytics";
+import MainComponentShop from "@/components/MainComponent/components/MainComponentShop";
 
 Vue.use(VueRouter);
 
@@ -75,6 +76,11 @@ const routes = [
         path: "analytics",
         name: "MainComponentAnalytics",
         component: MainComponentAnalytics
+      },
+      {
+        path: "shop",
+        name: "MainComponentShop",
+        component: MainComponentShop
       }
     ]
   }

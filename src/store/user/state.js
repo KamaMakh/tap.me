@@ -6,6 +6,26 @@ export default {
     instagram: "@instagram",
     avatar: "https://picsum.photos/600/300/?image=25",
     background: "https://picsum.photos/600/300/?image=25",
+    products: [
+      {
+        name: "Шапка",
+        category: "",
+        note: "",
+        link: "",
+        price: "",
+        discount_price: "",
+        photo: ""
+      },
+      {
+        name: "Шапка 2",
+        category: "",
+        note: "",
+        link: "",
+        price: "",
+        discount_price: "",
+        photo: ""
+      }
+    ],
     socials: [
       {
         id: 0,

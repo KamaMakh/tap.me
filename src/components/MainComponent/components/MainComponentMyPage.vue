@@ -32,7 +32,7 @@
     <div class="list">
       <b-list-group>
         <b-list-group-item>
-          <b-link to="/main">
+          <b-link :to="{ name: 'MainComponentShop' }">
             <span>
               <span class="icon">
                 <svg
