@@ -64,7 +64,12 @@
     <div class="sub-title">
       Поделитесь со своими клиентами акциями и скидками на Ваши товары.
     </div>
-    <blue-button text="Добавить товар" to="main" />
+    <span @click="setProduct">
+      <blue-button
+        text="Добавить товар"
+        :to="{ name: 'MainComponentProduct' }"
+      />
+    </span>
     <div v-if="user.products" class="goods">
       <div class="goods-title">
         Ваши товары
@@ -100,7 +105,11 @@
               </span>
               <!--{{ element.name }}-->
             </div>
-            <b-link :to="{ name: 'MainComponentSocialEdit' }" class="edit">
+            <b-link
+              @click="setProduct(element)"
+              :to="{ name: 'MainComponentProduct' }"
+              class="edit"
+            >
               Изменить
             </b-link>
           </div>
@@ -122,6 +131,11 @@ export default {
     ...mapState({
       user: state => state.user.user
     })
+  },
+  methods: {
+    setProduct(product) {
+      this.$store.dispatch("user/setProduct", product);
+    }
   }
 };
 </script>

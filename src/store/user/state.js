@@ -70,5 +70,6 @@ export default {
         value: null
       }
     ]
-  }
+  },
+  product: {}
 };
