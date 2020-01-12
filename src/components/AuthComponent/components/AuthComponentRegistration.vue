@@ -52,7 +52,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { required, email } from "vuelidate/lib/validators";
 import AuthComponentInstBtn from "./AuthComponentInstBtn";
 export default {
@@ -79,13 +78,17 @@ export default {
   },
   methods: {
     register() {
-      if(this.$v.form.$pending || this.$v.form.$error || this.$v.form.$invalid){
+      if (
+        this.$v.form.$pending ||
+        this.$v.form.$error ||
+        this.$v.form.$invalid
+      ) {
         this.showFormErrors = true;
         return;
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -107,8 +110,8 @@ export default {
     line-height: 19px;
     text-align: center;
     color: #434343;
-    background: #F2F2F2;
-    border: 1px solid #E4E4E4;
+    background: #f2f2f2;
+    border: 1px solid #e4e4e4;
     box-sizing: border-box;
     padding: 13px 14px;
     margin-top: 19px;
@@ -130,7 +133,7 @@ export default {
       margin-bottom: 14px;
     }
     input {
-      border: 1px solid #CCCCCC;
+      border: 1px solid #cccccc;
       box-sizing: border-box;
       border-radius: 0;
       padding: 1.6rem 1rem;
@@ -139,7 +142,7 @@ export default {
       font-weight: 600;
       color: #959595;
       &:focus {
-        border: 2px solid #1B3FC6;
+        border: 2px solid #1b3fc6;
         outline: none;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;

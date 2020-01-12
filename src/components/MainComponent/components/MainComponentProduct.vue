@@ -8,7 +8,7 @@
         </div>
         <div class="pics__line">
           <div class="pics__img">
-            <img :src="user.avatar" alt="Аватар" />
+            <img :src="product.photo" />
           </div>
           <div class="pics__btn" @click="modalAvatar = !modalAvatar">
             Изменить
@@ -16,7 +16,14 @@
         </div>
       </div>
     </div>
-    <div class="input-wrap" role="group">
+    <div
+      class="input-wrap"
+      role="group"
+      :class="{
+        'is-danger':
+          $v.product.name.$invalid && (product.name || showFormErrors)
+      }"
+    >
       <label for="input-live">Название</label>
       <b-form-input
         id="input-live"
@@ -25,14 +32,19 @@
         trim
       ></b-form-input>
     </div>
-    <div class="input-wrap" role="group">
+    <div
+      class="input-wrap"
+      role="group"
+      :class="{
+        'is-danger':
+          $v.product.category.$invalid && (product.category || showFormErrors)
+      }"
+    >
       <label for="input-live2">Категория</label>
-      <b-form-input
-        id="input-live2"
+      <b-form-select
         v-model="product.category"
-        placeholder="Категория"
-        trim
-      ></b-form-input>
+        :options="user.categories"
+      ></b-form-select>
     </div>
     <div class="input-wrap">
       <label for="input-live5">Описание</label>
@@ -40,7 +52,14 @@
         {{ product.note }}
       </b-form-textarea>
     </div>
-    <div class="input-wrap" role="group">
+    <div
+      class="input-wrap"
+      role="group"
+      :class="{
+        'is-danger':
+          $v.product.link.$invalid && (product.link || showFormErrors)
+      }"
+    >
       <label for="input-live4">Ссылка на товар</label>
       <b-form-input
         id="input-live4"
@@ -49,25 +68,42 @@
         trim
       ></b-form-input>
     </div>
-    <div class="input-wrap" role="group">
+    <div
+      class="input-wrap"
+      role="group"
+      :class="{
+        'is-danger':
+          $v.product.price.$invalid && (product.price || showFormErrors)
+      }"
+    >
       <label for="input-live6">Цена</label>
       <b-form-input
         id="input-live6"
         v-model="product.price"
-        placeholder="Ссылка на товар"
+        placeholder="Цена"
         trim
       ></b-form-input>
     </div>
-    <div class="input-wrap" role="group">
+    <div
+      class="input-wrap"
+      role="group"
+      :class="{
+        'is-danger':
+          $v.product.discount_price.$invalid &&
+          (product.discount_price || showFormErrors)
+      }"
+    >
       <label for="input-live7">Цена со скидкой</label>
       <b-form-input
         id="input-live7"
         v-model="product.discount_price"
-        placeholder="Ссылка на товар"
+        placeholder="Цена со скидкой"
         trim
       ></b-form-input>
     </div>
-    <basic-button text="Сохранить" />
+    <div @click="save">
+      <basic-button text="Сохранить" />
+    </div>
     <div v-if="product.name" @click="modalRemove = !modalRemove" class="remove">
       Удалить
     </div>
@@ -80,12 +116,12 @@
       hide-footer
     >
       <b-form-file
-        v-model="user.avatar_file"
+        v-model="product.new_file"
         placeholder="Выберите файл или перетащите его"
         drop-placeholder="Перетащите сюда..."
         browse-text="Выбрать"
       ></b-form-file>
-      <div class="modal-buttons" style="margin-top: 25px">
+      <div class="modal-buttons" style="margin-top: 25px" @click="readURL">
         <basic-button text="Добавить" />
       </div>
     </b-modal>
@@ -95,26 +131,76 @@
       :title="'Удалить товар' + ' ' + product.name"
       hide-footer
     >
-      <basic-button text="Удалить" />
+      <div @click="remove">
+        <basic-button text="Удалить" />
+      </div>
     </b-modal>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import { required } from "vuelidate/lib/validators";
 export default {
   name: "MainComponentProduct",
   data() {
     return {
       modalAvatar: false,
-      modalRemove: false
+      modalRemove: false,
+      showFormErrors: false
     };
+  },
+  validations: {
+    product: {
+      name: {
+        required
+      },
+      category: {
+        required
+      },
+      link: {
+        required
+      },
+      price: {
+        required
+      },
+      discount_price: {
+        required
+      }
+    }
   },
   computed: {
     ...mapState({
       user: state => state.user.user,
       product: state => state.user.product
     })
+  },
+  methods: {
+    readURL() {
+      if (this.product.new_file) {
+        let reader = new FileReader();
+        reader.onload = e => {
+          this.product.photo = e.target.result;
+        };
+        reader.readAsDataURL(this.product.new_file);
+        this.modalAvatar = false;
+        this.product.new_file = undefined;
+      }
+    },
+    save() {
+      if (
+        this.$v.product.$pending ||
+        this.$v.product.$error ||
+        this.$v.product.$invalid
+      ) {
+        this.showFormErrors = true;
+        return;
+      }
+    },
+    remove() {
+      alert("Удаление");
+      this.modalRemove = false;
+    }
   }
 };
 </script>
@@ -201,7 +287,8 @@ export default {
       color: #000000;
       margin-bottom: 4px;
     }
-    input {
+    input,
+    select {
       background: #ffffff;
       border: 1px solid #cccccc;
       border-radius: 0;
@@ -214,6 +301,13 @@ export default {
     }
     textarea {
       border-radius: 0;
+    }
+    &.is-danger {
+      input,
+      select {
+        border-color: #f04124 !important;
+        color: #f04124;
+      }
     }
   }
   .remove {

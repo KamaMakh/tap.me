@@ -4,7 +4,7 @@
     <div class="sub-title">
       Поделитесь со своими клиентами акциями и скидками на Ваши товары.
     </div>
-    <span @click="setProduct">
+    <span @click="setProduct({ photo: '' })">
       <blue-button
         text="Добавить товар"
         :to="{ name: 'MainComponentProduct' }"
@@ -131,9 +131,11 @@ export default {
     .def-icon {
       width: 35px;
       height: 35px;
-      background: #999;
       border-radius: 2px;
       display: block;
+      img {
+        max-width: 100%;
+      }
     }
     li {
       border: none;

@@ -14,7 +14,7 @@ export default {
         link: "",
         price: "",
         discount_price: "",
-        photo: ""
+        photo: "https://newbalance.ru/upload/iblock/f2e/500245-000-1.jpg"
       },
       {
         name: "Шапка 2",
@@ -23,8 +23,13 @@ export default {
         link: "",
         price: "",
         discount_price: "",
-        photo: ""
+        photo: "https://files.gifts.ru/reviewer/tb/53/547.50_1.jpg"
       }
+    ],
+    categories: [
+      { value: 1, text: "Category 1" },
+      { value: 2, text: "Category 2" },
+      { value: 3, text: "Category 3" }
     ],
     socials: [
       {
