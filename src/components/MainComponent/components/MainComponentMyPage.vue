@@ -97,61 +97,7 @@
         <b-list-group-item>
           <b-link :to="{ name: 'MainComponentSocials' }">
             <span>
-              <span class="icon">
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 22 22"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                >
-                  <rect width="22" height="22" fill="url(#pattern0)" />
-                  <mask
-                    id="mask0"
-                    mask-type="alpha"
-                    maskUnits="userSpaceOnUse"
-                    x="0"
-                    y="0"
-                    width="22"
-                    height="22"
-                  >
-                    <rect width="22" height="22" fill="url(#pattern1)" />
-                  </mask>
-                  <g mask="url(#mask0)">
-                    <rect
-                      width="22"
-                      height="22"
-                      fill="black"
-                      fill-opacity="0.01"
-                    />
-                  </g>
-                  <defs>
-                    <pattern
-                      id="pattern0"
-                      patternContentUnits="objectBoundingBox"
-                      width="1"
-                      height="1"
-                    >
-                      <use xlink:href="#image0" transform="scale(0.0454545)" />
-                    </pattern>
-                    <pattern
-                      id="pattern1"
-                      patternContentUnits="objectBoundingBox"
-                      width="1"
-                      height="1"
-                    >
-                      <use xlink:href="#image0" transform="scale(0.0454545)" />
-                    </pattern>
-                    <image
-                      id="image0"
-                      width="22"
-                      height="22"
-                      xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAABdmlDQ1BJQ0MgUHJvZmlsZQAAeJx1kc8rBGEYxz+7iFg5cJAc5oAkaqPkyDq4bNKiLC47s7O7anZ2mtlNclUuDspBXPw6+A+4KldKKVKS8h/4ddE2ntdsrWTf6Z3n0/d9v0/v+30hHLeMvFcfhbxddBNTMW0huag1vhChkxa6GUgZnjMxMxOn5vi8I6Tq7ZDqVXvfv6MlbXoGhJqERw3HLQqPC8dXi47iLeEOI5dKCx8KD7pyQOErpesBPyvOBvyu2J1LTEJY9dSyv1j/xUbOzQv3C/fkrZJROY+6ScS052eldsnsxiPBFDE0dEqsYFFkSKotmf3vi/74pimIx5C/wxquOLLkxDsoakm6mlIzopvyWayp3P/m6WVGhoPukRg0PPn+Wy807kB52/e/jny/fAx1j3BhV/0FyWnsQ/TtqtZzAG0bcHZZ1fRdON+Ezgcn5aZ+pDqZ4UwGXk+hNQntN9C8FGRVWefkHubW5YmuYW8f+mR/2/I3BFZoDMcvwwIAAAG/SURBVHicrdXPi01hGAfwz73GGNRcE2MUZUrxH/gHlJ2VWJBs2NgIiRTxBzCysMFWioUfWVgoZWUzmZmtBTIbxcRkiuhYvM9xz7y91wx3vnU65/k+3+d73/O+z7kPvTGEI7iPj6ji+oyHOI7OX+qLOI+fDbMfmMEUFhp8hStoLWXYwWSj6Ax2FHTjOIGvoXuDbb1Mh0NQ4U7ES2E1bkTNJ2wpiaZDcG4ZhjmORe17tJuJs5G4+x+mNa6Fx/WaGMAv6VAG+jAmdUwluuVwBKf6NIVDuofuUQSbVsB4VXhNwry0DTnWZXEbazJufaFuNsxVeJ0ld0v7/jjiQXzBd903uxWavVntM1T1YVVZcjBWuCHilm5f1+00HM9DWe0frwVpO3JsjR+oMYKxRtxW/tre1eZP42GkIPpXtMJrpo0HQR5YAeN9cb8HazEnNffmPo0/SCserYmJIPpZ9eXwuN0kp4IcKxQsB/ujfk6jS8aDnIi4JfVx3ka9cEl3GOxsJk5G4jQu6k6OeRzFxoJZBwelv8l6pbty0VuLR803PMm4WbzA84L+ph5DYVqaHFexp8GPxlu8tHj+VXiFC9heMoTfN8d8FBDeCckAAAAASUVORK5CYII="
-                    />
-                  </defs>
-                </svg>
-              </span>
+              <span class="icon socials"> </span>
               Социальные сети
             </span>
             <span class="arrow"></span>
@@ -206,7 +152,7 @@
           </b-link>
         </b-list-group-item>
         <b-list-group-item>
-          <b-link to="/main">
+          <b-link :to="{ name: 'MainComponentTariffs' }">
             <span>
               <span class="icon">
                 <svg
@@ -322,6 +268,11 @@ export default {
           align-items: center;
           .icon {
             margin-right: 8px;
+            &.socials {
+              width: 22px;
+              height: 22px;
+              background: url("../assets/socials.png") 0 0 no-repeat;
+            }
           }
         }
         .arrow {

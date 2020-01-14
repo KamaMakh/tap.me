@@ -15,6 +15,7 @@ import MainComponentAnalytics from "@/components/MainComponent/components/MainCo
 import MainComponentShop from "@/components/MainComponent/components/MainComponentShop";
 import MainComponentProduct from "@/components/MainComponent/components/MainComponentProduct";
 import MainComponentSettings from "@/components/MainComponent/components/MainComponentSettings";
+import MainComponentTariffs from "@/components/MainComponent/components/MainComponentTariffs";
 
 Vue.use(VueRouter);
 
@@ -93,6 +94,11 @@ const routes = [
         path: "settings",
         name: "MainComponentSettings",
         component: MainComponentSettings
+      },
+      {
+        path: "tariffs",
+        name: "MainComponentTariffs",
+        component: MainComponentTariffs
       }
     ]
   }

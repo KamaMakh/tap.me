@@ -8,6 +8,7 @@ export default {
     instagram: "@instagram",
     avatar: "https://picsum.photos/600/300/?image=25",
     background: "https://picsum.photos/600/300/?image=25",
+    tariff_id: 1,
     products: [
       {
         name: "Шапка",

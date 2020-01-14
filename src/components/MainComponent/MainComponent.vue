@@ -7,6 +7,12 @@
       <b-col v-if="$route.name === 'MainComponentSettings'" class="right-nav">
         <settingsForm />
       </b-col>
+      <b-col
+        v-else-if="$route.name === 'MainComponentTariffs'"
+        class="right-nav"
+      >
+        <tariffsBody />
+      </b-col>
       <b-col v-else class="right-nav">
         <MainComponentCard />
       </b-col>
@@ -17,11 +23,13 @@
 <script>
 import MainComponentCard from "./components/MainComponentCard";
 import MainComponentSettingsForm from "./components/MainComponentSettingsForm";
+import MainComponentTariffsBody from "./components/MainComponentTariffsBody";
 export default {
   name: "MainComponent",
   components: {
     MainComponentCard,
-    settingsForm: MainComponentSettingsForm
+    settingsForm: MainComponentSettingsForm,
+    tariffsBody: MainComponentTariffsBody
   }
 };
 </script>
@@ -29,7 +37,7 @@ export default {
 <style scoped lang="scss">
 .main-component {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   .my-row {
     margin: 0;
