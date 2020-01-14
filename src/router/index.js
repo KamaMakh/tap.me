@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Auth from "../views/Auth";
 import Main from "../views/Main";
+import Guest from "../views/Guest";
 import AuthComponentTabs from "@/components/AuthComponent/components/AuthComponentTabs";
 import AuthComponentReset from "@/components/AuthComponent/components/AuthComponentReset";
 import AuthComponentCreateLink from "@/components/AuthComponent/components/AuthComponentCreateLink";
@@ -16,6 +17,7 @@ import MainComponentShop from "@/components/MainComponent/components/MainCompone
 import MainComponentProduct from "@/components/MainComponent/components/MainComponentProduct";
 import MainComponentSettings from "@/components/MainComponent/components/MainComponentSettings";
 import MainComponentTariffs from "@/components/MainComponent/components/MainComponentTariffs";
+import GuestComponentLink from "@/components/GuestComponent/components/GuestComponentLink";
 
 Vue.use(VueRouter);
 
@@ -99,6 +101,17 @@ const routes = [
         path: "tariffs",
         name: "MainComponentTariffs",
         component: MainComponentTariffs
+      }
+    ]
+  },
+  {
+    path: "/guest",
+    component: Guest,
+    children: [
+      {
+        path: "/",
+        name: "GuestComponentLink",
+        component: GuestComponentLink
       }
     ]
   }

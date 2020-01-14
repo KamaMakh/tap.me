@@ -53,7 +53,13 @@
           </div>
         </div>
       </div>
-      <div class="products">
+      <div
+        v-if="
+          $route.name === 'MainComponentShop' ||
+            $route.name === 'MainComponentProduct'
+        "
+        class="products"
+      >
         <div
           v-for="(prod, k) in user.products"
           :key="k"
