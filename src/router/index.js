@@ -14,6 +14,7 @@ import MainComponentCallBack from "@/components/MainComponent/components/MainCom
 import MainComponentAnalytics from "@/components/MainComponent/components/MainComponentAnalytics";
 import MainComponentShop from "@/components/MainComponent/components/MainComponentShop";
 import MainComponentProduct from "@/components/MainComponent/components/MainComponentProduct";
+import MainComponentSettings from "@/components/MainComponent/components/MainComponentSettings";
 
 Vue.use(VueRouter);
 
@@ -87,6 +88,11 @@ const routes = [
         path: "product",
         name: "MainComponentProduct",
         component: MainComponentProduct
+      },
+      {
+        path: "settings",
+        name: "MainComponentSettings",
+        component: MainComponentSettings
       }
     ]
   }

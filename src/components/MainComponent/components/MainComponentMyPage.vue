@@ -230,7 +230,7 @@
           </b-link>
         </b-list-group-item>
         <b-list-group-item>
-          <b-link to="/main">
+          <b-link :to="{ name: 'MainComponentSettings' }">
             <span>
               <span class="icon">
                 <svg

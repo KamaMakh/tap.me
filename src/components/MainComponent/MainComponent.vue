@@ -4,7 +4,10 @@
       <b-col class="left-nav">
         <router-view></router-view>
       </b-col>
-      <b-col class="right-nav">
+      <b-col v-if="$route.name === 'MainComponentSettings'" class="right-nav">
+        <settingsForm />
+      </b-col>
+      <b-col v-else class="right-nav">
         <MainComponentCard />
       </b-col>
     </b-row>
@@ -13,10 +16,12 @@
 
 <script>
 import MainComponentCard from "./components/MainComponentCard";
+import MainComponentSettingsForm from "./components/MainComponentSettingsForm";
 export default {
   name: "MainComponent",
   components: {
-    MainComponentCard
+    MainComponentCard,
+    settingsForm: MainComponentSettingsForm
   }
 };
 </script>

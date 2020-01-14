@@ -1,6 +1,8 @@
 export default {
   user: {
     name: "Дмитрий Мусин",
+    email: "test@test.ru",
+    lang: "ru",
     pro: false,
     url: "mssg.me/muskindiman",
     instagram: "@instagram",
