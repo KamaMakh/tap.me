@@ -17,7 +17,7 @@ export default {
   margin: 0 auto;
   padding: 70px;
   .logo {
-    margin: 0 auto 150px;
+    margin: 0 auto 53px;
     width: 206px;
     height: 61px;
     background: url("./assets/logo_g.png") 0 0 no-repeat;

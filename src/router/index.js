@@ -6,6 +6,7 @@ import Guest from "../views/Guest";
 import AuthComponentTabs from "@/components/AuthComponent/components/AuthComponentTabs";
 import AuthComponentReset from "@/components/AuthComponent/components/AuthComponentReset";
 import AuthComponentCreateLink from "@/components/AuthComponent/components/AuthComponentCreateLink";
+
 import MainComponentMyPage from "@/components/MainComponent/components/MainComponentMyPage";
 import MainComponentEdit from "@/components/MainComponent/components/MainComponentEdit";
 import MainComponentSocials from "@/components/MainComponent/components/MainComponentSocials";
@@ -17,7 +18,9 @@ import MainComponentShop from "@/components/MainComponent/components/MainCompone
 import MainComponentProduct from "@/components/MainComponent/components/MainComponentProduct";
 import MainComponentSettings from "@/components/MainComponent/components/MainComponentSettings";
 import MainComponentTariffs from "@/components/MainComponent/components/MainComponentTariffs";
+
 import GuestComponentLink from "@/components/GuestComponent/components/GuestComponentLink";
+import GuestComponentShare from "@/components/GuestComponent/components/GuestComponentShare";
 
 Vue.use(VueRouter);
 
@@ -112,6 +115,11 @@ const routes = [
         path: "/",
         name: "GuestComponentLink",
         component: GuestComponentLink
+      },
+      {
+        path: "share",
+        name: "GuestComponentShare",
+        component: GuestComponentShare
       }
     ]
   }

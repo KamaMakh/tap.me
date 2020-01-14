@@ -14,4 +14,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.guest {
+  background: #fafafa;
+}
+</style>
