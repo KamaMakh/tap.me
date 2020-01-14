@@ -16,6 +16,7 @@ export default {
 
 <style scoped lang="scss">
 .main {
+  height: 100%;
   background: linear-gradient(
     to right,
     white 0%,

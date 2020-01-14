@@ -34,13 +34,17 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .main-component {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
+  height: 100%;
+  min-height: 100%;
   .my-row {
     margin: 0;
+    height: 100%;
+    min-height: 100%;
   }
   .left-nav {
     max-width: 376px;
@@ -55,6 +59,14 @@ export default {
     justify-content: center;
     padding: 135px 15px;
     background: #fafafa;
+  }
+}
+html {
+  height: inherit;
+}
+@media all and (min-width: 1400px) {
+  html {
+    height: 100%;
   }
 }
 @media all and (max-width: 640px) {
