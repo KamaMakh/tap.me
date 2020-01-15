@@ -6,7 +6,8 @@
           Продавайте больше
         </div>
         <div class="sale-block__sub-title">
-          Страница, которая помогает вашим клиентам найти наилучший способ связи с вами
+          Страница, которая помогает вашим клиентам найти наилучший способ связи
+          с вами
         </div>
         <div class="sale-block__btn">
           <HeaderButton text="Создать бесплатно" :reverse="true" />
@@ -22,15 +23,14 @@
         <div class="first__left">
           <div class="first__title">1. Создайте страницу</div>
           <div class="first__text">
-            Легкая настройка. Расскажите своим покупателям о себе и о своих товарах или услугах.
+            Легкая настройка. Расскажите своим покупателям о себе и о своих
+            товарах или услугах.
           </div>
         </div>
         <div class="first__right form"></div>
       </div>
       <div class="how-it-works__second second">
-        <div class="second__left">
-
-        </div>
+        <div class="second__left"></div>
         <div class="second__right">
           <div class="second__title">2. Поделитесь ссылкой</div>
           <div class="second__text">
@@ -42,7 +42,8 @@
         <div class="third__left">
           <div class="third__title">3. Начните продавать</div>
           <div class="third__text">
-            Держите руку на пульсе. Покупатели кликают на вашу ссылку и выбирают удобный для них способ связи.
+            Держите руку на пульсе. Покупатели кликают на вашу ссылку и выбирают
+            удобный для них способ связи.
           </div>
         </div>
         <div class="third__right form"></div>
@@ -52,7 +53,10 @@
       <div class="opportunities__title">
         Возможности, которые всем понравятся
       </div>
-      <div v-if="windowWidth > 700" class="opportunities__first-list first-list">
+      <div
+        v-if="windowWidth > 700"
+        class="opportunities__first-list first-list"
+      >
         <div class="first-list__item first">
           <div class="first__top">
             mssg.me/robinhood
@@ -62,7 +66,8 @@
               Короткая ссылка
             </div>
             <div class="first__text">
-              Получите красивую и короткую ссылку, которая просто призывает к действию: «Напиши мне»
+              Получите красивую и короткую ссылку, которая просто призывает к
+              действию: «Напиши мне»
             </div>
           </div>
         </div>
@@ -73,7 +78,8 @@
               QR код
             </div>
             <div class="second__text">
-              Используйте его офлайн. Привлекайте клиентов на свою страницу с помощью QR кода.
+              Используйте его офлайн. Привлекайте клиентов на свою страницу с
+              помощью QR кода.
             </div>
           </div>
         </div>
@@ -84,12 +90,21 @@
               E-mail подпись
             </div>
             <div class="third__text">
-              Оставьте почту для чего-то скучного. Перенесите важные разговоры в мессенджеры.
+              Оставьте почту для чего-то скучного. Перенесите важные разговоры в
+              мессенджеры.
             </div>
           </div>
         </div>
       </div>
-      <carousel v-else :perPageCustom="[[320, 1], [480, 1], [768, 1]]" class="opportunities__first-list first-list second-list">
+      <carousel
+        v-else
+        :perPageCustom="[
+          [320, 1],
+          [480, 1],
+          [768, 1]
+        ]"
+        class="opportunities__first-list first-list second-list"
+      >
         <slide>
           <div class="first-list__item first">
             <div class="first__top">
@@ -100,7 +115,8 @@
                 Короткая ссылка
               </div>
               <div class="first__text">
-                Получите красивую и короткую ссылку, которая просто призывает к действию: «Напиши мне»
+                Получите красивую и короткую ссылку, которая просто призывает к
+                действию: «Напиши мне»
               </div>
             </div>
           </div>
@@ -113,7 +129,8 @@
                 QR код
               </div>
               <div class="second__text">
-                Используйте его офлайн. Привлекайте клиентов на свою страницу с помощью QR кода.
+                Используйте его офлайн. Привлекайте клиентов на свою страницу с
+                помощью QR кода.
               </div>
             </div>
           </div>
@@ -126,7 +143,8 @@
                 E-mail подпись
               </div>
               <div class="third__text">
-                Оставьте почту для чего-то скучного. Перенесите важные разговоры в мессенджеры.
+                Оставьте почту для чего-то скучного. Перенесите важные разговоры
+                в мессенджеры.
               </div>
             </div>
           </div>
@@ -142,7 +160,8 @@
                 Аналитика
               </div>
               <div class="first2__text">
-                Анализируйте уровень влияния вашей страницы. Оптимизируйте свои рекламные кампании с помощью Google Analytics и Facebook Pixel.
+                Анализируйте уровень влияния вашей страницы. Оптимизируйте свои
+                рекламные кампании с помощью Google Analytics и Facebook Pixel.
               </div>
             </div>
           </div>
@@ -155,13 +174,17 @@
                 Виджет для сайта
               </div>
               <div class="second2__text">
-                Замените старую форму контакта на своем сайте на наш виджет, тем самым давая пользователям новый опыт связи с вами.
+                Замените старую форму контакта на своем сайте на наш виджет, тем
+                самым давая пользователям новый опыт связи с вами.
               </div>
             </div>
           </div>
         </slide>
       </carousel>
-      <div v-if="windowWidth > 700" class="opportunities__second-list second-list">
+      <div
+        v-if="windowWidth > 700"
+        class="opportunities__second-list second-list"
+      >
         <div class="second-list__item first2">
           <div class="first2__top">
             <div class="search"></div>
@@ -172,7 +195,8 @@
               Аналитика
             </div>
             <div class="first2__text">
-              Анализируйте уровень влияния вашей страницы. Оптимизируйте свои рекламные кампании с помощью Google Analytics и Facebook Pixel.
+              Анализируйте уровень влияния вашей страницы. Оптимизируйте свои
+              рекламные кампании с помощью Google Analytics и Facebook Pixel.
             </div>
           </div>
         </div>
@@ -183,7 +207,8 @@
               Виджет для сайта
             </div>
             <div class="second2__text">
-              Замените старую форму контакта на своем сайте на наш виджет, тем самым давая пользователям новый опыт связи с вами.
+              Замените старую форму контакта на своем сайте на наш виджет, тем
+              самым давая пользователям новый опыт связи с вами.
             </div>
           </div>
         </div>
@@ -655,7 +680,7 @@ export default {
           font-weight: 600;
           font-size: 25px;
           line-height: 80px;
-          color: #FF5C03;
+          color: #ff5c03;
         }
         &__text {
           font-size: 16px;
@@ -673,7 +698,7 @@ export default {
           font-weight: 600;
           font-size: 25px;
           line-height: 80px;
-          color: #FF5C03;
+          color: #ff5c03;
         }
         &__text {
           font-size: 16px;
@@ -733,7 +758,7 @@ export default {
           font-weight: 600;
           font-size: 25px;
           line-height: 80px;
-          color: #FF5C03;
+          color: #ff5c03;
         }
         &__text {
           font-size: 16px;
@@ -747,7 +772,7 @@ export default {
           font-weight: 600;
           font-size: 25px;
           line-height: 80px;
-          color: #FF5C03;
+          color: #ff5c03;
         }
         &__text {
           font-size: 16px;

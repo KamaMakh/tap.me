@@ -24,7 +24,7 @@ body,
 }
 .VueCarousel-dot {
   background: none !important;
-  border: 1px solid #7C7C7C !important;
+  border: 1px solid #7c7c7c !important;
   width: 12px !important;
   height: 12px !important;
   padding: 0 !important;
@@ -34,7 +34,7 @@ body,
   margin: 0 2px !important;
 }
 .VueCarousel-dot[aria-selected="true"] {
-  background-color: #FF5C03 !important;
+  background-color: #ff5c03 !important;
   border-color: transparent !important;
 }
 </style>

@@ -1,5 +1,10 @@
 <template>
-  <b-link v-if="to" :to="to" class="header-button" :class="{ reverse: reverse }">
+  <b-link
+    v-if="to"
+    :to="to"
+    class="header-button"
+    :class="{ reverse: reverse }"
+  >
     {{ text ? text : "text" }}
   </b-link>
   <div v-else class="header-button" :class="{ reverse: reverse }">

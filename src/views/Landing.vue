@@ -19,7 +19,12 @@ export default {
 
 <style lang="scss">
 .landing {
-  background: url("../components/LandingComponent/assets/top_bg.png") -285px 0px no-repeat, url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x, url("../components/LandingComponent/assets/left_bg.png") -282px 1605px no-repeat, url("../components/LandingComponent/assets/right_bg.png") 133% 3182px no-repeat;
+  background: url("../components/LandingComponent/assets/top_bg.png") -285px 0px
+      no-repeat,
+    url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x,
+    url("../components/LandingComponent/assets/left_bg.png") -282px 1605px no-repeat,
+    url("../components/LandingComponent/assets/right_bg.png") 133% 3182px
+      no-repeat;
   .inner {
     max-width: 1172px;
     margin: 0 auto;
@@ -27,10 +32,14 @@ export default {
   }
   @media all and(max-width: 1170px) {
     padding: 28px;
-    background: url("../components/LandingComponent/assets/top_bg.png") -285px 0px no-repeat, url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
+    background: url("../components/LandingComponent/assets/top_bg.png") -285px 0px
+        no-repeat,
+      url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
   }
   @media all and(max-width: 768px) {
-    background: url("../components/LandingComponent/assets/landing_mob.png") 0px 0px no-repeat, url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
+    background: url("../components/LandingComponent/assets/landing_mob.png") 0px
+        0px no-repeat,
+      url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
     .header-button {
       color: #fff;
       &:hover {
@@ -39,7 +48,9 @@ export default {
     }
   }
   @media all and(max-width: 330px) {
-    background: url("../components/LandingComponent/assets/landing_sm.png") 0px 0px no-repeat, url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
+    background: url("../components/LandingComponent/assets/landing_sm.png") 0px
+        0px no-repeat,
+      url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
   }
 }
 </style>
