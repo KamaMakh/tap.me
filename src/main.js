@@ -12,6 +12,7 @@ import "vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css";
 import GeneralComponentHeader from "@/components/GeneralComponent/GeneralComponentHeader";
 import Validations from "vuelidate";
 import MainComponentTitle from "@/components/MainComponent/components/MainComponentTitle";
+import VueWindowSize from "vue-window-size";
 
 Vue.component("basic-button", BasicButton);
 Vue.component("blue-button", BlueButton);
@@ -21,6 +22,7 @@ Vue.component("main-title", MainComponentTitle);
 Vue.use(BootstrapVue);
 Vue.use(Validations);
 Vue.use(PerfectScrollbar);
+Vue.use(VueWindowSize);
 
 Vue.config.productionTip = false;
 

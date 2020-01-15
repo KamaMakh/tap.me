@@ -22,4 +22,19 @@ body,
 .ps {
   max-height: 100%;
 }
+.VueCarousel-dot {
+  background: none !important;
+  border: 1px solid #7C7C7C !important;
+  width: 12px !important;
+  height: 12px !important;
+  padding: 0 !important;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0 2px !important;
+}
+.VueCarousel-dot[aria-selected="true"] {
+  background-color: #FF5C03 !important;
+  border-color: transparent !important;
+}
 </style>

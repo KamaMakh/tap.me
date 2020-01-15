@@ -1,8 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
 import Auth from "../views/Auth";
 import Main from "../views/Main";
 import Guest from "../views/Guest";
+import Landing from "../views/Landing";
+
 import AuthComponentTabs from "@/components/AuthComponent/components/AuthComponentTabs";
 import AuthComponentReset from "@/components/AuthComponent/components/AuthComponentReset";
 import AuthComponentCreateLink from "@/components/AuthComponent/components/AuthComponentCreateLink";
@@ -25,6 +28,11 @@ import GuestComponentShare from "@/components/GuestComponent/components/GuestCom
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/",
+    name: "LandingComponent",
+    component: Landing
+  },
   {
     path: "/auth",
     component: Auth,
