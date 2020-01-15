@@ -2,4 +2,8 @@ function setProduct({ commit }, data) {
   commit("setProduct", data);
 }
 
-export { setProduct };
+function setSocial({ commit }, data) {
+  commit("setSocial", data);
+}
+
+export { setProduct, setSocial };

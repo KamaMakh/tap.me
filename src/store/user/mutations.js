@@ -2,4 +2,8 @@ function setProduct(state, product) {
   state.product = product || {};
 }
 
-export { setProduct };
+function setSocial(state, social) {
+  state.social = social || {};
+}
+
+export { setProduct, setSocial };

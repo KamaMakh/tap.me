@@ -87,5 +87,6 @@ export default {
       }
     ]
   },
-  product: {}
+  product: {},
+  social: {}
 };

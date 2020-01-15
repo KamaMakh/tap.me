@@ -18,6 +18,7 @@
           class="list-group-item"
           v-for="(element, key) in user.socials"
           :key="key"
+          @click="setSocial(element)"
         >
           <div v-if="element.value !== null">
             <div v-if="element.id === 0">
@@ -128,8 +129,14 @@ export default {
   },
   computed: {
     ...mapState({
-      user: state => state.user.user
+      user: state => state.user.user,
+      social: state => state.user.social
     })
+  },
+  methods: {
+    setSocial(social) {
+      this.$store.dispatch("user/setSocial", social);
+    }
   }
 };
 </script>
