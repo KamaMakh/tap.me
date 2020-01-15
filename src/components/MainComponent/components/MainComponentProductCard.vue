@@ -1,0 +1,164 @@
+<template>
+  <div class="main-component-product-card">
+    <div class="my-card">
+      <div class="bg-pic">
+        <img :src="user.background" />
+      </div>
+      <div class="top">
+        <div class="logo"></div>
+      </div>
+      <div class="bio">
+        <div class="prod-pic">
+          <img :src="product.photo" />
+        </div>
+        <div class="prod-name">
+          {{ product.name }}
+        </div>
+        <div class="prod-desc">
+          {{ product.note }}
+        </div>
+        <div class="prod-price">
+          {{ product.discount_price ? product.discount_price : product.price }}
+        </div>
+        <b-link to="#" class="prod-link">
+          Перейти на сайт
+        </b-link>
+        <div class="prod-uri">
+          shop.com
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapState } from "vuex";
+export default {
+  name: "MainComponentProductCard",
+  computed: {
+    ...mapState({
+      user: state => state.user.user,
+      product: state => state.user.product
+    })
+  }
+};
+</script>
+
+<style scoped lang="scss">
+.main-component-product-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  .my-card {
+    width: 377px;
+    max-width: 100%;
+    position: relative;
+    padding: 5px 16px 120px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fafafa;
+    box-shadow: 0px 0px 54px rgba(0, 0, 0, 0.12);
+    .bg-pic {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 210px;
+      img {
+        max-width: 100%;
+      }
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      .logo {
+        width: 82px;
+        height: 24px;
+        background: url("../assets/card_logo.png") 0 0 no-repeat;
+      }
+    }
+    .bio {
+      margin-top: 103px;
+      position: relative;
+      background: #ffffff;
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding-bottom: 23px;
+      .prod-pic {
+        width: 100%;
+        margin-bottom: 24px;
+        img {
+          max-width: 100%;
+        }
+      }
+      .prod-name {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 0.07px;
+        color: #151515;
+        margin-bottom: 4px;
+        padding: 0 12px;
+      }
+      .prod-desc {
+        font-weight: 200;
+        font-size: 14px;
+        line-height: 17px;
+        letter-spacing: 0.049px;
+        color: #151515;
+        margin-bottom: 14px;
+        padding: 0 12px;
+      }
+      .prod-price {
+        background: #fafafa;
+        border-radius: 8px;
+        height: 50px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 200;
+        font-size: 20px;
+        letter-spacing: 0.07px;
+        color: #151515;
+        padding: 0 12px;
+        margin-bottom: 10px;
+      }
+      .prod-link {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        letter-spacing: -0.163333px;
+        color: #1b3fc6;
+        margin-bottom: 3px;
+        text-decoration: none;
+      }
+      .prod-uri {
+        font-weight: 200;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        letter-spacing: 0.049px;
+        color: #151515;
+        mix-blend-mode: normal;
+        opacity: 0.2;
+      }
+    }
+  }
+}
+</style>

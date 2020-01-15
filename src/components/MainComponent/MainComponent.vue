@@ -13,6 +13,12 @@
       >
         <tariffsBody />
       </b-col>
+      <b-col
+        v-else-if="$route.name === 'MainComponentProduct'"
+        class="right-nav"
+      >
+        <product-card />
+      </b-col>
       <b-col v-else class="right-nav">
         <MainComponentCard />
       </b-col>
@@ -24,12 +30,14 @@
 import MainComponentCard from "./components/MainComponentCard";
 import MainComponentSettingsForm from "./components/MainComponentSettingsForm";
 import MainComponentTariffsBody from "./components/MainComponentTariffsBody";
+import MainComponentProductCard from "./components/MainComponentProductCard";
 export default {
   name: "MainComponent",
   components: {
     MainComponentCard,
     settingsForm: MainComponentSettingsForm,
-    tariffsBody: MainComponentTariffsBody
+    tariffsBody: MainComponentTariffsBody,
+    productCard: MainComponentProductCard
   }
 };
 </script>

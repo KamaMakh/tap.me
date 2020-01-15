@@ -13,7 +13,7 @@ export default {
       {
         name: "Шапка",
         category: "",
-        note: "",
+        note: "Супер шапка теплая зимняя",
         link: "",
         price: "$100",
         discount_price: "",
@@ -22,7 +22,7 @@ export default {
       {
         name: "Шапка 2",
         category: "",
-        note: "",
+        note: "Супер шапка теплая зимняя",
         link: "",
         price: "$100",
         discount_price: "$80",
