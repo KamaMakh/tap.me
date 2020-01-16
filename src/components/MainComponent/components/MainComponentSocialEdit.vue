@@ -65,6 +65,7 @@
       {{ social.name }}
     </div>
     <div
+      v-if="social.id === 1 || social.id === 2 || social.id === 5"
       class="input-wrap"
       role="group"
       :class="{
@@ -80,7 +81,45 @@
         trim
       ></b-form-input>
     </div>
-    <div class="info">
+    <div
+      v-else-if="social.id === 0 || social.id === 6"
+      class="input-wrap"
+      role="group"
+      :class="{
+        'is-danger':
+          $v.social.value.$invalid && (social.value || showFormErrors)
+      }"
+    >
+      <label for="input-live4">Ссылка на профиль</label>
+      <b-form-input
+        id="input-live4"
+        v-model="social.value"
+        placeholder="https://"
+        trim
+      ></b-form-input>
+    </div>
+    <div
+      v-else-if="social.id === 3 || social.id === 4"
+      class="input-wrap"
+      role="group"
+      :class="{
+        'is-danger':
+          $v.social.value.$invalid && (social.value || showFormErrors)
+      }"
+    >
+      <label for="input-live4">Имя пользователя</label>
+      <b-form-input
+        id="input-live4"
+        v-model="social.value"
+        placeholder="username"
+        trim
+      ></b-form-input>
+    </div>
+
+    <div
+      v-if="social.id === 1 || social.id === 2 || social.id === 5"
+      class="info"
+    >
       Введите номер телефона в следующей последовательности:
       <br /><br />
       • код страны <br />
@@ -88,6 +127,12 @@
       • номер телефона <br />
       <br /><br />
       Пример: +380734645261
+    </div>
+    <div v-else-if="social.id === 0 || social.id === 6" class="info">
+      Введите ссылку на страницу вашего профиля в {{ social.name }}
+    </div>
+    <div v-else-if="social.id === 3 || social.id === 4" class="info">
+      Введите иям пользователя в {{ social.name }}
     </div>
     <span @click="save">
       <basic-button text="Сохранить" />

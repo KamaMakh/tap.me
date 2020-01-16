@@ -8,7 +8,7 @@
         </div>
         <div class="pics__line">
           <div class="pics__img">
-            <img :src="product.photo" />
+            <img v-if="product.photo" :src="product.photo" />
           </div>
           <div class="pics__btn" @click="modalAvatar = !modalAvatar">
             Изменить
