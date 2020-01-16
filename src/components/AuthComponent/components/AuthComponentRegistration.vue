@@ -103,6 +103,12 @@ export default {
     text-align: center;
     color: #272727;
     margin-bottom: 25px;
+    @media all and(max-width: 768px) {
+      font-size: 13px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 11px;
+    }
   }
   .inst-info-text {
     font-weight: 600;
@@ -115,6 +121,12 @@ export default {
     box-sizing: border-box;
     padding: 13px 14px;
     margin-top: 19px;
+    @media all and(max-width: 768px) {
+      font-size: 13px;
+    }
+    @media all and(max-width: 640px) {
+      display: none;
+    }
   }
   .or-text {
     font-weight: 600;

@@ -83,24 +83,6 @@ export default {
 <style scoped lang="scss">
 .main-component-shop {
   padding-top: 15px;
-  .title {
-    font-weight: bold;
-    font-size: 20px;
-    color: #000000;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #e5e5e5;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 23px;
-    margin-right: -16px;
-    margin-left: -16px;
-    span {
-      margin-right: 18px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-  }
   .sub-title {
     font-weight: 200;
     font-size: 14px;
@@ -108,6 +90,12 @@ export default {
     color: #727272;
     margin-top: 13px;
     margin-bottom: 13px;
+    @media all and(max-width: 960px) {
+      font-size: 12px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 11px;
+    }
   }
   .goods {
     margin-top: 27px;
@@ -155,12 +143,21 @@ export default {
         text-decoration: none;
         color: #151515;
         background: #fafafa;
+        @media all and(max-width: 640px) {
+          height: 50px;
+        }
       }
       .edit {
         color: #1b3fc6;
         text-decoration: none;
         font-size: 14px;
         font-weight: 200;
+        @media all and(max-width: 960px) {
+          font-size: 12px;
+        }
+        @media all and(max-width: 640px) {
+          font-size: 11px;
+        }
       }
     }
   }

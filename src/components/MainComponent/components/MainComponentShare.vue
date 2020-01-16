@@ -78,24 +78,6 @@ export default {
 <style scoped lang="scss">
 .main-component-share {
   padding-top: 15px;
-  .title {
-    font-weight: bold;
-    font-size: 20px;
-    color: #000000;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #e5e5e5;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 23px;
-    margin-right: -16px;
-    margin-left: -16px;
-    span {
-      margin-right: 18px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-  }
   .sub-title {
     font-weight: 200;
     font-size: 14px;
@@ -105,6 +87,12 @@ export default {
     opacity: 0.4;
     margin-top: 23px;
     margin-bottom: 2px;
+    @media all and(max-width: 960px) {
+      font-size: 12px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 11px;
+    }
   }
   .share {
     display: flex;
@@ -118,6 +106,12 @@ export default {
       background: none;
       pointer-events: none;
       outline: none;
+      @media all and(max-width: 960px) {
+        font-size: 12px;
+      }
+      @media all and(max-width: 640px) {
+        font-size: 13px;
+      }
     }
   }
   .text {
@@ -127,6 +121,12 @@ export default {
     color: #727272;
     mix-blend-mode: normal;
     margin-top: 11px;
+    @media all and(max-width: 960px) {
+      font-size: 12px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 11px;
+    }
   }
   .qr-code {
     margin-top: 70px;
@@ -142,6 +142,9 @@ export default {
     color: #1b3fc6;
     margin-top: 0;
     cursor: pointer;
+    @media all and(max-width: 640px) {
+      font-size: 11px;
+    }
   }
 }
 </style>

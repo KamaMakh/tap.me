@@ -37,24 +37,6 @@ export default {
 <style scoped lang="scss">
 .main-component-call-back {
   padding-top: 15px;
-  .title {
-    font-weight: bold;
-    font-size: 20px;
-    color: #000000;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #e5e5e5;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 23px;
-    margin-right: -16px;
-    margin-left: -16px;
-    span {
-      margin-right: 18px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-  }
   .help-block {
     border-radius: 8px;
     background: #fafafa;
@@ -70,12 +52,24 @@ export default {
     font-size: 20px;
     color: #151515;
     text-align: center;
+    @media all and(max-width: 960px) {
+      font-size: 18px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 16px;
+    }
   }
   .help-sub-title {
     font-weight: 200;
     font-size: 14px;
     color: #151515;
     text-align: center;
+    @media all and(max-width: 960px) {
+      font-size: 13px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 12px;
+    }
   }
   .soc-list {
     display: flex;

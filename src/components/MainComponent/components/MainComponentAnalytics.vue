@@ -125,24 +125,6 @@ export default {
 <style scoped lang="scss">
 .main-component-analytics {
   padding-top: 15px;
-  .title {
-    font-weight: bold;
-    font-size: 20px;
-    color: #000000;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #e5e5e5;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 23px;
-    margin-right: -16px;
-    margin-left: -16px;
-    span {
-      margin-right: 18px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-  }
   .help-block {
     border-radius: 8px;
     background: #fafafa;
@@ -161,6 +143,12 @@ export default {
     span {
       font-weight: 900;
     }
+    @media all and(max-width: 960px) {
+      font-size: 22px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 19px;
+    }
   }
   .help-sub-title {
     text-align: center;
@@ -168,6 +156,9 @@ export default {
     font-size: 14px;
     color: #151515;
     margin-top: 6px;
+    @media all and(max-width: 960px) {
+      font-size: 13px;
+    }
   }
   .pro-btn {
     width: 263px;
@@ -180,6 +171,12 @@ export default {
     font-size: 15px;
     color: #000000;
     cursor: pointer;
+    @media all and(max-width: 960px) {
+      font-size: 14px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 13px;
+    }
   }
   .activate {
     display: flex;
@@ -236,6 +233,12 @@ export default {
           font-size: 14px;
           color: #151515;
           margin-bottom: 11px;
+          @media all and(max-width: 960px) {
+            font-size: 14px;
+          }
+          @media all and(max-width: 640px) {
+            font-size: 11px;
+          }
         }
         .stats {
           display: flex;
@@ -247,6 +250,12 @@ export default {
               color: #506acd;
               font-weight: 500;
               font-size: 20px;
+              @media all and(max-width: 960px) {
+                font-size: 20px;
+              }
+              @media all and(max-width: 640px) {
+                font-size: 21px;
+              }
             }
             .text {
               font-weight: 200;
@@ -254,6 +263,12 @@ export default {
               letter-spacing: 0.5px;
               text-transform: uppercase;
               color: #151515;
+              @media all and(max-width: 960px) {
+                font-size: 12px;
+              }
+              @media all and(max-width: 640px) {
+                font-size: 9px;
+              }
             }
           }
         }

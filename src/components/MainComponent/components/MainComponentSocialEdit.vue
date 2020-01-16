@@ -223,6 +223,13 @@ export default {
       font-weight: normal;
       font-size: 14px;
       color: #959595;
+      @media all and(max-width: 960px) {
+        font-size: 12px;
+        padding: 12px;
+      }
+      @media all and(max-width: 640px) {
+        font-size: 11px;
+      }
     }
     textarea {
       border-radius: 0;
@@ -244,6 +251,12 @@ export default {
     mix-blend-mode: normal;
     opacity: 0.6;
     margin-bottom: 40px;
+    @media all and(max-width: 960px) {
+      font-size: 12px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 11px;
+    }
   }
 }
 </style>

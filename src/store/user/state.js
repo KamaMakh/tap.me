@@ -11,8 +11,10 @@ export default {
     tariff_id: 1,
     products: [
       {
+        id: 0,
         name: "Шапка",
         category: "",
+        show: true,
         note: "Супер шапка теплая зимняя",
         link: "",
         price: "$100",
@@ -20,8 +22,10 @@ export default {
         photo: "https://newbalance.ru/upload/iblock/f2e/500245-000-1.jpg"
       },
       {
+        id: 1,
         name: "Шапка 2",
         category: "",
+        show: false,
         note: "Супер шапка теплая зимняя",
         link: "",
         price: "$100",
@@ -88,5 +92,6 @@ export default {
     ]
   },
   product: {},
-  social: {}
+  social: {},
+  hideLeft: false
 };

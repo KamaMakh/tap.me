@@ -144,24 +144,6 @@ export default {
 <style scoped lang="scss">
 .main-component-socials {
   padding-top: 15px;
-  .title {
-    font-weight: bold;
-    font-size: 20px;
-    color: #000000;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #e5e5e5;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 23px;
-    margin-right: -16px;
-    margin-left: -16px;
-    span {
-      margin-right: 18px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-  }
   .sub-title {
     font-weight: 200;
     font-size: 14px;
@@ -171,6 +153,12 @@ export default {
     opacity: 0.4;
     margin-top: 27px;
     margin-bottom: 14px;
+    @media all and(max-width: 960px) {
+      font-size: 12px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 11px;
+    }
   }
   .list {
     .list-group-item {

@@ -25,5 +25,8 @@ export default {
     #fafafa 50%,
     #fafafa 100%
   );
+  @media all and(max-width: 960px) {
+    background: #fff;
+  }
 }
 </style>

@@ -33,6 +33,11 @@
 import QrcodeVue from "qrcode.vue";
 export default {
   name: "GuestComponentShare",
+  data() {
+    return {
+      size: 230
+    };
+  },
   components: {
     QrcodeVue
   }
@@ -58,6 +63,12 @@ export default {
     text-align: center;
     color: #151515;
     margin: 0 auto 20px;
+    @media all and(max-width: 960px) {
+      font-size: 36px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 25px;
+    }
   }
   .sub-title {
     font-size: 20px;
@@ -65,6 +76,12 @@ export default {
     font-weight: 200;
     margin: 0 auto 23px;
     text-align: center;
+    @media all and(max-width: 960px) {
+      font-size: 20px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 13px;
+    }
   }
   .btn {
     margin: 0 auto 22px;
@@ -73,8 +90,15 @@ export default {
     font-size: 20px;
     font-weight: 200;
     color: #151515;
+    text-align: center;
     span {
       font-weight: 500;
+    }
+    @media all and(max-width: 960px) {
+      font-size: 20px;
+    }
+    @media all and(max-width: 640px) {
+      font-size: 13px;
     }
   }
   .qr-code {

@@ -1,6 +1,11 @@
 <template>
   <div v-if="!buyMode" class="main-component-tariffs-body">
-    <b-row>
+    <span class="mob-title-wrap">
+      <span @click="toggleLeftColumn">
+        <main-title text="Тарифы" />
+      </span>
+    </span>
+    <b-row v-if="windowWidth > 640">
       <b-col class="my-column" v-for="(item, key) in tariffs" :key="key">
         <div class="title">
           {{ item.name }}
@@ -24,8 +29,41 @@
         </span>
       </b-col>
     </b-row>
+    <b-row v-else>
+      <b-tabs content-class="mt-3">
+        <b-tab
+          v-for="(item, key) in tariffs"
+          :key="key"
+          :title="item.name"
+          class="my-column"
+        >
+          <div class="price">
+            {{ item.price }}
+          </div>
+          <div class="desc">
+            {{ item.desc }}
+          </div>
+          <div class="list">
+            <div v-for="(el, k) in item.options" :key="k" class="element">
+              {{ el }}
+            </div>
+          </div>
+          <span v-if="user.tariff_id !== item.id" @click="buyTariff(item)">
+            <blue-button text="Выбрать" />
+          </span>
+          <span v-else class="current-tariff">
+            Ваш текущий тариф
+          </span>
+        </b-tab>
+      </b-tabs>
+    </b-row>
   </div>
   <div v-else class="main-component-tariffs-body">
+    <span class="mob-title-wrap">
+      <span @click="toggleLeftColumn">
+        <main-title text="Купить PRO тариф" />
+      </span>
+    </span>
     <div class="form-wrap">
       <div class="title">Покупка <span>PRO</span> аккаунта ($84)</div>
       <b-form-group
@@ -181,6 +219,10 @@ export default {
         return;
       }
       alert("Оплата");
+    },
+    toggleLeftColumn() {
+      this.$router.push("/main");
+      this.$store.dispatch("user/toggleLeftColumn");
     }
   }
 };
@@ -189,6 +231,50 @@ export default {
 <style lang="scss">
 .main-component-tariffs-body {
   max-width: 100%;
+  .mob-title-wrap {
+    display: none;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e5e5e5;
+    .main-component-title {
+      flex: 1;
+      border: none;
+    }
+    @media all and(max-width: 960px) {
+      display: flex;
+    }
+  }
+  .row {
+    @media all and(max-width: 640px) {
+      justify-content: center;
+    }
+  }
+  .nav-tabs {
+    border: none;
+    background: rgba(0, 0, 0, 0.1);
+    .nav-item {
+      font-weight: bold;
+      font-size: 27px;
+      color: #FF5C03;
+      border: none;
+      padding: 0;
+      margin-bottom: 0;
+      flex-grow: 1;
+      text-align: center;
+      a {
+        border: none;
+        color: #FF5C03;
+        padding: 20px 0;
+        &.active {
+          box-shadow: inset 2px 1px 6px rgba(0, 0, 0, 0.160539);
+        }
+      }
+    }
+  }
+  .tab-content {
+    margin-top: 0 !important;
+  }
   .my-column {
     width: 320px;
     background: rgba(0, 0, 0, 0.1);
@@ -245,6 +331,9 @@ export default {
       color: #A7A7A7;
       display: block;
     }
+    @media all and(max-width: 640px) {
+      margin: 0;
+    }
   }
   .form-wrap {
     width: 575px;
@@ -262,12 +351,26 @@ export default {
         color: #2749C8;
         font-weight: bold;
       }
+      @media all and(max-width: 960px) {
+        font-size: 28px;
+      }
+      @media all and(max-width: 640px) {
+        font-size: 19px;
+      }
     }
     label {
       font-weight: 600;
       font-size: 13px;
       color: #000;
       margin-bottom: 0;
+      @media all and(max-width: 960px) {
+        font-size: 12px;
+        line-height: 19px;
+      }
+      @media all and(max-width: 640px) {
+        font-size: 11px;
+        line-height: 15px;
+      }
     }
     input,
     select {
@@ -279,6 +382,14 @@ export default {
       display: flex;
       align-items: center;
       border-radius: 0;
+      @media all and(max-width: 960px) {
+        font-size: 13px;
+        padding: 12px;
+        height: auto;
+      }
+      @media all and(max-width: 640px) {
+        font-size: 12px;
+      }
     }
     .is-danger {
       input,
@@ -291,6 +402,11 @@ export default {
           color: #f04124;
         }
       }
+    }
+    @media all and(max-width: 960px) {
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
     }
   }
 }

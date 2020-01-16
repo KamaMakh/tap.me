@@ -87,5 +87,11 @@ export default {
     cursor: pointer;
     text-decoration: none;
   }
+  @media all and(max-width: 960px) {
+    font-size: 18px;
+  }
+  @media all and(max-width: 640px) {
+    font-size: 15px;
+  }
 }
 </style>

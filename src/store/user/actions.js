@@ -6,4 +6,8 @@ function setSocial({ commit }, data) {
   commit("setSocial", data);
 }
 
-export { setProduct, setSocial };
+function toggleLeftColumn({ commit }) {
+  commit("toggleLeftColumn");
+}
+
+export { setProduct, setSocial, toggleLeftColumn };

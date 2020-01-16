@@ -1,9 +1,19 @@
 <template>
   <div class="main-component-edit">
     <main-title
+      v-if="windowWidth > 640"
       text="Настройте вашу страницу"
       :to="{ name: 'MainComponentMyPage' }"
     />
+    <div v-else class="mob-title-wrap">
+      <main-title
+        text="Настройте вашу страницу"
+        :to="{ name: 'MainComponentMyPage' }"
+      />
+      <div class="buttons-wrap__save" @click="save">
+        <basic-button text="Сохранить" />
+      </div>
+    </div>
     <div class="pics">
       <div class="pics__item">
         <div class="pics__title">
@@ -32,7 +42,13 @@
         </div>
       </div>
     </div>
-    <div class="input-wrap" role="group">
+    <div
+      class="input-wrap"
+      role="group"
+      :class="{
+        'is-danger': $v.user.name.$invalid && (user.name || showFormErrors)
+      }"
+    >
       <label for="input-live">Имя страницы</label>
       <b-form-input
         id="input-live"
@@ -41,7 +57,13 @@
         trim
       ></b-form-input>
     </div>
-    <div class="input-wrap" role="group">
+    <div
+      class="input-wrap"
+      role="group"
+      :class="{
+        'is-danger': $v.user.url.$invalid && (user.url || showFormErrors)
+      }"
+    >
       <label for="input-live2">Имя страницы в url</label>
       <b-form-input
         id="input-live2"
@@ -81,7 +103,7 @@
       <div class="buttons-wrap__link">
         <blue-button text="Добавить ссылку" to="main" />
       </div>
-      <div class="buttons-wrap__save">
+      <div v-if="windowWidth > 640" @click="save" class="buttons-wrap__save">
         <basic-button text="Сохранить" />
       </div>
     </div>
@@ -94,12 +116,12 @@
       hide-footer
     >
       <b-form-file
-        v-model="user.avatar_file"
+        v-model="user.new_avatar"
         placeholder="Выберите файл или перетащите его"
         drop-placeholder="Перетащите сюда..."
         browse-text="Выбрать"
       ></b-form-file>
-      <div class="modal-buttons" style="margin-top: 25px">
+      <div class="modal-buttons" style="margin-top: 25px" @click="readURL">
         <basic-button text="Добавить" />
       </div>
     </b-modal>
@@ -110,12 +132,12 @@
       hide-footer
     >
       <b-form-file
-        v-model="user.back_file"
+        v-model="user.new_back"
         placeholder="Выберите файл или перетащите его"
         drop-placeholder="Перетащите сюда..."
         browse-text="Выбрать"
       ></b-form-file>
-      <div class="modal-buttons" style="margin-top: 25px">
+      <div class="modal-buttons" style="margin-top: 25px" @click="readURL">
         <basic-button text="Добавить" />
       </div>
     </b-modal>
@@ -124,18 +146,64 @@
 
 <script>
 import { mapState } from "vuex";
+import { required } from "vuelidate/lib/validators";
 export default {
   name: "MainComponentEdit",
   data() {
     return {
       modalAvatar: false,
-      modalBackground: false
+      modalBackground: false,
+      showFormErrors: false
     };
   },
   computed: {
     ...mapState({
       user: state => state.user.user
     })
+  },
+  validations: {
+    user: {
+      name: {
+        required
+      },
+      url: {
+        required
+      }
+    }
+  },
+  methods: {
+    toggleLeftColumn() {
+      this.$store.dispatch("user/toggleLeftColumn");
+    },
+    readURL() {
+      if (this.user.new_avatar) {
+        let reader = new FileReader();
+        reader.onload = e => {
+          this.user.avatar = e.target.result;
+        };
+        reader.readAsDataURL(this.user.new_avatar);
+        this.modalAvatar = false;
+        this.user.new_avatar = undefined;
+      } else if (this.user.new_back) {
+        let reader = new FileReader();
+        reader.onload = e => {
+          this.user.background = e.target.result;
+        };
+        reader.readAsDataURL(this.user.new_back);
+        this.modalBackground = false;
+        this.user.new_back = undefined;
+      }
+    },
+    save() {
+      if (
+        this.$v.user.$pending ||
+        this.$v.user.$error ||
+        this.$v.user.$invalid
+      ) {
+        this.showFormErrors = true;
+        return;
+      }
+    }
   }
 };
 </script>
@@ -143,22 +211,22 @@ export default {
 <style scoped lang="scss">
 .main-component-edit {
   padding-top: 15px;
-  .title {
-    font-weight: bold;
-    font-size: 20px;
-    color: #000000;
+  .mob-title-wrap {
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    width: 100%;
     border-bottom: 1px solid #e5e5e5;
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 23px;
-    margin-right: -16px;
-    margin-left: -16px;
-    span {
-      margin-right: 18px;
-      cursor: pointer;
-      text-decoration: none;
+    padding: 8px 0;
+    align-items: center;
+    .main-component-title {
+      padding: 0;
+      border: none;
+    }
+    .buttons-wrap__save {
+      margin-top: 0;
+      .basic-button {
+        font-size: 13px;
+      }
     }
   }
   .pics {
@@ -172,6 +240,12 @@ export default {
       &:nth-child(2n) {
         margin-right: 0;
       }
+      @media all and(max-width: 960px) {
+        margin-right: 4px;
+        &:nth-child(2n) {
+          margin-right: 0;
+        }
+      }
     }
     &__title {
       font-weight: 200;
@@ -181,6 +255,12 @@ export default {
       mix-blend-mode: normal;
       opacity: 0.4;
       margin-bottom: 5px;
+      @media all and(max-width: 960px) {
+        font-size: 12px;
+      }
+      @media all and(max-width: 640px) {
+        font-size: 11px;
+      }
     }
     &__line {
       display: flex;
@@ -201,6 +281,22 @@ export default {
         height: 67px;
         width: 67px;
         object-fit: cover;
+        @media all and(max-width: 960px) {
+          width: 60px;
+          height: 60px;
+        }
+        @media all and(max-width: 640px) {
+          width: 54px;
+          height: 54px;
+        }
+      }
+      @media all and(max-width: 960px) {
+        width: 60px;
+        height: 60px;
+      }
+      @media all and(max-width: 640px) {
+        width: 54px;
+        height: 54px;
       }
     }
     &__btn {
@@ -211,6 +307,12 @@ export default {
       color: #1b3fc6;
       text-decoration: none;
       cursor: pointer;
+      @media all and(max-width: 960px) {
+        font-size: 12px;
+      }
+      @media all and(max-width: 640px) {
+        font-size: 11px;
+      }
     }
   }
   .input-wrap {
@@ -221,6 +323,12 @@ export default {
       text-align: right;
       color: #000000;
       margin-bottom: 4px;
+      @media all and(max-width: 960px) {
+        font-size: 12px;
+      }
+      @media all and(max-width: 640px) {
+        font-size: 11px;
+      }
     }
     input {
       background: #ffffff;
@@ -232,9 +340,23 @@ export default {
       font-weight: normal;
       font-size: 14px;
       color: #959595;
+      @media all and(max-width: 960px) {
+        font-size: 12px;
+        padding: 12px;
+      }
+      @media all and(max-width: 640px) {
+        font-size: 11px;
+      }
     }
     textarea {
       border-radius: 0;
+    }
+    &.is-danger {
+      input,
+      select {
+        border-color: #f04124 !important;
+        color: #f04124;
+      }
     }
   }
   .buttons-wrap {
@@ -246,6 +368,12 @@ export default {
       font-size: 13px;
       color: #000000;
       margin-bottom: 5px;
+      @media all and(max-width: 960px) {
+        font-size: 12px;
+      }
+      @media all and(max-width: 640px) {
+        font-size: 11px;
+      }
     }
     &__save {
       margin-top: 28px;

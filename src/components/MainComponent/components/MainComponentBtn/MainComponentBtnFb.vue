@@ -57,8 +57,15 @@ export default {
   text-decoration: none;
   color: #151515;
   background: #fafafa;
+  @media all and(max-width: 768px) {
+    justify-content: flex-start;
+  }
   .left {
     font-weight: normal;
+    @media all and(max-width: 768px) {
+      font-size: 0 !important;
+      margin-right: 24px;
+    }
   }
   .edit {
     font-weight: 200;

@@ -72,6 +72,9 @@ export default {
   }
   .card-body {
     padding: 40px 39px;
+    @media all and(max-width: 768px) {
+      padding: 20px 30px;
+    }
   }
   .tab-content > .active {
     outline: none;

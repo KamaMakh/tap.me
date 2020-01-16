@@ -22,5 +22,8 @@ export default {
     height: 61px;
     background: url("./assets/logo_g.png") 0 0 no-repeat;
   }
+  @media all and(max-width: 960px) {
+    padding: 15px;
+  }
 }
 </style>

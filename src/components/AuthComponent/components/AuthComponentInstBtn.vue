@@ -45,18 +45,15 @@ export default {
   &:hover {
     opacity: 0.8;
   }
-}
-
-@media all and (max-width: 400px) {
-  .auth-component-inst-btn {
-    width: 65px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0;
-    span {
-      margin: 0 !important;
-    }
+  @media all and(max-width: 768px) {
+    width: 315px;
+    height: 58px;
+    font-size: 14px;
+  }
+  @media all and(max-width: 640px) {
+    width: 244px;
+    height: 45px;
+    font-size: 13px;
   }
 }
 </style>

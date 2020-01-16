@@ -1,5 +1,28 @@
 <template>
   <div class="main-component-product-card">
+    <span class="mob-title-wrap" @click="toggleLeftColumn">
+      <main-title text="Предпросмотр" />
+      <span class="ico">
+        <b-link :to="{ name: 'MainComponentShare' }">
+          <svg
+            width="21"
+            height="30"
+            viewBox="0 0 21 30"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13.2234 8.73328V9.83328H19.7531V28.6333H1.24688V9.83328H7.77656V8.73328H0.164062V29.7333H20.8359V8.73328H13.2234Z"
+              fill="#FF5C03"
+            />
+            <path
+              d="M9.94219 11.5334V19.2334H11.025V11.5334V7.23339V2.36672L14.6344 6.03339L15.3891 5.26672L10.4672 0.266724L5.54532 5.26672L6.30001 6.03339L9.90938 2.36672V7.23339V11.5334H9.94219Z"
+              fill="#FF5C03"
+            />
+          </svg>
+        </b-link>
+      </span>
+    </span>
     <div class="my-card">
       <div class="bg-pic">
         <img :src="user.background" />
@@ -40,6 +63,11 @@ export default {
       user: state => state.user.user,
       product: state => state.user.product
     })
+  },
+  methods: {
+    toggleLeftColumn() {
+      this.$store.dispatch("user/toggleLeftColumn");
+    }
   }
 };
 </script>
@@ -50,6 +78,21 @@ export default {
   align-items: center;
   justify-content: center;
   max-width: 100%;
+  @media all and(max-width: 640px) {
+    flex-direction: column;
+  }
+  .mob-title-wrap {
+    display: none;
+    justify-content: space-between;
+    width: 100%;
+    .main-component-title {
+      flex: 1;
+      margin-right: -40px;
+    }
+    @media all and(max-width: 640px) {
+      display: flex;
+    }
+  }
   .my-card {
     width: 377px;
     max-width: 100%;
@@ -64,6 +107,9 @@ export default {
     overflow: hidden;
     background: #fafafa;
     box-shadow: 0px 0px 54px rgba(0, 0, 0, 0.12);
+    @media all and(max-width: 768px) {
+      width: 327px;
+    }
     .bg-pic {
       position: absolute;
       top: 0;
@@ -113,6 +159,12 @@ export default {
         color: #151515;
         margin-bottom: 4px;
         padding: 0 12px;
+        @media all and(max-width: 960px) {
+          font-size: 20px;
+        }
+        @media all and(max-width: 640px) {
+          font-size: 15px;
+        }
       }
       .prod-desc {
         font-weight: 200;
@@ -122,6 +174,9 @@ export default {
         color: #151515;
         margin-bottom: 14px;
         padding: 0 12px;
+        @media all and(max-width: 640px) {
+          font-size: 11px;
+        }
       }
       .prod-price {
         background: #fafafa;

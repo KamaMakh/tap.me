@@ -10,4 +10,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.header-button {
+  color: #fff !important;
+  &:hover {
+    color: #7f360d !important;
+  }
+}
+</style>
