@@ -332,6 +332,7 @@ export default {
         .header-button {
           padding: 20px 35px;
           border-radius: 40px;
+          color: #7f360d !important;
           @media all and(max-width: 1170px) {
             font-size: 15px;
           }

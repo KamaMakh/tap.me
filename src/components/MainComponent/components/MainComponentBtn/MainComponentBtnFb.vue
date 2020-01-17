@@ -78,6 +78,9 @@ export default {
   }
   .def-icon {
     margin-right: 9px;
+    background: #4267b3;
+    padding: 1px;
+    display: inline-block;
   }
 }
 </style>
