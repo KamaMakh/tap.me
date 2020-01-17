@@ -37,4 +37,44 @@ body,
   background-color: #ff5c03 !important;
   border-color: transparent !important;
 }
+.main-component-product .pics__line {
+  .custom-switch {
+    cursor: pointer;
+    input {
+      outline: none !important;
+    }
+    .custom-control-label {
+      &:before {
+        width: 62px;
+        height: 17px;
+        background: #fafafa;
+        border-radius: 8px;
+        border: none !important;
+        box-shadow: none;
+      }
+      &:after {
+        width: 39px;
+        height: 39px;
+        background: #ffffff;
+        border: 1px solid #5acd50;
+        box-shadow: 0px 1px 4px rgba(90, 205, 80, 0.367925);
+        border-radius: 50%;
+        top: -7px;
+        right: -4px;
+        left: auto;
+        cursor: pointer;
+      }
+    }
+    &.hide {
+      .custom-control-label {
+        &:after {
+          border: 1px solid darkred;
+          right: auto;
+          left: -49px;
+          box-shadow: 0px 1px 4px #b67d70;
+        }
+      }
+    }
+  }
+}
 </style>

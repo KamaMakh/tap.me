@@ -53,16 +53,17 @@
           </div>
         </div>
       </div>
-      <div v-if="product.id" class="pics__item">
+      <div v-if="product.id !== undefined" class="pics__item">
         <div class="pics__title">
           Отображение
         </div>
         <div class="pics__line">
-          <div
-            class="pics__status"
-            @click="productShow"
-            :class="{ hid: !product.show }"
-          ></div>
+          <b-form-checkbox
+            switch
+            size="lg"
+            :class="{ hide: !product.show }"
+            v-model="product.show"
+          ></b-form-checkbox>
         </div>
       </div>
     </div>
