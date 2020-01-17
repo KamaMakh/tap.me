@@ -9,4 +9,8 @@ function toggleLeftColumn(state) {
   state.hideLeft = !state.hideLeft;
 }
 
-export { setProduct, setSocial, toggleLeftColumn };
+function clearProduct(state) {
+  state.product = {};
+}
+
+export { setProduct, setSocial, toggleLeftColumn, clearProduct };

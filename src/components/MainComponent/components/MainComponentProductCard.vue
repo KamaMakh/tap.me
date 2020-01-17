@@ -1,6 +1,10 @@
 <template>
   <div class="main-component-product-card">
-    <span class="mob-title-wrap" @click="toggleLeftColumn">
+    <span
+      v-if="$route.name !== 'GuestComponentProduct'"
+      class="mob-title-wrap"
+      @click="toggleLeftColumn"
+    >
       <main-title text="Предпросмотр" />
       <span class="ico">
         <b-link :to="{ name: 'MainComponentShare' }">

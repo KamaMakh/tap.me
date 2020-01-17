@@ -24,6 +24,7 @@ import MainComponentTariffs from "@/components/MainComponent/components/MainComp
 
 import GuestComponentLink from "@/components/GuestComponent/components/GuestComponentLink";
 import GuestComponentShare from "@/components/GuestComponent/components/GuestComponentShare";
+import GuestComponentProduct from "@/components/GuestComponent/components/GuestComponentProduct";
 
 Vue.use(VueRouter);
 
@@ -128,6 +129,11 @@ const routes = [
         path: "share",
         name: "GuestComponentShare",
         component: GuestComponentShare
+      },
+      {
+        path: "product",
+        name: "GuestComponentProduct",
+        component: GuestComponentProduct
       }
     ]
   }

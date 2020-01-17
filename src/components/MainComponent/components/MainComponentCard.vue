@@ -94,7 +94,15 @@
           md="6"
           class="product"
         >
-          <div class="pic">
+          <div v-if="$route.name !== 'GuestComponentLink'" class="pic">
+            <img :src="prod.photo" alt="" />
+          </div>
+          <div
+            v-else
+            class="pic"
+            @click="setProduct(prod)"
+            style="cursor:pointer;"
+          >
             <img :src="prod.photo" alt="" />
           </div>
           <div class="name">{{ prod.name }}</div>
@@ -127,6 +135,10 @@ export default {
     },
     toggleLeftColumn() {
       this.$store.dispatch("user/toggleLeftColumn");
+    },
+    setProduct(product) {
+      this.$store.dispatch("user/setProduct", product);
+      this.$router.push({ name: "GuestComponentProduct" });
     }
   }
 };
