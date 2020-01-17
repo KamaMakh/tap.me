@@ -1,6 +1,10 @@
 <template>
   <div class="main-component-card">
-    <span class="mob-title-wrap" @click="toggleLeftColumn">
+    <span
+      v-if="$route.name !== 'GuestComponentLink'"
+      class="mob-title-wrap"
+      @click="toggleLeftColumn"
+    >
       <main-title text="Предпросмотр" />
       <span class="ico">
         <b-link :to="{ name: 'MainComponentShare' }">
@@ -76,7 +80,13 @@
           </div>
         </div>
       </div>
-      <div v-if="$route.name === 'MainComponentShop'" class="products">
+      <div
+        v-if="
+          $route.name === 'MainComponentShop' ||
+            $route.name === 'GuestComponentLink'
+        "
+        class="products"
+      >
         <div
           v-for="(prod, k) in user.products"
           :key="k"
@@ -273,6 +283,9 @@ export default {
           }
           &.third {
             background: #076bd5;
+          }
+          @media all and(max-width: 768px) {
+            width: 30%;
           }
         }
       }

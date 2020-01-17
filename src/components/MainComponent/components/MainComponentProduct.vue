@@ -45,11 +45,11 @@
           Фото
         </div>
         <div class="pics__line">
-          <div class="pics__img">
-            <img v-if="product.photo" :src="product.photo" />
+          <div v-if="product.photo" class="pics__img">
+            <img :src="product.photo" />
           </div>
           <div class="pics__btn" @click="modalAvatar = !modalAvatar">
-            Изменить
+            {{ product.photo ? "Изменить" : "Добавить" }}
           </div>
         </div>
       </div>
