@@ -732,6 +732,7 @@ export default {
         }
         @media all and(max-width: 700px) {
           margin: 0 auto;
+          padding: 114px 30px 59px;
         }
         @media all and(max-width: 400px) {
           width: 300px;
