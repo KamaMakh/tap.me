@@ -8,10 +8,12 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap&subset=cyrillic-ext");
 html {
   height: 100%;
+  min-height: 100%;
 }
 body,
 #app {
   height: 100%;
+  min-height: 100%;
 }
 #app {
   font-family: "Montserrat", sans-serif !important;

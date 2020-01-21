@@ -14,6 +14,11 @@ import Validations from "vuelidate";
 import MainComponentTitle from "@/components/MainComponent/components/MainComponentTitle";
 import VueWindowSize from "vue-window-size";
 
+import "animate.css";
+import "fullpage-vue/src/fullpage.css";
+import VueFullpage from "fullpage-vue";
+Vue.use(VueFullpage);
+
 Vue.component("basic-button", BasicButton);
 Vue.component("blue-button", BlueButton);
 Vue.component("general-header", GeneralComponentHeader);

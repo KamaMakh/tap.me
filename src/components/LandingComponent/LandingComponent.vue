@@ -1,111 +1,98 @@
 <template>
-  <div class="landing-component">
-    <div class="sale-more">
-      <div class="sale-more__left sale-block">
-        <div class="sale-block__title">
-          Продавайте больше
-        </div>
-        <div class="sale-block__sub-title">
-          Страница, которая помогает вашим клиентам найти наилучший способ связи
-          с вами
-        </div>
-        <div class="sale-block__btn">
-          <HeaderButton text="Создать бесплатно" :reverse="true" />
-        </div>
-      </div>
-      <div class="sale-more__right pic-block"></div>
-    </div>
-    <div class="how-it-works">
-      <div class="how-it-works__title">
-        Как это работает?
-      </div>
-      <div class="how-it-works__first first">
-        <div class="first__left">
-          <div class="first__title">1. Создайте страницу</div>
-          <div class="first__text">
-            Легкая настройка. Расскажите своим покупателям о себе и о своих
-            товарах или услугах.
-          </div>
-        </div>
-        <div class="first__right form"></div>
-      </div>
-      <div class="how-it-works__second second">
-        <div class="second__left"></div>
-        <div class="second__right">
-          <div class="second__title">2. Поделитесь ссылкой</div>
-          <div class="second__text">
-            Где угодно. Поставьте её в Instagram профиль, как подпись в email...
-          </div>
-        </div>
-      </div>
-      <div class="how-it-works__third third">
-        <div class="third__left">
-          <div class="third__title">3. Начните продавать</div>
-          <div class="third__text">
-            Держите руку на пульсе. Покупатели кликают на вашу ссылку и выбирают
-            удобный для них способ связи.
-          </div>
-        </div>
-        <div class="third__right form"></div>
-      </div>
-    </div>
-    <div class="opportunities">
-      <div class="opportunities__title">
-        Возможности, которые всем понравятся
-      </div>
+  <div class="landing-component fullpage-container">
+    <div class="fullpage-wp" v-fullpage="opts" ref="example">
       <div
-        v-if="windowWidth > 700"
-        class="opportunities__first-list first-list"
+        class="sale-more page-1 page"
+        style="flex-wrap: wrap; margin-top: 0;"
       >
-        <div class="first-list__item first">
-          <div class="first__top">
-            mssg.me/robinhood
+        <general-header
+          class="part-1 general-header"
+          v-animate="{ value: 'bounceInRight', delay: 400 }"
+          style="flex: 1 1 100%;"
+        />
+        <div
+          class="sale-more__left sale-block part-1"
+          v-animate="{ value: 'bounceInLeft', delay: 400 }"
+        >
+          <div class="sale-block__title">
+            Продавайте больше
           </div>
-          <div class="first__bottom">
-            <div class="first__title">
-              Короткая ссылка
-            </div>
+          <div class="sale-block__sub-title">
+            Страница, которая помогает вашим клиентам найти наилучший способ
+            связи с вами
+          </div>
+          <div class="sale-block__btn">
+            <HeaderButton text="Создать бесплатно" :reverse="true" />
+          </div>
+        </div>
+        <div
+          class="sale-more__right pic-block part-1"
+          v-animate="{ value: 'bounceInRight', delay: 400 }"
+        ></div>
+      </div>
+      <div class="how-it-works page-2 page">
+        <div
+          v-animate="{ value: 'bounceInLeft', delay: 400 }"
+          class="how-it-works__title part-2"
+        >
+          Как это работает?
+        </div>
+        <div
+          v-animate="{ value: 'bounceInRight', delay: 400 }"
+          class="how-it-works__first first part-2"
+        >
+          <div class="first__left">
+            <div class="first__title">1. Создайте страницу</div>
             <div class="first__text">
-              Получите красивую и короткую ссылку, которая просто призывает к
-              действию: «Напиши мне»
+              Легкая настройка. Расскажите своим покупателям о себе и о своих
+              товарах или услугах.
             </div>
           </div>
+          <div class="first__right form"></div>
         </div>
-        <div class="first-list__item second">
-          <div class="second__top"></div>
-          <div class="second__bottom">
-            <div class="second__title">
-              QR код
-            </div>
+      </div>
+      <div class="how-it-works page-3 page">
+        <div
+          v-animate="{ value: 'bounceInRight', delay: 400 }"
+          class="how-it-works__second second part-3"
+        >
+          <div class="second__left"></div>
+          <div class="second__right">
+            <div class="second__title">2. Поделитесь ссылкой</div>
             <div class="second__text">
-              Используйте его офлайн. Привлекайте клиентов на свою страницу с
-              помощью QR кода.
-            </div>
-          </div>
-        </div>
-        <div class="first-list__item third">
-          <div class="third__top"></div>
-          <div class="third__bottom">
-            <div class="third__title">
-              E-mail подпись
-            </div>
-            <div class="third__text">
-              Оставьте почту для чего-то скучного. Перенесите важные разговоры в
-              мессенджеры.
+              Где угодно. Поставьте её в Instagram профиль, как подпись в
+              email...
             </div>
           </div>
         </div>
       </div>
-      <carousel
-        v-else
-        :perPageCustom="[
-          [320, 1],
-          [480, 1],
-          [768, 1]
-        ]"
-        class="opportunities__first-list first-list second-list"
-      >
-        <slide>
+      <div class="how-it-works page-4 page">
+        <div
+          v-animate="{ value: 'bounceInLeft', delay: 400 }"
+          class="how-it-works__third third part-4"
+        >
+          <div class="third__left">
+            <div class="third__title">3. Начните продавать</div>
+            <div class="third__text">
+              Держите руку на пульсе. Покупатели кликают на вашу ссылку и
+              выбирают удобный для них способ связи.
+            </div>
+          </div>
+          <div class="third__right form"></div>
+        </div>
+      </div>
+      <div class="opportunities page-5 page" style="margin-bottom: 0">
+        <div
+          v-animate="{ value: 'bounceInRight', delay: 400 }"
+          class="opportunities__title part-5"
+        >
+          Возможности, которые всем понравятся
+        </div>
+        <div
+          v-if="windowWidth > 1200"
+          v-animate="{ value: 'bounceInLeft', delay: 400 }"
+          class="opportunities__first-list first-list part-5"
+        >
           <div class="first-list__item first">
             <div class="first__top">
               mssg.me/robinhood
@@ -120,8 +107,6 @@
               </div>
             </div>
           </div>
-        </slide>
-        <slide>
           <div class="first-list__item second">
             <div class="second__top"></div>
             <div class="second__bottom">
@@ -134,8 +119,6 @@
               </div>
             </div>
           </div>
-        </slide>
-        <slide>
           <div class="first-list__item third">
             <div class="third__top"></div>
             <div class="third__bottom">
@@ -148,8 +131,102 @@
               </div>
             </div>
           </div>
-        </slide>
-        <slide>
+        </div>
+        <carousel
+          v-else
+          v-animate="{ value: 'bounceInLeft', delay: 400 }"
+          :perPageCustom="[
+            [320, 1],
+            [480, 1],
+            [768, 1],
+            [960, 2]
+          ]"
+          class="opportunities__first-list first-list second-list part-5"
+        >
+          <slide>
+            <div class="first-list__item first">
+              <div class="first__top">
+                mssg.me/robinhood
+              </div>
+              <div class="first__bottom">
+                <div class="first__title">
+                  Короткая ссылка
+                </div>
+                <div class="first__text">
+                  Получите красивую и короткую ссылку, которая просто призывает
+                  к действию: «Напиши мне»
+                </div>
+              </div>
+            </div>
+          </slide>
+          <slide>
+            <div class="first-list__item second">
+              <div class="second__top"></div>
+              <div class="second__bottom">
+                <div class="second__title">
+                  QR код
+                </div>
+                <div class="second__text">
+                  Используйте его офлайн. Привлекайте клиентов на свою страницу
+                  с помощью QR кода.
+                </div>
+              </div>
+            </div>
+          </slide>
+          <slide>
+            <div class="first-list__item third">
+              <div class="third__top"></div>
+              <div class="third__bottom">
+                <div class="third__title">
+                  E-mail подпись
+                </div>
+                <div class="third__text">
+                  Оставьте почту для чего-то скучного. Перенесите важные
+                  разговоры в мессенджеры.
+                </div>
+              </div>
+            </div>
+          </slide>
+          <slide>
+            <div class="second-list__item first2">
+              <div class="first2__top">
+                <div class="search"></div>
+                <div class="fb"></div>
+              </div>
+              <div class="first2__bottom">
+                <div class="first2__title">
+                  Аналитика
+                </div>
+                <div class="first2__text">
+                  Анализируйте уровень влияния вашей страницы. Оптимизируйте
+                  свои рекламные кампании с помощью Google Analytics и Facebook
+                  Pixel.
+                </div>
+              </div>
+            </div>
+          </slide>
+          <slide>
+            <div class="second-list__item second2">
+              <div class="second2__top"></div>
+              <div class="second2__bottom">
+                <div class="second2__title">
+                  Виджет для сайта
+                </div>
+                <div class="second2__text">
+                  Замените старую форму контакта на своем сайте на наш виджет,
+                  тем самым давая пользователям новый опыт связи с вами.
+                </div>
+              </div>
+            </div>
+          </slide>
+        </carousel>
+      </div>
+      <div v-if="windowWidth > 1200" class="opportunities page-6 page">
+        <div
+          v-if="windowWidth > 1200"
+          v-animate="{ value: 'bounceInRight', delay: 400 }"
+          class="opportunities__second-list second-list part-6"
+        >
           <div class="second-list__item first2">
             <div class="first2__top">
               <div class="search"></div>
@@ -165,8 +242,6 @@
               </div>
             </div>
           </div>
-        </slide>
-        <slide>
           <div class="second-list__item second2">
             <div class="second2__top"></div>
             <div class="second2__bottom">
@@ -179,83 +254,59 @@
               </div>
             </div>
           </div>
-        </slide>
-      </carousel>
-      <div
-        v-if="windowWidth > 700"
-        class="opportunities__second-list second-list"
-      >
-        <div class="second-list__item first2">
-          <div class="first2__top">
-            <div class="search"></div>
-            <div class="fb"></div>
-          </div>
-          <div class="first2__bottom">
-            <div class="first2__title">
-              Аналитика
+        </div>
+      </div>
+      <div class="page-7 page">
+        <div
+          v-animate="{ value: 'bounceInLeft', delay: 400 }"
+          class="bot-form part-7"
+        >
+          <div class="wr">
+            <div class="bot-form__title">
+              Создай свою страницу и начни больше продавать
             </div>
-            <div class="first2__text">
-              Анализируйте уровень влияния вашей страницы. Оптимизируйте свои
-              рекламные кампании с помощью Google Analytics и Facebook Pixel.
+            <div class="bot-form__btn">
+              <basic-button class="basic" text="Создать бесплатно" />
             </div>
           </div>
         </div>
-        <div class="second-list__item second2">
-          <div class="second2__top"></div>
-          <div class="second2__bottom">
-            <div class="second2__title">
-              Виджет для сайта
+        <div
+          v-animate="{ value: 'bounceInRight', delay: 400 }"
+          class="footer part-7"
+        >
+          <div class="bottom-menu">
+            <div class="menu-item">
+              <b-link to="/">Политика конфиденциальности</b-link>
             </div>
-            <div class="second2__text">
-              Замените старую форму контакта на своем сайте на наш виджет, тем
-              самым давая пользователям новый опыт связи с вами.
+            <div class="menu-item">
+              <b-link to="/">Условия использования</b-link>
             </div>
+            <div class="menu-item">
+              <b-link to="/">Тарифы</b-link>
+            </div>
+            <div class="menu-item">
+              <b-link to="/">Задайте вопрос</b-link>
+            </div>
+            <div class="menu-item">
+              <b-link to="/">База знаний</b-link>
+            </div>
+            <div class="menu-item">
+              <b-link to="/">Блог</b-link>
+            </div>
+            <div class="menu-item">
+              <b-link to="/">English</b-link>
+            </div>
+            <div class="menu-item">
+              <b-link to="/">Русский</b-link>
+            </div>
+            <div class="menu-item">
+              <b-link to="/">telegram icon</b-link>
+            </div>
+            <div v-if="windowWidth <= 755" class="bottom-tg"></div>
           </div>
+          <div v-if="windowWidth > 755" class="bottom-tg"></div>
         </div>
       </div>
-    </div>
-    <div class="bot-form">
-      <div class="wr">
-        <div class="bot-form__title">
-          Создай свою страницу и начни больше продавать
-        </div>
-        <div class="bot-form__btn">
-          <basic-button class="basic" text="Создать бесплатно" />
-        </div>
-      </div>
-    </div>
-    <div class="footer">
-      <div class="bottom-menu">
-        <div class="menu-item">
-          <b-link to="/">Политика конфиденциальности</b-link>
-        </div>
-        <div class="menu-item">
-          <b-link to="/">Условия использования</b-link>
-        </div>
-        <div class="menu-item">
-          <b-link to="/">Тарифы</b-link>
-        </div>
-        <div class="menu-item">
-          <b-link to="/">Задайте вопрос</b-link>
-        </div>
-        <div class="menu-item">
-          <b-link to="/">База знаний</b-link>
-        </div>
-        <div class="menu-item">
-          <b-link to="/">Блог</b-link>
-        </div>
-        <div class="menu-item">
-          <b-link to="/">English</b-link>
-        </div>
-        <div class="menu-item">
-          <b-link to="/">Русский</b-link>
-        </div>
-        <div class="menu-item">
-          <b-link to="/">telegram icon</b-link>
-        </div>
-        <div v-if="windowWidth <= 755" class="bottom-tg"></div>
-      </div>
-      <div v-if="windowWidth > 755" class="bottom-tg"></div>
     </div>
   </div>
 </template>
@@ -269,22 +320,76 @@ export default {
   name: "LandingComponent",
   components: {
     HeaderButton
+  },
+  data() {
+    return {
+      opts: {
+        start: 0,
+        dir: "v",
+        duration: 500,
+        overflow: scroll,
+        beforeChange: (currentSlideEl, currenIndex, nextIndex) => {
+          this.$emit("on-scroll-block", {
+            el: currentSlideEl,
+            curr: currenIndex,
+            next: nextIndex
+          });
+        },
+        movingFlag: true
+      }
+    };
   }
 };
 </script>
 
 <style scoped lang="scss">
 .landing-component {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  .general-header {
+    align-items: center;
+  }
+  .page {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    max-height: 100%;
+    margin-bottom: 0 !important;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media all and(max-width: 768px) {
+      &.page-7 {
+        overflow-y: scroll;
+      }
+    }
+    .part-4 {
+      margin-bottom: 0 !important;
+    }
+    &.page-1 {
+      margin-bottom: 0 !important;
+      padding: 0;
+      flex-direction: row;
+    }
+    &.page-6 {
+      justify-content: center;
+      margin-bottom: 0 !important;
+    }
+  }
   .sale-more {
     display: flex;
     justify-content: space-between;
     padding-bottom: 30px;
-    margin-bottom: 67px;
+    margin-bottom: 55px;
     margin-top: 145px;
     @media all and(max-width: 1170px) {
       flex-direction: column;
     }
-    @media all and(max-width: 700px) {
+    @media all and(max-width: 724px) {
       justify-content: center;
       margin-top: 99px;
     }
@@ -354,9 +459,10 @@ export default {
         -webkit-background-size: contain;
         background-size: contain;
       }
-      @media all and(max-width: 700px) {
-        margin-top: 0;
-        align-self: center;
+      @media all and(max-width: 724px) {
+        /*margin-top: 0;*/
+        /*align-self: center;*/
+        display: none;
       }
     }
   }
@@ -502,7 +608,7 @@ export default {
     .third {
       display: flex;
       justify-content: flex-start;
-      margin-top: -47px;
+      /*margin-top: -47px;*/
       margin-bottom: 60px;
       @media all and(max-width: 1170px) {
         margin-top: 20px;
@@ -597,17 +703,17 @@ export default {
     }
     &__title {
       font-weight: bold;
-      font-size: 72px;
+      font-size: 50px;
       line-height: 80px;
       color: #101010;
-      margin-bottom: 88px;
+      margin-bottom: 20px;
       @media all and(max-width: 1170px) {
         font-size: 51px;
       }
       @media all and(max-width: 700px) {
-        font-size: 35px;
-        line-height: 43px;
-        margin-bottom: 44px;
+        font-size: 19px;
+        line-height: 1;
+        margin-bottom: 10px;
       }
     }
     .first-list {
@@ -633,7 +739,7 @@ export default {
         @media all and(max-width: 1170px) {
           margin-bottom: 20px;
         }
-        @media all and(max-width: 700px) {
+        @media all and(max-width: 1200px) {
           margin: 0 auto;
         }
         @media all and(max-width: 400px) {
@@ -730,7 +836,7 @@ export default {
           margin-bottom: 20px;
           width: 372px;
         }
-        @media all and(max-width: 700px) {
+        @media all and(max-width: 1200px) {
           margin: 0 auto;
           padding: 114px 30px 59px;
         }
@@ -740,6 +846,7 @@ export default {
         }
       }
       .first2 {
+        background: #fff;
         &__top {
           display: flex;
           align-items: center;

@@ -81,8 +81,12 @@ export default {
     display: flex;
     align-items: center;
     text-decoration: none;
+    background: url("../../assets/logo.png") 0 0 no-repeat;
+    -webkit-background-size: contain;
+    background-size: contain;
     .ico {
       margin-right: 10px;
+      opacity: 0;
     }
     .text {
       font-weight: 600;
@@ -90,6 +94,7 @@ export default {
       line-height: 30px;
       text-align: right;
       color: #ffffff;
+      opacity: 0;
     }
   }
   .buttons {

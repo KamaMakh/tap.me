@@ -30,6 +30,10 @@ export default {
   padding: 10px 35px;
   text-decoration: none;
   cursor: pointer;
+  max-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover {
     color: #7f360d;
     background: #fff;
