@@ -13,4 +13,24 @@ function clearProduct(state) {
   state.product = {};
 }
 
-export { setProduct, setSocial, toggleLeftColumn, clearProduct };
+function loadProducts(state, products) {
+  state.user.products = products;
+}
+
+function addProduct(state, product) {
+  state.user.products.push(product);
+}
+
+function setUploadImage(state, image) {
+  state.uploadImage = image;
+}
+
+export {
+  setProduct,
+  setSocial,
+  toggleLeftColumn,
+  clearProduct,
+  loadProducts,
+  addProduct,
+  setUploadImage
+};

@@ -55,6 +55,9 @@ import MainComponentTariffsBody from "./components/MainComponentTariffsBody";
 import MainComponentProductCard from "./components/MainComponentProductCard";
 export default {
   name: "MainComponent",
+  created() {
+    this.$store.dispatch("user/loadProducts");
+  },
   components: {
     MainComponentCard,
     settingsForm: MainComponentSettingsForm,

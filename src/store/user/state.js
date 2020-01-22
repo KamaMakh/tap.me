@@ -9,31 +9,7 @@ export default {
     avatar: "https://picsum.photos/600/300/?image=25",
     background: "https://picsum.photos/600/300/?image=25",
     tariff_id: 1,
-    products: [
-      {
-        id: 0,
-        name: "Шапка",
-        category: "",
-        show: true,
-        note: "Супер шапка теплая зимняя",
-        link: "",
-        price: "$100",
-        discount_price: "",
-        photo: "https://newbalance.ru/upload/iblock/f2e/500245-000-1.jpg"
-      },
-      {
-        id: 1,
-        name: "Шапка 2",
-        category: "",
-        show: false,
-        note: "Супер шапка теплая зимняя",
-        link: "",
-        price: "$100",
-        discount_price: "$80",
-        photo:
-          "https://oprivet.com.ua/image/cache/catalog/shapki/%D1%88%D0%B0%D0%BF%D0%BA%D0%B0-1200x1200.jpg"
-      }
-    ],
+    products: [],
     categories: [
       { value: 1, text: "Category 1" },
       { value: 2, text: "Category 2" },
@@ -93,5 +69,6 @@ export default {
   },
   product: {},
   social: {},
-  hideLeft: false
+  hideLeft: false,
+  uploadImage: {}
 };

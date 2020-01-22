@@ -13,6 +13,7 @@ import GeneralComponentHeader from "@/components/GeneralComponent/GeneralCompone
 import Validations from "vuelidate";
 import MainComponentTitle from "@/components/MainComponent/components/MainComponentTitle";
 import VueWindowSize from "vue-window-size";
+import backend from "./backend";
 
 Vue.component("basic-button", BasicButton);
 Vue.component("blue-button", BlueButton);
@@ -29,5 +30,6 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  backend,
   render: h => h(App)
 }).$mount("#app");

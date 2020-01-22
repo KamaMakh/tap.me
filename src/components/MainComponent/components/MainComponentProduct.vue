@@ -83,20 +83,6 @@
         trim
       ></b-form-input>
     </div>
-    <div
-      class="input-wrap"
-      role="group"
-      :class="{
-        'is-danger':
-          $v.product.category.$invalid && (product.category || showFormErrors)
-      }"
-    >
-      <label for="input-live2">Категория</label>
-      <b-form-select
-        v-model="product.category"
-        :options="user.categories"
-      ></b-form-select>
-    </div>
     <div class="input-wrap">
       <label for="input-live5">Описание</label>
       <b-form-textarea id="input-live5" placeholder="Описание" rows="5">
@@ -163,7 +149,7 @@
     <b-modal
       id="modal-avatar"
       v-model="modalAvatar"
-      title="Заменить аватар"
+      title="Добавить фото"
       hide-footer
     >
       <b-form-file
@@ -172,8 +158,8 @@
         drop-placeholder="Перетащите сюда..."
         browse-text="Выбрать"
       ></b-form-file>
-      <div class="modal-buttons" style="margin-top: 25px" @click="readURL">
-        <basic-button text="Добавить" />
+      <div class="modal-buttons" style="margin-top: 25px" @click="loadPhoto">
+        <basic-button text="Добавить" @click="loadPhoto" />
       </div>
     </b-modal>
     <b-modal
@@ -206,9 +192,6 @@ export default {
       name: {
         required
       },
-      category: {
-        required
-      },
       link: {
         required
       },
@@ -223,15 +206,18 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user.user,
-      product: state => state.user.product
+      product: state => state.user.product,
+      uploadImage: state => state.user.uploadImage
     })
   },
   methods: {
-    readURL() {
+    loadPhoto() {
       if (this.product.new_file) {
+        let tmpNewFile = this.product.new_file;
         let reader = new FileReader();
         reader.onload = e => {
           this.product.photo = e.target.result;
+          this.$store.dispatch("user/addImageProduct", tmpNewFile);
         };
         reader.readAsDataURL(this.product.new_file);
         this.modalAvatar = false;
@@ -246,6 +232,10 @@ export default {
       ) {
         this.showFormErrors = true;
         return;
+      } else {
+        this.product.show = true;
+        this.$store.dispatch("user/createProduct", this.product);
+        this.$router.push("/main/shop");
       }
     },
     remove() {
