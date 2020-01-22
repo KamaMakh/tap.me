@@ -6,4 +6,16 @@ Vue.use(function(Vue) {
   Vue.backend.setApiKeyAuth(
     "IHmoI7Mmn9LgsSy4w54CcRF4AbmTAWnaNrEgmH4n81y6vC3N7twobaDx3vPiR9uDgb56KaxqbNWSR4i0"
   );
+  Vue.backend.fetchErrorsFrom = function(data) {
+    let errors = [];
+    if (data["errors"]) {
+      for (let i in data["errors"]) {
+        for (let a in data["errors"][i]) {
+          errors.push(data["errors"][i][a]);
+        }
+      }
+    }
+
+    return errors;
+  };
 });

@@ -2,18 +2,18 @@
   <div class="main-component-product">
     <main-title
       v-if="windowWidth > 640"
-      text="Добавить товар"
+      :text="mainTitle"
       :to="{ name: 'MainComponentShop' }"
     />
     <div v-else class="mob-title-wrap">
       <main-title
         v-if="product.name"
-        text="Редактировать товар"
+        :text="mainTitle"
         :to="{ name: 'MainComponentShop' }"
       />
       <main-title
         v-else
-        text="Добавить товар"
+        :text="mainTitle"
         :to="{ name: 'MainComponentShop' }"
       />
       <div class="buttons-wrap__save" @click="save">
@@ -38,6 +38,12 @@
         </svg>
       </span>
       Предпросмотр
+    </div>
+    <div class="errors" v-if="errors.length">
+      Ошибки:
+      <div class="error-item" v-bind:key="error" v-for="error in errors">
+        {{ error }}
+      </div>
     </div>
     <div class="pics">
       <div class="pics__item">
@@ -85,8 +91,12 @@
     </div>
     <div class="input-wrap">
       <label for="input-live5">Описание</label>
-      <b-form-textarea id="input-live5" placeholder="Описание" rows="5">
-        {{ product.note }}
+      <b-form-textarea
+        id="input-live5"
+        v-model="product.note"
+        placeholder="Описание"
+        rows="5"
+      >
       </b-form-textarea>
     </div>
     <div
@@ -178,13 +188,16 @@
 <script>
 import { mapState } from "vuex";
 import { required } from "vuelidate/lib/validators";
+import Vue from "vue";
+
 export default {
   name: "MainComponentProduct",
   data() {
     return {
       modalAvatar: false,
       modalRemove: false,
-      showFormErrors: false
+      showFormErrors: false,
+      errors: []
     };
   },
   validations: {
@@ -208,9 +221,23 @@ export default {
       user: state => state.user.user,
       product: state => state.user.product,
       uploadImage: state => state.user.uploadImage
-    })
+    }),
+    mainTitle() {
+      if (!this.isNewProduct()) {
+        return "Редактировать товар";
+      } else {
+        return "Добавить товар";
+      }
+    }
   },
   methods: {
+    isNewProduct() {
+      if (this.product && this.product.id) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     loadPhoto() {
       if (this.product.new_file) {
         let tmpNewFile = this.product.new_file;
@@ -233,14 +260,29 @@ export default {
         this.showFormErrors = true;
         return;
       } else {
-        this.product.show = true;
-        this.$store.dispatch("user/createProduct", this.product);
-        this.$router.push("/main/shop");
+        var promise = false;
+        if (this.isNewProduct()) {
+          this.product.show = true;
+          promise = this.$store.dispatch("user/createProduct", this.product);
+        } else {
+          promise = this.$store.dispatch("user/updateProduct", this.product);
+        }
+
+        if (promise) {
+          promise
+            .then(() => {
+              this.$router.push("/main/shop");
+            })
+            .catch(data => {
+              this.errors = Vue.backend.fetchErrorsFrom(data);
+            });
+        }
       }
     },
     remove() {
-      alert("Удаление");
+      this.$store.dispatch("user/deleteProduct", this.product.id);
       this.modalRemove = false;
+      this.$router.push("/main/shop");
     },
     toggleLeftColumn() {
       this.$store.dispatch("user/toggleLeftColumn");
@@ -455,6 +497,17 @@ export default {
       justify-content: center;
       border: 1px solid #ccc;
     }
+  }
+
+  .error-item {
+    color: red;
+    font-size: 12px;
+  }
+
+  .errors {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid red;
   }
 }
 </style>

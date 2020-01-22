@@ -21,6 +21,22 @@ function addProduct(state, product) {
   state.user.products.push(product);
 }
 
+function updateProduct(state, product) {
+  for (var i in state.user.products) {
+    if (state.user.products[i].id == product.id) {
+      state.user.products[i] = product;
+    }
+  }
+}
+
+function deleteProduct(state, productId) {
+  for (var i in state.user.products) {
+    if (state.user.products[i].id == productId) {
+      state.user.products.splice(i, 1);
+    }
+  }
+}
+
 function setUploadImage(state, image) {
   state.uploadImage = image;
 }
@@ -32,5 +48,7 @@ export {
   clearProduct,
   loadProducts,
   addProduct,
-  setUploadImage
+  setUploadImage,
+  updateProduct,
+  deleteProduct
 };
