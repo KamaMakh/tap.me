@@ -270,9 +270,11 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="page page-8">
         <div
           v-animate="{ value: 'bounceInRight', delay: 400 }"
-          class="footer part-7"
+          class="footer part-8"
         >
           <div class="bottom-menu">
             <div class="menu-item">
@@ -742,6 +744,9 @@ export default {
         @media all and(max-width: 1200px) {
           margin: 0 auto;
         }
+        @media all and(max-width: 768px) {
+          padding: 30px;
+        }
         @media all and(max-width: 400px) {
           width: 300px;
           height: auto;
@@ -839,6 +844,9 @@ export default {
         @media all and(max-width: 1200px) {
           margin: 0 auto;
           padding: 114px 30px 59px;
+        }
+        @media all and(max-width: 768px) {
+          padding: 30px;
         }
         @media all and(max-width: 400px) {
           width: 300px;
@@ -984,6 +992,7 @@ export default {
         height: 207px;
       }
       @media all and(max-width: 400px) {
+        min-height: 400px;
         height: auto;
       }
     }

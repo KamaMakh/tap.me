@@ -34,8 +34,6 @@ export default {
   } /* eslint-disable */,
   methods: {
     changeBg(value) {
-      console.log(value);
-      console.log(value.next === 0);
       if(value && value.hasOwnProperty("next") && value.next === 0) {
         this.noBg = this.secondBg = this.thirdBg = this.fourthBg = false;
       }
