@@ -21,72 +21,72 @@
           @click="setSocial(element)"
         >
           <div v-if="element.value !== null">
-            <div v-if="element.id === 0">
+            <div v-if="element.type === 'fb'">
               <fbBtn :element="element" />
             </div>
-            <div v-else-if="element.id === 1">
+            <div v-else-if="element.type === 'viber'">
               <viberBtn :element="element" />
             </div>
-            <div v-else-if="element.id === 2">
+            <div v-else-if="element.type === 'telegram'">
               <tgBtn :element="element" />
             </div>
-            <div v-else-if="element.id === 3">
+            <div v-else-if="element.type === 'fb_messanger'">
               <fbmBtn :element="element" />
             </div>
-            <div v-else-if="element.id === 4">
+            <div v-else-if="element.type === 'skype'">
               <skypeBtn :element="element" />
             </div>
-            <div v-else-if="element.id === 5">
+            <div v-else-if="element.type === 'whatsapp'">
               <whatssappBtn :element="element" />
             </div>
-            <div v-else-if="element.id === 6">
+            <div v-else-if="element.type === 'vk'">
               <vkBtn :element="element" />
             </div>
           </div>
           <div v-else>
-            <div v-if="element.id === 0">
+            <div v-if="element.type === 'fb'">
               <fbBtn
                 type="default"
                 :to="{ name: 'MainComponentSocialEdit' }"
                 :element="element"
               />
             </div>
-            <div v-else-if="element.id === 1">
+            <div v-else-if="element.type === 'viber'">
               <viberBtn
                 type="default"
                 :to="{ name: 'MainComponentSocialEdit' }"
                 :element="element"
               />
             </div>
-            <div v-else-if="element.id === 2">
+            <div v-else-if="element.type === 'telegram'">
               <tgBtn
                 type="default"
                 :to="{ name: 'MainComponentSocialEdit' }"
                 :element="element"
               />
             </div>
-            <div v-else-if="element.id === 3">
+            <div v-else-if="element.type === 'fb_messanger'">
               <fbmBtn
                 type="default"
                 :to="{ name: 'MainComponentSocialEdit' }"
                 :element="element"
               />
             </div>
-            <div v-else-if="element.id === 4">
+            <div v-else-if="element.type === 'skype'">
               <skypeBtn
                 type="default"
                 :to="{ name: 'MainComponentSocialEdit' }"
                 :element="element"
               />
             </div>
-            <div v-else-if="element.id === 5">
+            <div v-else-if="element.type === 'whatsapp'">
               <whatssappBtn
                 type="default"
                 :to="{ name: 'MainComponentSocialEdit' }"
                 :element="element"
               />
             </div>
-            <div v-else-if="element.id === 6">
+            <div v-else-if="element.type === 'vk'">
               <vkBtn
                 type="default"
                 :to="{ name: 'MainComponentSocialEdit' }"

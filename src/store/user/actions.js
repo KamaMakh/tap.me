@@ -150,6 +150,56 @@ function addImageProduct({ commit }, file) {
   );
 }
 
+function loadLinks(context) {
+  return new Promise((resolve, reject) => {
+    Vue.backend.listLandLinks(
+      {
+        landing_id: context.state.user.landing.id
+      },
+      function(data) {
+        let links = Vue.backend.mergeLinks(data, context.state.user.socials);
+        context.commit("loadLinks", links);
+        resolve(data);
+      },
+      function(data) {
+        reject(data);
+      }
+    );
+  });
+}
+
+function createLink(context, link) {
+  let socLink = Vue.backend.convertSocLinkToLink(link);
+  return new Promise((resolve, reject) => {
+    Vue.backend.createLandLink(
+      socLink,
+      context.state.user.landing.id,
+      function(data) {
+        resolve(data);
+      },
+      function(data) {
+        reject(data);
+      }
+    );
+  });
+}
+
+function updateLink(context, link) {
+  let socLink = Vue.backend.convertSocLinkToLink(link);
+  return new Promise((resolve, reject) => {
+    Vue.backend.updateLandLink(
+      link.id,
+      socLink,
+      function(data) {
+        resolve(data);
+      },
+      function(data) {
+        reject(data);
+      }
+    );
+  });
+}
+
 export {
   setProduct,
   setSocial,
@@ -159,5 +209,8 @@ export {
   createProduct,
   addImageProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  loadLinks,
+  createLink,
+  updateLink
 };

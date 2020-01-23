@@ -41,6 +41,10 @@ function setUploadImage(state, image) {
   state.uploadImage = image;
 }
 
+function loadLinks(state, links) {
+  state.user.socials = links;
+}
+
 export {
   setProduct,
   setSocial,
@@ -50,5 +54,6 @@ export {
   addProduct,
   setUploadImage,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  loadLinks
 };

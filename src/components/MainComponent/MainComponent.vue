@@ -57,6 +57,7 @@ export default {
   name: "MainComponent",
   created() {
     this.$store.dispatch("user/loadProducts");
+    this.$store.dispatch("user/loadLinks");
   },
   components: {
     MainComponentCard,
