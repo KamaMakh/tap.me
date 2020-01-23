@@ -70,6 +70,8 @@ export default {
   }
   &.fourthBg {
     background: url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
+    -webkit-background-size: cover;
+    background-size: cover;
   }
   &.noBg {
     background: #fff;

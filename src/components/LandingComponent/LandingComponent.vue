@@ -5,15 +5,8 @@
         class="sale-more page-1 page"
         style="flex-wrap: wrap; margin-top: 0;"
       >
-        <general-header
-          class="part-1 general-header"
-          v-animate="{ value: 'bounceInRight', delay: 400 }"
-          style="flex: 1 1 100%;"
-        />
-        <div
-          class="sale-more__left sale-block part-1"
-          v-animate="{ value: 'bounceInLeft', delay: 400 }"
-        >
+        <general-header class="part-1 general-header" style="flex: 1 1 100%;" />
+        <div class="sale-more__left sale-block part-1">
           <div class="sale-block__title">
             Продавайте больше
           </div>
@@ -25,22 +18,13 @@
             <HeaderButton text="Создать бесплатно" :reverse="true" />
           </div>
         </div>
-        <div
-          class="sale-more__right pic-block part-1"
-          v-animate="{ value: 'bounceInRight', delay: 400 }"
-        ></div>
+        <div class="sale-more__right pic-block part-1"></div>
       </div>
       <div class="how-it-works page-2 page">
-        <div
-          v-animate="{ value: 'bounceInLeft', delay: 400 }"
-          class="how-it-works__title part-2"
-        >
+        <div class="how-it-works__title part-2">
           Как это работает?
         </div>
-        <div
-          v-animate="{ value: 'bounceInRight', delay: 400 }"
-          class="how-it-works__first first part-2"
-        >
+        <div class="how-it-works__first first part-2">
           <div class="first__left">
             <div class="first__title">1. Создайте страницу</div>
             <div class="first__text">
@@ -52,10 +36,7 @@
         </div>
       </div>
       <div class="how-it-works page-3 page">
-        <div
-          v-animate="{ value: 'bounceInRight', delay: 400 }"
-          class="how-it-works__second second part-3"
-        >
+        <div class="how-it-works__second second part-3">
           <div class="second__left"></div>
           <div class="second__right">
             <div class="second__title">2. Поделитесь ссылкой</div>
@@ -67,10 +48,7 @@
         </div>
       </div>
       <div class="how-it-works page-4 page">
-        <div
-          v-animate="{ value: 'bounceInLeft', delay: 400 }"
-          class="how-it-works__third third part-4"
-        >
+        <div class="how-it-works__third third part-4">
           <div class="third__left">
             <div class="third__title">3. Начните продавать</div>
             <div class="third__text">
@@ -82,15 +60,11 @@
         </div>
       </div>
       <div class="opportunities page-5 page" style="margin-bottom: 0">
-        <div
-          v-animate="{ value: 'bounceInRight', delay: 400 }"
-          class="opportunities__title part-5"
-        >
+        <div class="opportunities__title part-5">
           Возможности, которые всем понравятся
         </div>
         <div
           v-if="windowWidth > 1200"
-          v-animate="{ value: 'bounceInLeft', delay: 400 }"
           class="opportunities__first-list first-list part-5"
         >
           <div class="first-list__item first">
@@ -134,7 +108,6 @@
         </div>
         <carousel
           v-else
-          v-animate="{ value: 'bounceInLeft', delay: 400 }"
           :perPageCustom="[
             [320, 1],
             [480, 1],
@@ -224,7 +197,6 @@
       <div v-if="windowWidth > 1200" class="opportunities page-6 page">
         <div
           v-if="windowWidth > 1200"
-          v-animate="{ value: 'bounceInRight', delay: 400 }"
           class="opportunities__second-list second-list part-6"
         >
           <div class="second-list__item first2">
@@ -257,10 +229,7 @@
         </div>
       </div>
       <div class="page-7 page">
-        <div
-          v-animate="{ value: 'bounceInLeft', delay: 400 }"
-          class="bot-form part-7"
-        >
+        <div class="bot-form part-7">
           <div class="wr">
             <div class="bot-form__title">
               Создай свою страницу и начни больше продавать
@@ -272,10 +241,7 @@
         </div>
       </div>
       <div class="page page-8">
-        <div
-          v-animate="{ value: 'bounceInRight', delay: 400 }"
-          class="footer part-8"
-        >
+        <div class="footer part-8">
           <div class="bottom-menu">
             <div class="menu-item">
               <b-link to="/">Политика конфиденциальности</b-link>
@@ -328,7 +294,7 @@ export default {
       opts: {
         start: 0,
         dir: "v",
-        duration: 500,
+        duration: 100,
         overflow: scroll,
         beforeChange: (currentSlideEl, currenIndex, nextIndex) => {
           this.$emit("on-scroll-block", {
