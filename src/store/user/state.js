@@ -11,7 +11,11 @@ export default {
     tariff_id: 1,
     products: [],
     landing: {
-      id: 1
+      id: null,
+      name: null,
+      avatar: null,
+      urlcode: null,
+      description: null
     },
     categories: [
       { value: 1, text: "Category 1" },
@@ -55,6 +59,14 @@ export default {
         type: "vk"
       }
     ]
+  },
+  landing: {
+    id: null,
+    name: null,
+    avatar: false,
+    background: false,
+    urlcode: null,
+    description: null
   },
   product: {},
   social: {},

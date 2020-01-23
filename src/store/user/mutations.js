@@ -2,6 +2,10 @@ function setProduct(state, product) {
   state.product = product || {};
 }
 
+function setLandingFormData(state, landing) {
+  state.landing = landing || {};
+}
+
 function setSocial(state, social) {
   state.social = social || {};
 }
@@ -45,6 +49,17 @@ function loadLinks(state, links) {
   state.user.socials = links;
 }
 
+function loadLanding(state, data) {
+  state.user.landing = data;
+}
+
+function loadAccount(state, data) {
+  state.user.id = data["id"];
+  state.user.name = data["name"];
+  state.user.email = data["email"];
+  state.user.lang = data["lang"];
+}
+
 export {
   setProduct,
   setSocial,
@@ -55,5 +70,8 @@ export {
   setUploadImage,
   updateProduct,
   deleteProduct,
-  loadLinks
+  loadLinks,
+  loadLanding,
+  setLandingFormData,
+  loadAccount
 };

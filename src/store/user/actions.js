@@ -4,6 +4,10 @@ function setProduct({ commit }, data) {
   commit("setProduct", data);
 }
 
+function setLandingFormData(context) {
+  context.commit("setLandingFormData", context.state.user.landing);
+}
+
 function clearProduct({ commit }) {
   commit("clearProduct");
 }
@@ -200,6 +204,114 @@ function updateLink(context, link) {
   });
 }
 
+function loadLanding({ commit }) {
+  return new Promise((resolve, reject) => {
+    Vue.backend.listLanding(
+      data => {
+        if (data[0]["id"]) {
+          Vue.backend.getLanding(
+            data[0]["id"],
+            data => {
+              commit("loadLanding", {
+                id: data.id,
+                name: data.name,
+                user_id: data.user_id,
+                urlcode: data.urlcode,
+                description: data.description,
+                avatar: data.avatarsrc,
+                background: data.backgroundsrc,
+                instlogin: data.instlogin,
+                linkfeed: data.linkfeed
+              });
+              resolve(data);
+            },
+            () => {
+              alert("fail");
+            }
+          );
+        }
+      },
+      data => {
+        reject(data);
+      }
+    );
+  });
+}
+
+function createLanding() {}
+
+function updateLanding(context, data) {
+  if (data.avatarObj) {
+    data["avatar"] = data.avatarObj;
+  } else {
+    delete data["avatar"];
+  }
+
+  if (data.backgroundObj) {
+    data["background"] = data.backgroundObj;
+  } else {
+    delete data["background"];
+  }
+
+  new Promise((resolve, reject) => {
+    Vue.backend.updateLanding(
+      data.id,
+      data,
+      () => {
+        context.commit("loadLanding", data);
+        resolve();
+      },
+      () => {
+        reject();
+      }
+    );
+  });
+}
+
+function getAccount({ commit }) {
+  new Promise((resolve, reject) => {
+    Vue.backend.getAccount(
+      data => {
+        if (data["lang"] == 1) {
+          data["lang"] = "ru";
+        } else if (data["lang"] == 2) {
+          data["lang"] = "en";
+        } else {
+          data["lang"] = false;
+        }
+
+        commit("loadAccount", data);
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    );
+  });
+}
+
+function updateAccount(context, dataAccount) {
+  if (dataAccount["lang"] == "ru") {
+    dataAccount["lang"] = 1;
+  } else if (dataAccount["lang"] == "en") {
+    dataAccount["lang"] = 2;
+  } else {
+    delete dataAccount["lang"];
+  }
+
+  return new Promise((resolve, reject) => {
+    Vue.backend.updateAccount(
+      dataAccount,
+      data => {
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    );
+  });
+}
+
 export {
   setProduct,
   setSocial,
@@ -212,5 +324,11 @@ export {
   deleteProduct,
   loadLinks,
   createLink,
-  updateLink
+  updateLink,
+  loadLanding,
+  setLandingFormData,
+  createLanding,
+  updateLanding,
+  getAccount,
+  updateAccount
 };

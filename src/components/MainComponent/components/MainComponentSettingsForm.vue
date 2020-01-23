@@ -191,6 +191,18 @@ export default {
       ) {
         this.showFormErrors = true;
         return;
+      } else {
+        this.$store.dispatch(
+          "user/updateAccount",
+          {
+            name: this.user.name,
+            email: this.user.email,
+            lang: this.user.lang
+          },
+          () => {
+            this.$store.dispatch("user/loadAccount");
+          }
+        );
       }
     },
     savePass() {
