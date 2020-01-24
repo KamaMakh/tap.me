@@ -208,7 +208,7 @@ function loadLanding({ commit }) {
   return new Promise((resolve, reject) => {
     Vue.backend.listLanding(
       data => {
-        if (data[0]["id"]) {
+        if (data[0] && data[0]["id"]) {
           Vue.backend.getLanding(
             data[0]["id"],
             data => {
@@ -229,6 +229,8 @@ function loadLanding({ commit }) {
               alert("fail");
             }
           );
+        } else {
+          reject(data);
         }
       },
       data => {
@@ -392,6 +394,40 @@ function loadClientLinks(context, landingId) {
   );
 }
 
+function registration(context, data) {
+  return new Promise(
+    (resolve, reject) => {
+      Vue.backend.register(
+        data.email,
+        data.password,
+        {},
+        (data) => {
+          Vue.backend.setApiKeyAuth(data['api_token']);
+          resolve(data);
+        },
+        (data) => {
+          reject(data);
+        },
+      )
+    }
+  );
+}
+
+function makeDefaultLanding() {
+  return new Promise(
+    (resolve, reject) => {
+      Vue.backend.makeDefaultLanding(
+        () => {
+          resolve()
+        },
+        () => {
+          reject()
+        }
+      )
+    }
+  );
+}
+
 export {
   setProduct,
   setSocial,
@@ -413,5 +449,7 @@ export {
   updateAccount,
   loadClientLanding,
   loadClientProducts,
-  loadClientLinks
+  loadClientLinks,
+  registration,
+  makeDefaultLanding
 };

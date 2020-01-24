@@ -62,7 +62,7 @@
             :class="getSocialCss(item)"
             @click="showSocial(item)"
           >
-            <img v-if="item.id" :src="getSocialIcon(item)" :alt="item.name" />
+            <img :src="getSocialIcon(item)" :alt="item.name" />
           </div>
         </div>
       </div>
@@ -130,7 +130,11 @@ export default {
       }
     },
     getSocialCss(item) {
-      return item.type + "-icon-bgr";
+      if(item.id) {
+        return item.type + "-icon-bgr";
+      } else {
+        return 'hide-icon';
+      }
     },
     createPage() {
       this.$router.push('/');
@@ -213,6 +217,9 @@ export default {
   }
   .vk-icon-bgr {
     background-color: #5e98d9 !important;
+  }
+  .hide-icon {
+    display: none!important;
   }
   .my-card {
     width: 377px;
