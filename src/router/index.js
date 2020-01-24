@@ -117,14 +117,9 @@ const routes = [
     ]
   },
   {
-    path: "/guest",
+    path: "/:landing_code",
     component: Guest,
     children: [
-      {
-        path: "/",
-        name: "GuestComponentLink",
-        component: GuestComponentLink
-      },
       {
         path: "share",
         name: "GuestComponentShare",
@@ -134,8 +129,14 @@ const routes = [
         path: "product",
         name: "GuestComponentProduct",
         component: GuestComponentProduct
-      }
-    ]
+      },
+      {
+        path: "/",
+        name: "GuestComponentLink",
+        component: GuestComponentLink
+      },
+    ],
+    props: true
   }
 ];
 

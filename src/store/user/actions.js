@@ -373,6 +373,25 @@ function loadClientProducts(context, landingId) {
   )
 }
 
+function loadClientLinks(context, landingId) {
+  return new Promise(
+    (resolve, reject) => {
+      Vue.backend.getClientLinks(
+        landingId,
+        (data) => {
+          let links = Vue.backend.mergeLinks(data, context.state.user.socials);
+          context.commit("loadLinks", links);
+          resolve(data);
+        },
+        (data) => {
+          alert(JSON.stringify(data))
+          reject(data);
+        },
+      )
+    }
+  );
+}
+
 export {
   setProduct,
   setSocial,
@@ -393,5 +412,6 @@ export {
   getAccount,
   updateAccount,
   loadClientLanding,
-  loadClientProducts
+  loadClientProducts,
+  loadClientLinks
 };

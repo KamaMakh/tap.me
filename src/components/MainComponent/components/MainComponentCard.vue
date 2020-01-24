@@ -57,12 +57,12 @@
           </div>
           <div
             v-bind:key="item.id"
-            v-for="item in socials"
+            v-for="item in user.socials"
             class="item first"
             :class="getSocialCss(item)"
             @click="showSocial(item)"
           >
-            <img :src="getSocialIcon(item)" :alt="item.name" />
+            <img v-if="item.id" :src="getSocialIcon(item)" :alt="item.name" />
           </div>
         </div>
       </div>
@@ -103,28 +103,13 @@
 import { mapState } from "vuex";
 export default {
   name: "MainComponentCard",
-  created() {
-    this.$store.dispatch('user/loadClientLanding', 'test202').then(() => {
-      this.$store.dispatch('user/loadClientProducts', this.user.landing.id);
-        });
-  },
   props: {
     isAdmin: Boolean
   },
   computed: {
     ...mapState({
       user: state => state.user.user
-    }),
-    socials() {
-      let socials = [];
-      for(let i in this.user.socials) {
-        if(this.user.socials[i].id && this.user.socials[i].value) {
-          socials.push(this.user.socials[i]);
-        }
-      }
-
-      return socials;
-    }
+    })
   },
   methods: {
     getSocialIcon(item) {
@@ -161,10 +146,27 @@ export default {
       this.$router.push({ name: "GuestComponentProduct" });
     },
     showSocial(item) {
-      if (!this.isAdmin) {
-        window.location.href = item.value;
-      } else {
-        alert("Переход на " + item.value);
+      let url = false;
+      if(item.type == 'vk') {
+        url = item.value;
+      } else if(item.type == 'fb') {
+        url = item.value;
+      } else if(item.type == 'viber') {
+        url = 'viber://add?number='+item.value;
+      } else if(item.type == 'telegram') {
+        url = 't.me/'+item.value;
+      } else if(item.type == 'whatsapp') {
+        url = 'whatsapp://send?phone='+item.value;
+      } else if(item.type == 'skype') {
+        url = 'skype:'+item.value;
+      }
+
+      if(url) {
+        if (!this.isAdmin) {
+          window.location.href = url;
+        } else {
+          alert("Переход на " + item.value);
+        }
       }
     }
   }
