@@ -133,7 +133,7 @@ export default {
       return item.type + "-icon-bgr";
     },
     createPage() {
-      alert("Создать страницу");
+      this.$router.push('/');
     },
     toggleLeftColumn() {
       this.$store.dispatch("user/toggleLeftColumn");
@@ -154,7 +154,7 @@ export default {
       } else if(item.type == 'viber') {
         url = 'viber://add?number='+item.value;
       } else if(item.type == 'telegram') {
-        url = 't.me/'+item.value;
+        url = 'http://t.me/'+item.value;
       } else if(item.type == 'whatsapp') {
         url = 'whatsapp://send?phone='+item.value;
       } else if(item.type == 'skype') {
