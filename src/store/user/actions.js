@@ -318,6 +318,61 @@ function updateAccount(context, dataAccount) {
   });
 }
 
+function loadClientLanding(context, landingCode) {
+  return new Promise(
+    (resolve, reject) => {
+      Vue.backend.getClientLanding(
+        landingCode,
+        (data) => {
+          context.commit("loadLanding", {
+            id: data.id,
+            name: data.name,
+            user_id: data.user_id,
+            urlcode: data.urlcode,
+            description: data.description,
+            avatar: data.avatarsrc,
+            background: data.backgroundsrc,
+            instlogin: data.instlogin,
+            linkfeed: data.linkfeed
+          });
+          resolve(data);
+        },
+        (data) => {
+          reject(data)
+        }
+      )
+    }
+  );
+}
+
+function loadClientProducts(context, landingId) {
+  Vue.backend.listClientProducts(
+    landingId,
+    function(data) {
+      let resultData = [];
+      let photo;
+      let product;
+      for (let i in data) {
+        if (data[i]) {
+          if (data[i]["images"] && data[i]["images"].length > 0) {
+            photo = data[i]["images"][0]["img_src"];
+          } else {
+            photo = "https://newbalance.ru/upload/iblock/f2e/500245-000-1.jpg";
+          }
+
+          product = convertBackendDataProduct(data[i]);
+          product.photo = photo;
+          resultData.push(product);
+        }
+      }
+      context.commit("loadProducts", resultData);
+    },
+    function(data) {
+      alert(JSON.stringify(data));
+    }
+  )
+}
+
 export {
   setProduct,
   setSocial,
@@ -336,5 +391,7 @@ export {
   createLanding,
   updateLanding,
   getAccount,
-  updateAccount
+  updateAccount,
+  loadClientLanding,
+  loadClientProducts
 };

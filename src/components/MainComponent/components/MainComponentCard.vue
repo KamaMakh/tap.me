@@ -103,6 +103,11 @@
 import { mapState } from "vuex";
 export default {
   name: "MainComponentCard",
+  created() {
+    this.$store.dispatch('user/loadClientLanding', 'test202').then(() => {
+      this.$store.dispatch('user/loadClientProducts', this.user.landing.id);
+        });
+  },
   props: {
     isAdmin: Boolean
   },

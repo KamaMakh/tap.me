@@ -29,7 +29,7 @@
     </span>
     <div class="my-card">
       <div class="bg-pic">
-        <img :src="user.background" />
+        <img :src="user.landing.background" />
       </div>
       <div class="top">
         <div class="logo"></div>
