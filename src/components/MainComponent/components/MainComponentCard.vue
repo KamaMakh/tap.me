@@ -57,7 +57,7 @@
           </div>
           <div
             v-bind:key="item.id"
-            v-for="item in user.socials"
+            v-for="item in socials"
             class="item first"
             :class="getSocialCss(item)"
             @click="showSocial(item)"
@@ -114,7 +114,17 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user.user
-    })
+    }),
+    socials() {
+      let socials = [];
+      for(let i in this.user.socials) {
+        if(this.user.socials[i].id && this.user.socials[i].value) {
+          socials.push(this.user.socials[i]);
+        }
+      }
+
+      return socials;
+    }
   },
   methods: {
     getSocialIcon(item) {
