@@ -280,6 +280,12 @@ function getAccount({ commit }) {
           data["lang"] = false;
         }
 
+        if(data['subscribe'] == 1) {
+          data['subscribe'] = true;
+        } else {
+          data['subscribe'] = false;
+        }
+
         commit("loadAccount", data);
         resolve(data);
       },

@@ -4,7 +4,7 @@
       Моя страница
     </div>
     <div class="share">
-      {{ user.url }}
+      tapme.site/{{ user.landing.urlcode }}
       <span class="share-btn">
         <b-link :to="{ name: 'MainComponentShare' }">
           <svg

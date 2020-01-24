@@ -49,11 +49,6 @@
           </div>
           <div class="name-wrap">
             <div class="name">{{ user.landing.name }}</div>
-            <div class="socials">
-              <div v-for="(soc, k) in user.socials" :key="k" class="item">
-                <img v-if="soc.value" :src="soc.icon" />
-              </div>
-            </div>
           </div>
         </div>
         <div class="call-back">
@@ -275,7 +270,7 @@ export default {
           justify-content: center;
           margin-right: 15px;
           img {
-            max-width: 100%;
+            max-height: 100%;
           }
         }
         .name-wrap {

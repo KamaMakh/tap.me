@@ -5,7 +5,7 @@
       Ваш Link
     </div>
     <div class="share">
-      <input id="myLink" :value="user.url" />
+      <input id="myLink" :value="landingUrl" />
       <span @click="copyText" style="cursor: pointer" title="Скопировать">
         <svg
           width="27"
@@ -32,7 +32,7 @@
       мессенджере, в котором им удобно.
     </div>
     <div class="qr-code">
-      <qrcode-vue :value="user.url" :size="size" level="H"></qrcode-vue>
+      <qrcode-vue :value="landingUrl" :size="size" level="H"></qrcode-vue>
     </div>
     <div class="download" @click="downloadQR">
       Скачать
@@ -56,7 +56,10 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user.user
-    })
+    }),
+    landingUrl() {
+      return "tapme.site/" + this.user.landing.urlcode;
+    }
   },
   methods: {
     downloadQR() {
