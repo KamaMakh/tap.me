@@ -80,7 +80,7 @@
         'is-danger': !confirm && showFormErrors
       }"
     >
-      <b-form-checkbox size="lg" v-model="confirm"
+      <b-form-checkbox size="lg" v-model="user.subscribe"
         >Подписка на новые обновления и функции TapMe.</b-form-checkbox
       >
     </b-form-group>
@@ -191,6 +191,19 @@ export default {
       ) {
         this.showFormErrors = true;
         return;
+      } else {
+        this.$store.dispatch(
+          "user/updateAccount",
+          {
+            name: this.user.name,
+            email: this.user.email,
+            lang: this.user.lang,
+            subscribe: this.user.subscribe
+          },
+          () => {
+            this.$store.dispatch("user/loadAccount");
+          }
+        );
       }
     },
     savePass() {

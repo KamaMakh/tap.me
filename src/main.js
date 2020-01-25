@@ -13,6 +13,7 @@ import GeneralComponentHeader from "@/components/GeneralComponent/GeneralCompone
 import Validations from "vuelidate";
 import MainComponentTitle from "@/components/MainComponent/components/MainComponentTitle";
 import VueWindowSize from "vue-window-size";
+import backend from "./backend";
 
 import "animate.css";
 import "fullpage-vue/src/fullpage.css";
@@ -34,5 +35,6 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   store,
+  backend,
   render: h => h(App)
 }).$mount("#app");

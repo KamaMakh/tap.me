@@ -2,18 +2,18 @@
   <div class="main-component-product">
     <main-title
       v-if="windowWidth > 640"
-      text="Добавить товар"
+      :text="mainTitle"
       :to="{ name: 'MainComponentShop' }"
     />
     <div v-else class="mob-title-wrap">
       <main-title
         v-if="product.name"
-        text="Редактировать товар"
+        :text="mainTitle"
         :to="{ name: 'MainComponentShop' }"
       />
       <main-title
         v-else
-        text="Добавить товар"
+        :text="mainTitle"
         :to="{ name: 'MainComponentShop' }"
       />
       <div class="buttons-wrap__save" @click="save">
@@ -38,6 +38,12 @@
         </svg>
       </span>
       Предпросмотр
+    </div>
+    <div class="errors" v-if="errors.length">
+      Ошибки:
+      <div class="error-item" v-bind:key="error" v-for="error in errors">
+        {{ error }}
+      </div>
     </div>
     <div class="pics">
       <div class="pics__item">
@@ -83,24 +89,14 @@
         trim
       ></b-form-input>
     </div>
-    <div
-      class="input-wrap"
-      role="group"
-      :class="{
-        'is-danger':
-          $v.product.category.$invalid && (product.category || showFormErrors)
-      }"
-    >
-      <label for="input-live2">Категория</label>
-      <b-form-select
-        v-model="product.category"
-        :options="user.categories"
-      ></b-form-select>
-    </div>
     <div class="input-wrap">
       <label for="input-live5">Описание</label>
-      <b-form-textarea id="input-live5" placeholder="Описание" rows="5">
-        {{ product.note }}
+      <b-form-textarea
+        id="input-live5"
+        v-model="product.note"
+        placeholder="Описание"
+        rows="5"
+      >
       </b-form-textarea>
     </div>
     <div
@@ -163,7 +159,7 @@
     <b-modal
       id="modal-avatar"
       v-model="modalAvatar"
-      title="Заменить аватар"
+      title="Добавить фото"
       hide-footer
     >
       <b-form-file
@@ -172,8 +168,8 @@
         drop-placeholder="Перетащите сюда..."
         browse-text="Выбрать"
       ></b-form-file>
-      <div class="modal-buttons" style="margin-top: 25px" @click="readURL">
-        <basic-button text="Добавить" />
+      <div class="modal-buttons" style="margin-top: 25px" @click="loadPhoto">
+        <basic-button text="Добавить" @click="loadPhoto" />
       </div>
     </b-modal>
     <b-modal
@@ -192,21 +188,21 @@
 <script>
 import { mapState } from "vuex";
 import { required } from "vuelidate/lib/validators";
+import Vue from "vue";
+
 export default {
   name: "MainComponentProduct",
   data() {
     return {
       modalAvatar: false,
       modalRemove: false,
-      showFormErrors: false
+      showFormErrors: false,
+      errors: []
     };
   },
   validations: {
     product: {
       name: {
-        required
-      },
-      category: {
         required
       },
       link: {
@@ -223,15 +219,32 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user.user,
-      product: state => state.user.product
-    })
+      product: state => state.user.product,
+      uploadImage: state => state.user.uploadImage
+    }),
+    mainTitle() {
+      if (!this.isNewProduct()) {
+        return "Редактировать товар";
+      } else {
+        return "Добавить товар";
+      }
+    }
   },
   methods: {
-    readURL() {
+    isNewProduct() {
+      if (this.product && this.product.id) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    loadPhoto() {
       if (this.product.new_file) {
+        let tmpNewFile = this.product.new_file;
         let reader = new FileReader();
         reader.onload = e => {
           this.product.photo = e.target.result;
+          this.$store.dispatch("user/addImageProduct", tmpNewFile);
         };
         reader.readAsDataURL(this.product.new_file);
         this.modalAvatar = false;
@@ -246,11 +259,30 @@ export default {
       ) {
         this.showFormErrors = true;
         return;
+      } else {
+        var promise = false;
+        if (this.isNewProduct()) {
+          this.product.show = true;
+          promise = this.$store.dispatch("user/createProduct", this.product);
+        } else {
+          promise = this.$store.dispatch("user/updateProduct", this.product);
+        }
+
+        if (promise) {
+          promise
+            .then(() => {
+              this.$router.push("/main/shop");
+            })
+            .catch(data => {
+              this.errors = Vue.backend.fetchErrorsFrom(data);
+            });
+        }
       }
     },
     remove() {
-      alert("Удаление");
+      this.$store.dispatch("user/deleteProduct", this.product.id);
       this.modalRemove = false;
+      this.$router.push("/main/shop");
     },
     toggleLeftColumn() {
       this.$store.dispatch("user/toggleLeftColumn");
@@ -465,6 +497,17 @@ export default {
       justify-content: center;
       border: 1px solid #ccc;
     }
+  }
+
+  .error-item {
+    color: red;
+    font-size: 12px;
+  }
+
+  .errors {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid red;
   }
 }
 </style>

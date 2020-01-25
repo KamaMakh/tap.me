@@ -6,6 +6,7 @@
         или войти через e-mail
       </span>
     </div>
+    <div v-if="authFailed" class="error">Не верный логин или пароль</div>
     <div
       class="input-wrap email"
       :class="{
@@ -129,7 +130,8 @@ export default {
   data() {
     return {
       form: {},
-      showFormErrors: false
+      showFormErrors: false,
+      authFailed: false,
     };
   },
   validations: {
@@ -152,6 +154,18 @@ export default {
       ) {
         this.showFormErrors = true;
         return;
+      } else {
+        this.$store.dispatch(
+            'user/login',
+            {
+              login: this.form.email,
+              password: this.form.password
+            }
+        ).then(() => {
+          this.$router.push('/main');
+        }).catch(() => {
+          this.authFailed = true;
+        });
       }
     }
   }
@@ -246,7 +260,14 @@ export default {
       }
     }
   }
+
+  .error {
+    color: red;
+    font-size: 14px;
+  }
 }
+
+
 
 @media all and (max-width: 400px) {
   .auth-component-login .input-wrap.email .icons {

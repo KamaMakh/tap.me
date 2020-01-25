@@ -55,7 +55,6 @@
     </b-link>
     <div class="buttons">
       <HeaderButton class="sign-in" text="Войти" to="/auth" />
-      <HeaderButton text="Начать" :to="{ name: 'AuthComponentCreateLink' }" />
     </div>
   </div>
 </template>

@@ -43,7 +43,7 @@
               <span class="def-icon">
                 <img :src="element.photo" alt="" />
               </span>
-              <!--{{ element.name }}-->
+              {{ element.name }}
             </div>
             <b-link
               @click="setProduct(element)"
@@ -121,6 +121,7 @@ export default {
       height: 35px;
       border-radius: 2px;
       display: block;
+      margin-right: 30px;
       img {
         max-width: 100%;
       }

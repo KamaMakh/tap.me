@@ -65,7 +65,11 @@
       {{ social.name }}
     </div>
     <div
-      v-if="social.id === 1 || social.id === 2 || social.id === 5"
+      v-if="
+        social.type === 'viber' ||
+          social.type === 'telegram' ||
+          social.type === 'whatsapp'
+      "
       class="input-wrap"
       role="group"
       :class="{
@@ -82,7 +86,7 @@
       ></b-form-input>
     </div>
     <div
-      v-else-if="social.id === 0 || social.id === 6"
+      v-else-if="social.type === 'fb' || social.type === 'vk'"
       class="input-wrap"
       role="group"
       :class="{
@@ -99,7 +103,7 @@
       ></b-form-input>
     </div>
     <div
-      v-else-if="social.id === 3 || social.id === 4"
+      v-else-if="social.type === 'fb_messanger' || social.type === 'skype'"
       class="input-wrap"
       role="group"
       :class="{
@@ -117,7 +121,11 @@
     </div>
 
     <div
-      v-if="social.id === 1 || social.id === 2 || social.id === 5"
+      v-if="
+        social.type === 'viber' ||
+          social.type === 'telegram' ||
+          social.type === 'whatsapp'
+      "
       class="info"
     >
       Введите номер телефона в следующей последовательности:
@@ -128,10 +136,13 @@
       <br /><br />
       Пример: +380734645261
     </div>
-    <div v-else-if="social.id === 0 || social.id === 6" class="info">
+    <div v-else-if="social.type === 'fb' || social.type === 'vk'" class="info">
       Введите ссылку на страницу вашего профиля в {{ social.name }}
     </div>
-    <div v-else-if="social.id === 3 || social.id === 4" class="info">
+    <div
+      v-else-if="social.type === 'fb_messanger' || social.type === 'skype'"
+      class="info"
+    >
       Введите иям пользователя в {{ social.name }}
     </div>
     <span @click="save">
@@ -160,6 +171,28 @@ export default {
       ) {
         this.showFormErrors = true;
         return;
+      } else {
+        if (!this.social.id) {
+          this.$store.dispatch("user/createLink", this.social).then(
+            () => {
+              this.$router.push("/main/socials");
+              this.$store.dispatch("user/loadLinks");
+            },
+            () => {
+              alert("fail");
+            }
+          );
+        } else {
+          this.$store.dispatch("user/updateLink", this.social).then(
+            () => {
+              this.$router.push("/main/socials");
+              this.$store.dispatch("user/loadLinks");
+            },
+            () => {
+              alert("fail");
+            }
+          );
+        }
       }
     }
   },

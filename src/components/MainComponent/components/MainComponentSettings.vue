@@ -59,7 +59,8 @@ export default {
   name: "MainComponentSettings",
   methods: {
     logOut() {
-      alert("Тут будет выход");
+      this.$store.dispatch('user/logout');
+      this.$router.push('/auth');
     }
   }
 };

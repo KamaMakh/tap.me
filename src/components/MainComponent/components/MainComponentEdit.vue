@@ -21,7 +21,7 @@
         </div>
         <div class="pics__line">
           <div class="pics__img">
-            <img :src="user.avatar" alt="Аватар" />
+            <img :src="landing.avatar" alt="Аватар" />
           </div>
           <div class="pics__btn" @click="modalAvatar = !modalAvatar">
             Изменить
@@ -34,7 +34,7 @@
         </div>
         <div class="pics__line">
           <div class="pics__img">
-            <img :src="user.background" alt="Обложка" />
+            <img :src="landing.background" alt="Обложка" />
           </div>
           <div class="pics__btn" @click="modalBackground = !modalBackground">
             Изменить
@@ -46,13 +46,13 @@
       class="input-wrap"
       role="group"
       :class="{
-        'is-danger': $v.user.name.$invalid && (user.name || showFormErrors)
+        'is-danger': $v.landing.name.$invalid && showFormErrors
       }"
     >
       <label for="input-live">Имя страницы</label>
       <b-form-input
         id="input-live"
-        v-model="user.name"
+        v-model="landing.name"
         placeholder="Имя"
         trim
       ></b-form-input>
@@ -61,13 +61,13 @@
       class="input-wrap"
       role="group"
       :class="{
-        'is-danger': $v.user.url.$invalid && (user.url || showFormErrors)
+        'is-danger': $v.landing.urlcode.$invalid && showFormErrors
       }"
     >
       <label for="input-live2">Имя страницы в url</label>
       <b-form-input
         id="input-live2"
-        v-model="user.url"
+        v-model="landing.urlcode"
         placeholder="Имя страницы в url"
         trim
       ></b-form-input>
@@ -76,7 +76,7 @@
       <label for="input-live3">Логин в Instagrm</label>
       <b-form-input
         id="input-live3"
-        v-model="user.instagram"
+        v-model="landing.instlogin"
         placeholder="Логин в Instagrm"
         trim
       ></b-form-input>
@@ -85,7 +85,7 @@
       <label for="input-live4">Ссылка на онлайн запись</label>
       <b-form-input
         id="input-live4"
-        v-model="user.link_online"
+        v-model="landing.linkfeed"
         placeholder="Ссылка на онлайн запись"
         trim
       ></b-form-input>
@@ -96,6 +96,7 @@
         id="input-live5"
         placeholder="Описание"
         rows="5"
+        v-model="landing.description"
       ></b-form-textarea>
     </div>
     <div class="buttons-wrap">
@@ -116,7 +117,7 @@
       hide-footer
     >
       <b-form-file
-        v-model="user.new_avatar"
+        v-model="avatarFile"
         placeholder="Выберите файл или перетащите его"
         drop-placeholder="Перетащите сюда..."
         browse-text="Выбрать"
@@ -132,7 +133,7 @@
       hide-footer
     >
       <b-form-file
-        v-model="user.new_back"
+        v-model="backgroundFile"
         placeholder="Выберите файл или перетащите его"
         drop-placeholder="Перетащите сюда..."
         browse-text="Выбрать"
@@ -149,24 +150,29 @@ import { mapState } from "vuex";
 import { required } from "vuelidate/lib/validators";
 export default {
   name: "MainComponentEdit",
+  created() {
+    this.$store.dispatch("user/setLandingFormData");
+  },
   data() {
     return {
       modalAvatar: false,
       modalBackground: false,
-      showFormErrors: false
+      showFormErrors: false,
+      avatarFile: false,
+      backgroundFile: false
     };
   },
   computed: {
     ...mapState({
-      user: state => state.user.user
+      landing: state => state.user.landing
     })
   },
   validations: {
-    user: {
+    landing: {
       name: {
         required
       },
-      url: {
+      urlcode: {
         required
       }
     }
@@ -176,32 +182,40 @@ export default {
       this.$store.dispatch("user/toggleLeftColumn");
     },
     readURL() {
-      if (this.user.new_avatar) {
+      if (this.avatarFile) {
         let reader = new FileReader();
+        this.landing.avatarObj = this.avatarFile;
+
         reader.onload = e => {
-          this.user.avatar = e.target.result;
+          this.landing.avatar = e.target.result;
         };
-        reader.readAsDataURL(this.user.new_avatar);
+        reader.readAsDataURL(this.avatarFile);
         this.modalAvatar = false;
-        this.user.new_avatar = undefined;
-      } else if (this.user.new_back) {
+      } else if (this.backgroundFile) {
         let reader = new FileReader();
+        this.landing.backgroundObj = this.backgroundFile;
+
         reader.onload = e => {
-          this.user.background = e.target.result;
+          this.landing.background = e.target.result;
         };
-        reader.readAsDataURL(this.user.new_back);
+        reader.readAsDataURL(this.backgroundFile);
         this.modalBackground = false;
-        this.user.new_back = undefined;
       }
     },
     save() {
       if (
-        this.$v.user.$pending ||
-        this.$v.user.$error ||
-        this.$v.user.$invalid
+        this.$v.landing.$pending ||
+        this.$v.landing.$error ||
+        this.$v.landing.$invalid
       ) {
         this.showFormErrors = true;
         return;
+      } else {
+        this.$store.dispatch("user/updateLanding", this.landing).then(() => {
+          this.$store.dispatch("user/loadLanding").then(() => {
+            this.$router.push("/main");
+          });
+        });
       }
     }
   }

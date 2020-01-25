@@ -19,7 +19,7 @@
     <div
       class="input-wrap email"
       :class="{
-        'is-danger': $v.form.email.$invalid && (form.email || showFormErrors)
+        'is-danger': (emailFieldErrors || $v.form.email.$invalid) && (form.email || showFormErrors)
       }"
     >
       <b-form-input
@@ -29,12 +29,13 @@
         type="email"
         v-model.trim="form.email"
       ></b-form-input>
+      <div v-if="emailFieldErrors" class="error-not-unique">{{emailFieldErrors}}</div>
     </div>
     <div
       class="input-wrap password"
       :class="{
         'is-danger':
-          $v.form.password.$invalid && (form.password || showFormErrors)
+          (passwordFieldErrors || $v.form.password.$invalid) && (form.password || showFormErrors)
       }"
     >
       <b-form-input
@@ -44,6 +45,7 @@
         type="password"
         v-model="form.password"
       ></b-form-input>
+      <div v-if="passwordFieldErrors" class="error-not-unique">{{passwordFieldErrors}}</div>
     </div>
     <div style="width: 100%" @click="register">
       <basic-button text="Зарегестрироваться" />
@@ -62,7 +64,9 @@ export default {
   data() {
     return {
       form: {},
-      showFormErrors: false
+      showFormErrors: false,
+      emailFieldErrors: false,
+      passwordFieldErrors: false,
     };
   },
   validations: {
@@ -78,6 +82,8 @@ export default {
   },
   methods: {
     register() {
+      this.emailFieldErrors = false;
+      this.passwordFieldErrors = false;
       if (
         this.$v.form.$pending ||
         this.$v.form.$error ||
@@ -85,6 +91,25 @@ export default {
       ) {
         this.showFormErrors = true;
         return;
+      } else {
+        this.$store.dispatch(
+            "user/registration",
+            {
+              email: this.form.email,
+              password: this.form.password
+            }
+        ).then(() => {
+          this.$router.push('/main');
+        }).catch((data) => {
+          if(data['errors']['email']) {
+            this.emailFieldErrors = data['errors']['email'].join(", ");
+          }
+
+          if(data['errors']['password']) {
+            this.passwordFieldErrors = data['errors']['password'].join(", ");
+          }
+          this.showFormErrors = true;
+        });
       }
     }
   }
@@ -166,6 +191,11 @@ export default {
         border-color: #f04124 !important;
         color: #f04124;
       }
+    }
+
+    .error-not-unique {
+      color: red;
+      font-size: 12px;
     }
   }
 }
