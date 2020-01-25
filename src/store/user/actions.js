@@ -428,6 +428,29 @@ function makeDefaultLanding() {
   );
 }
 
+function login(context, data) {
+  return new Promise(
+    (resolve, reject) => {
+      Vue.backend.auth(
+        data.login,
+        data.password,
+        (data) => {
+          resolve(data);
+        },
+        (data) => {
+          reject(data);
+        }
+      )
+    }
+  );
+
+}
+
+function logout() {
+  alert(222);
+  Vue.backend.logout();
+}
+
 export {
   setProduct,
   setSocial,
@@ -451,5 +474,7 @@ export {
   loadClientProducts,
   loadClientLinks,
   registration,
-  makeDefaultLanding
+  makeDefaultLanding,
+  login,
+  logout
 };
