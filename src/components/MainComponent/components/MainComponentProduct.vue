@@ -187,7 +187,7 @@
 
 <script>
 import { mapState } from "vuex";
-import { required } from "vuelidate/lib/validators";
+import { required, url } from "vuelidate/lib/validators";
 import Vue from "vue";
 
 export default {
@@ -206,7 +206,7 @@ export default {
         required
       },
       link: {
-        required
+        url
       },
       price: {
         required
