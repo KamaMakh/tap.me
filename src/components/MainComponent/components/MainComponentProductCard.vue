@@ -47,11 +47,11 @@
         <div class="prod-price">
           {{ product.discount_price ? product.discount_price : product.price }}
         </div>
-        <b-link to="#" class="prod-link">
+        <b-link v-if="product.link" to="product.link" class="prod-link">
           Перейти на сайт
         </b-link>
-        <div class="prod-uri">
-          shop.com
+        <div v-if="product.link" class="prod-uri">
+          {{extractHostname(product.link)}}
         </div>
       </div>
     </div>
@@ -60,15 +60,29 @@
 
 <script>
 import { mapState } from "vuex";
+
 export default {
   name: "MainComponentProductCard",
   computed: {
     ...mapState({
       user: state => state.user.user,
       product: state => state.user.product
-    })
+    }),
   },
   methods: {
+    extractHostname(url) {
+      var hostname;
+      if (url.indexOf("//") > -1) {
+        hostname = url.split('/')[2];
+      } else {
+        hostname = url.split('/')[0];
+      }
+
+      hostname = hostname.split(':')[0];
+      hostname = hostname.split('?')[0];
+
+      return hostname;
+    },
     toggleLeftColumn() {
       this.$store.dispatch("user/toggleLeftColumn");
     }
