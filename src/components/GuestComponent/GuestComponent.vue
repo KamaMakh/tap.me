@@ -1,6 +1,5 @@
 <template>
   <div class="guest-component">
-    <div class="logo"></div>
     <router-view></router-view>
   </div>
 </template>
