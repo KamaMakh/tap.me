@@ -15,7 +15,7 @@
             связи с вами
           </div>
           <div class="sale-block__btn">
-            <HeaderButton text="Создать бесплатно" :reverse="true" />
+            <HeaderButton to="/auth" text="Создать бесплатно" :reverse="true" />
           </div>
         </div>
         <div class="sale-more__right pic-block part-1"></div>
