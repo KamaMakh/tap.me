@@ -47,9 +47,9 @@
         <div class="prod-price">
           {{ product.discount_price ? product.discount_price : product.price }}
         </div>
-        <b-link v-if="product.link" to="product.link" class="prod-link">
+        <a v-if="product.link" :href="product.link" class="prod-link">
           Перейти на сайт
-        </b-link>
+        </a>
         <div v-if="product.link" class="prod-uri">
           {{extractHostname(product.link)}}
         </div>
