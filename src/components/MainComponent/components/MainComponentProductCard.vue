@@ -47,7 +47,7 @@
         <div class="prod-price">
           {{ product.discount_price ? product.discount_price : product.price }}
         </div>
-        <a v-if="product.link" :href="product.link" class="prod-link">
+        <a target="_blank" v-if="product.link" :href="product.link" class="prod-link">
           Перейти на сайт
         </a>
         <div v-if="product.link" class="prod-uri">
@@ -63,6 +63,15 @@ import { mapState } from "vuex";
 
 export default {
   name: "MainComponentProductCard",
+  created() {
+    if(!this.product.id) {
+      if(this.user.landing.urlcode) {
+        this.$router.push("/"+this.user.landing.urlcode);
+      } else {
+        this.$router.push("/");
+      }
+    }
+  },
   computed: {
     ...mapState({
       user: state => state.user.user,
