@@ -2,7 +2,13 @@ import Vue from "vue";
 import Backend from "tapme_sdk";
 
 Vue.use(function(Vue) {
-  Vue.backend = new Backend("instchat", "/", 1, 123);
+  Vue.backend = new Backend(
+    process.env.VUE_APP_API_HOST,
+    process.env.VUE_APP_API_PATH,
+    process.env.VUE_APP_API_CLIENT_ID,
+    process.env.VUE_APP_API_CLIENT_SECRET
+  );
+
   Vue.backend.fetchErrorsFrom = function(data) {
     let errors = [];
     if (data["errors"]) {
