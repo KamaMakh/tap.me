@@ -288,6 +288,10 @@ function getAccount({ commit }) {
           data['subscribe'] = false;
         }
 
+        if(!data['tariffName']) {
+          data['tariffName'] = 'free';
+        }
+
         commit("loadAccount", data);
         resolve(data);
       },
