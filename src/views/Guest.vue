@@ -12,10 +12,12 @@ export default {
     landing_code: String
   },
   created() {
-    this.$store.dispatch('user/loadClientLanding', this.landing_code).then((data) => {
-      this.$store.dispatch('user/loadClientProducts', data['id']);
-      this.$store.dispatch('user/loadClientLinks', data['id']);
-    });
+    this.$store
+      .dispatch("user/loadClientLanding", this.landing_code)
+      .then(data => {
+        this.$store.dispatch("user/loadClientProducts", data["id"]);
+        this.$store.dispatch("user/loadClientLinks", data["id"]);
+      });
   },
   components: {
     GuestComponent

@@ -47,7 +47,7 @@ function setUploadImage(state, image) {
 
 function loadLinks(state, links) {
   state.user.socials = [];
-  for(let i in links) {
+  for (let i in links) {
     state.user.socials.push(links[i]);
   }
 }

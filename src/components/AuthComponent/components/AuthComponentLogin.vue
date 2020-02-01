@@ -131,7 +131,7 @@ export default {
     return {
       form: {},
       showFormErrors: false,
-      authFailed: false,
+      authFailed: false
     };
   },
   validations: {
@@ -155,17 +155,17 @@ export default {
         this.showFormErrors = true;
         return;
       } else {
-        this.$store.dispatch(
-            'user/login',
-            {
-              login: this.form.email,
-              password: this.form.password
-            }
-        ).then(() => {
-          this.$router.push('/main');
-        }).catch(() => {
-          this.authFailed = true;
-        });
+        this.$store
+          .dispatch("user/login", {
+            login: this.form.email,
+            password: this.form.password
+          })
+          .then(() => {
+            this.$router.push("/main");
+          })
+          .catch(() => {
+            this.authFailed = true;
+          });
       }
     }
   }
@@ -266,8 +266,6 @@ export default {
     font-size: 14px;
   }
 }
-
-
 
 @media all and (max-width: 400px) {
   .auth-component-login .input-wrap.email .icons {

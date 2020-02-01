@@ -134,14 +134,14 @@ const routes = [
         path: "/",
         name: "GuestComponentLink",
         component: GuestComponentLink
-      },
+      }
     ],
     props: true
   }
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   routes: routes
 });
 

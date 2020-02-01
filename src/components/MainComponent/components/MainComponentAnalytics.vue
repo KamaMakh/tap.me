@@ -117,7 +117,7 @@ export default {
   methods: {
     toPro() {
       this.$router.push("/main/tariffs");
-    },
+    }
   },
   computed: {
     ...mapState({

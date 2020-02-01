@@ -13,10 +13,8 @@ export default {
   name: "BlueButton",
   methods: {
     getClass: function() {
-      if(this.disabled)
-        return "blue-button disabled";
-      else
-        return "blue-button";
+      if (this.disabled) return "blue-button disabled";
+      else return "blue-button";
     }
   }
 };

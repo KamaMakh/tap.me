@@ -130,14 +130,14 @@ export default {
       }
     },
     getSocialCss(item) {
-      if(item.id) {
+      if (item.id) {
         return item.type + "-icon-bgr";
       } else {
-        return 'hide-icon';
+        return "hide-icon";
       }
     },
     createPage() {
-      this.$router.push('/');
+      this.$router.push("/");
     },
     toggleLeftColumn() {
       this.$store.dispatch("user/toggleLeftColumn");
@@ -151,21 +151,21 @@ export default {
     },
     showSocial(item) {
       let url = false;
-      if(item.type == 'vk') {
+      if (item.type == "vk") {
         url = item.value;
-      } else if(item.type == 'fb') {
+      } else if (item.type == "fb") {
         url = item.value;
-      } else if(item.type == 'viber') {
-        url = 'viber://add?number='+item.value;
-      } else if(item.type == 'telegram') {
-        url = 'http://t.me/'+item.value;
-      } else if(item.type == 'whatsapp') {
-        url = 'whatsapp://send?phone='+item.value;
-      } else if(item.type == 'skype') {
-        url = 'skype:'+item.value;
+      } else if (item.type == "viber") {
+        url = "viber://add?number=" + item.value;
+      } else if (item.type == "telegram") {
+        url = "http://t.me/" + item.value;
+      } else if (item.type == "whatsapp") {
+        url = "whatsapp://send?phone=" + item.value;
+      } else if (item.type == "skype") {
+        url = "skype:" + item.value;
       }
 
-      if(url) {
+      if (url) {
         if (!this.isAdmin) {
           window.location.href = url;
         } else {
@@ -219,7 +219,7 @@ export default {
     background-color: #5e98d9 !important;
   }
   .hide-icon {
-    display: none!important;
+    display: none !important;
   }
   .my-card {
     width: 377px;

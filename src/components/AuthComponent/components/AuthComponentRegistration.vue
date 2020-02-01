@@ -19,7 +19,9 @@
     <div
       class="input-wrap email"
       :class="{
-        'is-danger': (emailFieldErrors || $v.form.email.$invalid) && (form.email || showFormErrors)
+        'is-danger':
+          (emailFieldErrors || $v.form.email.$invalid) &&
+          (form.email || showFormErrors)
       }"
     >
       <b-form-input
@@ -29,13 +31,16 @@
         type="email"
         v-model.trim="form.email"
       ></b-form-input>
-      <div v-if="emailFieldErrors" class="error-not-unique">{{emailFieldErrors}}</div>
+      <div v-if="emailFieldErrors" class="error-not-unique">
+        {{ emailFieldErrors }}
+      </div>
     </div>
     <div
       class="input-wrap password"
       :class="{
         'is-danger':
-          (passwordFieldErrors || $v.form.password.$invalid) && (form.password || showFormErrors)
+          (passwordFieldErrors || $v.form.password.$invalid) &&
+          (form.password || showFormErrors)
       }"
     >
       <b-form-input
@@ -45,7 +50,9 @@
         type="password"
         v-model="form.password"
       ></b-form-input>
-      <div v-if="passwordFieldErrors" class="error-not-unique">{{passwordFieldErrors}}</div>
+      <div v-if="passwordFieldErrors" class="error-not-unique">
+        {{ passwordFieldErrors }}
+      </div>
     </div>
     <div style="width: 100%" @click="register">
       <basic-button text="Зарегестрироваться" />
@@ -66,7 +73,7 @@ export default {
       form: {},
       showFormErrors: false,
       emailFieldErrors: false,
-      passwordFieldErrors: false,
+      passwordFieldErrors: false
     };
   },
   validations: {
@@ -92,24 +99,24 @@ export default {
         this.showFormErrors = true;
         return;
       } else {
-        this.$store.dispatch(
-            "user/registration",
-            {
-              email: this.form.email,
-              password: this.form.password
+        this.$store
+          .dispatch("user/registration", {
+            email: this.form.email,
+            password: this.form.password
+          })
+          .then(() => {
+            this.$router.push("/main");
+          })
+          .catch(data => {
+            if (data["errors"]["email"]) {
+              this.emailFieldErrors = data["errors"]["email"].join(", ");
             }
-        ).then(() => {
-          this.$router.push('/main');
-        }).catch((data) => {
-          if(data['errors']['email']) {
-            this.emailFieldErrors = data['errors']['email'].join(", ");
-          }
 
-          if(data['errors']['password']) {
-            this.passwordFieldErrors = data['errors']['password'].join(", ");
-          }
-          this.showFormErrors = true;
-        });
+            if (data["errors"]["password"]) {
+              this.passwordFieldErrors = data["errors"]["password"].join(", ");
+            }
+            this.showFormErrors = true;
+          });
       }
     }
   }

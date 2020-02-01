@@ -47,11 +47,16 @@
         <div class="prod-price">
           {{ product.discount_price ? product.discount_price : product.price }}
         </div>
-        <a target="_blank" v-if="product.link" :href="product.link" class="prod-link">
+        <a
+          target="_blank"
+          v-if="product.link"
+          :href="product.link"
+          class="prod-link"
+        >
           Перейти на сайт
         </a>
         <div v-if="product.link" class="prod-uri">
-          {{extractHostname(product.link)}}
+          {{ extractHostname(product.link) }}
         </div>
       </div>
     </div>
@@ -64,9 +69,9 @@ import { mapState } from "vuex";
 export default {
   name: "MainComponentProductCard",
   created() {
-    if(!this.product.id) {
-      if(this.user.landing.urlcode) {
-        this.$router.push("/"+this.user.landing.urlcode);
+    if (!this.product.id) {
+      if (this.user.landing.urlcode) {
+        this.$router.push("/" + this.user.landing.urlcode);
       } else {
         this.$router.push("/");
       }
@@ -76,19 +81,19 @@ export default {
     ...mapState({
       user: state => state.user.user,
       product: state => state.user.product
-    }),
+    })
   },
   methods: {
     extractHostname(url) {
       var hostname;
       if (url.indexOf("//") > -1) {
-        hostname = url.split('/')[2];
+        hostname = url.split("/")[2];
       } else {
-        hostname = url.split('/')[0];
+        hostname = url.split("/")[0];
       }
 
-      hostname = hostname.split(':')[0];
-      hostname = hostname.split('?')[0];
+      hostname = hostname.split(":")[0];
+      hostname = hostname.split("?")[0];
 
       return hostname;
     },

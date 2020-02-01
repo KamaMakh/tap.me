@@ -282,14 +282,14 @@ function getAccount({ commit }) {
           data["lang"] = false;
         }
 
-        if(data['subscribe'] == 1) {
-          data['subscribe'] = true;
+        if (data["subscribe"] == 1) {
+          data["subscribe"] = true;
         } else {
-          data['subscribe'] = false;
+          data["subscribe"] = false;
         }
 
-        if(!data['tariffName']) {
-          data['tariffName'] = 'free';
+        if (!data["tariffName"]) {
+          data["tariffName"] = "free";
         }
 
         commit("loadAccount", data);
@@ -325,30 +325,28 @@ function updateAccount(context, dataAccount) {
 }
 
 function loadClientLanding(context, landingCode) {
-  return new Promise(
-    (resolve, reject) => {
-      Vue.backend.getClientLanding(
-        landingCode,
-        (data) => {
-          context.commit("loadLanding", {
-            id: data.id,
-            name: data.name,
-            user_id: data.user_id,
-            urlcode: data.urlcode,
-            description: data.description,
-            avatar: data.avatarsrc,
-            background: data.backgroundsrc,
-            instlogin: data.instlogin,
-            linkfeed: data.linkfeed
-          });
-          resolve(data);
-        },
-        (data) => {
-          reject(data)
-        }
-      )
-    }
-  );
+  return new Promise((resolve, reject) => {
+    Vue.backend.getClientLanding(
+      landingCode,
+      data => {
+        context.commit("loadLanding", {
+          id: data.id,
+          name: data.name,
+          user_id: data.user_id,
+          urlcode: data.urlcode,
+          description: data.description,
+          avatar: data.avatarsrc,
+          background: data.backgroundsrc,
+          instlogin: data.instlogin,
+          linkfeed: data.linkfeed
+        });
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    );
+  });
 }
 
 function loadClientProducts(context, landingId) {
@@ -376,78 +374,69 @@ function loadClientProducts(context, landingId) {
     function(data) {
       alert(JSON.stringify(data));
     }
-  )
+  );
 }
 
 function loadClientLinks(context, landingId) {
-  return new Promise(
-    (resolve, reject) => {
-      Vue.backend.getClientLinks(
-        landingId,
-        (data) => {
-          let links = Vue.backend.mergeLinks(data, context.state.user.socials);
-          context.commit("loadLinks", links);
-          resolve(data);
-        },
-        (data) => {
-          alert(JSON.stringify(data))
-          reject(data);
-        },
-      )
-    }
-  );
+  return new Promise((resolve, reject) => {
+    Vue.backend.getClientLinks(
+      landingId,
+      data => {
+        let links = Vue.backend.mergeLinks(data, context.state.user.socials);
+        context.commit("loadLinks", links);
+        resolve(data);
+      },
+      data => {
+        alert(JSON.stringify(data));
+        reject(data);
+      }
+    );
+  });
 }
 
 function registration(context, data) {
-  return new Promise(
-    (resolve, reject) => {
-      Vue.backend.register(
-        data.email,
-        data.password,
-        {},
-        (data) => {
-          Vue.backend.setApiKeyAuth(data['api_token']);
-          resolve(data);
-        },
-        (data) => {
-          reject(data);
-        },
-      )
-    }
-  );
+  return new Promise((resolve, reject) => {
+    Vue.backend.register(
+      data.email,
+      data.password,
+      {},
+      data => {
+        Vue.backend.setApiKeyAuth(data["api_token"]);
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    );
+  });
 }
 
 function makeDefaultLanding() {
-  return new Promise(
-    (resolve, reject) => {
-      Vue.backend.makeDefaultLanding(
-        () => {
-          resolve()
-        },
-        () => {
-          reject()
-        }
-      )
-    }
-  );
+  return new Promise((resolve, reject) => {
+    Vue.backend.makeDefaultLanding(
+      () => {
+        resolve();
+      },
+      () => {
+        reject();
+      }
+    );
+  });
 }
 
 function login(context, data) {
-  return new Promise(
-    (resolve, reject) => {
-      Vue.backend.auth(
-        data.login,
-        data.password,
-        (data) => {
-          resolve(data);
-        },
-        (data) => {
-          reject(data);
-        }
-      )
-    }
-  );
-
+  return new Promise((resolve, reject) => {
+    Vue.backend.auth(
+      data.login,
+      data.password,
+      data => {
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    );
+  });
 }
 
 function logout() {
@@ -455,15 +444,11 @@ function logout() {
 }
 
 function getPayUrl() {
-  return new Promise(
-    (resolve) => {
-      Vue.backend.paymentInitUrl(
-        (data) => {
-          resolve(data)
-        }
-      )
-    }
-  );
+  return new Promise(resolve => {
+    Vue.backend.paymentInitUrl(data => {
+      resolve(data);
+    });
+  });
 }
 
 export {
