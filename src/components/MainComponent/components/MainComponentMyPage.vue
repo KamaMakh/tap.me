@@ -229,7 +229,7 @@
         </b-list-group-item>
       </b-list-group>
     </div>
-    <div class="pro-btn" v-if="user.tariffName !== 'pro'">
+    <div class="pro-btn" v-if="user.tariffName !== 'pro'" @click="toPro()">
       Перейти на Pro
     </div>
   </div>
@@ -249,6 +249,9 @@ export default {
     })
   },
   methods: {
+    toPro() {
+      this.$router.push("/main/tariffs");
+    },
     toggleLeftColumn() {
       this.$store.dispatch("user/toggleLeftColumn");
     }
@@ -365,6 +368,7 @@ export default {
     font-weight: 600;
     font-size: 15px;
     color: #000000;
+    cursor: pointer;
     @media all and(max-width: 960px) {
       font-size: 14px;
     }

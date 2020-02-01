@@ -80,9 +80,9 @@
         <div class="help-title">Перейдите на <span>PRO</span></div>
         <div class="help-sub-title">
           Данный функионал <br />
-          дотступен в PRO аккаунте
+          доступен в PRO аккаунте
         </div>
-        <div v-if="user.tariffName !== 'pro'" class="pro-btn" @click="user.pro = !user.pro">
+        <div v-if="user.tariffName !== 'pro'" class="pro-btn" @click="toPro()">
           Перейти на Pro
         </div>
       </div>
@@ -113,6 +113,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    toPro() {
+      this.$router.push("/main/tariffs");
+    },
   },
   computed: {
     ...mapState({
