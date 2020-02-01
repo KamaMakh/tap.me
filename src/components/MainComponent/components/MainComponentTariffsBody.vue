@@ -21,8 +21,8 @@
             {{ el }}
           </div>
         </div>
-        <span v-if="user.tariff_id !== item.id" @click="buyTariff(item)">
-          <blue-button text="Выбрать" />
+        <span v-if="user.tariffName != item.code" @click="buyTariff(item)">
+          <blue-button text="Выбрать" :disabled="user.tariffName == 'pro'" />
         </span>
         <span v-else class="current-tariff">
           Ваш текущий тариф
@@ -48,8 +48,8 @@
               {{ el }}
             </div>
           </div>
-          <span v-if="user.tariff_id !== item.id" @click="buyTariff(item)">
-            <blue-button text="Выбрать" />
+          <span v-if="user.tariffName != item.code" @click="buyTariff(item)">
+            <blue-button text="Выбрать" :disabled="user.tariffName == 'pro'" />
           </span>
           <span v-else class="current-tariff">
             Ваш текущий тариф
@@ -147,8 +147,8 @@ export default {
       showFormErrors: false,
       tariffs: [
         {
-          id: 0,
           name: "Pro",
+          code: "pro",
           price: "$9.99 /месяц",
           desc: "Все что нужно для растущего бизнеса",
           options: [
@@ -165,8 +165,8 @@ export default {
           ]
         },
         {
-          id: 1,
           name: "Free",
+          code: "free",
           price: "$9.99 /месяц",
           desc: "Все что нужно для растущего бизнеса",
           options: [
@@ -206,8 +206,13 @@ export default {
   methods: {
     /* eslint-disable */
     buyTariff(tariff) {
-      console.log(tariff);
-      this.buyMode = true;
+      if(tariff.code == "pro") {
+        this.$store.dispatch('user/getPayUrl').then(
+            (data) => {
+              window.location = data.link;
+            }
+        );
+      }
     },
     pay() {
       if (

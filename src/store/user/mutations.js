@@ -62,6 +62,7 @@ function loadAccount(state, data) {
   state.user.email = data["email"];
   state.user.lang = data["lang"];
   state.user.subscribe = data["subscribe"];
+  state.user.tariffName = data["tariffName"];
 }
 
 export {

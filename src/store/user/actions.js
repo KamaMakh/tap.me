@@ -447,8 +447,19 @@ function login(context, data) {
 }
 
 function logout() {
-  alert(222);
   Vue.backend.logout();
+}
+
+function getPayUrl() {
+  return new Promise(
+    (resolve) => {
+      Vue.backend.paymentInitUrl(
+        (data) => {
+          resolve(data)
+        }
+      )
+    }
+  );
 }
 
 export {
@@ -476,5 +487,6 @@ export {
   registration,
   makeDefaultLanding,
   login,
-  logout
+  logout,
+  getPayUrl
 };

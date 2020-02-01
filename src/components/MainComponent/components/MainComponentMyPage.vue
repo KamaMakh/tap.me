@@ -229,7 +229,7 @@
         </b-list-group-item>
       </b-list-group>
     </div>
-    <div class="pro-btn">
+    <div class="pro-btn" v-if="user.tariffName !== 'pro'">
       Перейти на Pro
     </div>
   </div>

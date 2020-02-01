@@ -1,7 +1,7 @@
 <template>
   <div class="main-component-analytics">
     <main-title text="Аналитика" :to="{ name: 'MainComponentMyPage' }" />
-    <div v-if="user.pro">
+    <div v-if="user.tariffName == 'pro'">
       <div class="activate">
         <div class="sub-title">
           Подключить
@@ -82,7 +82,7 @@
           Данный функионал <br />
           дотступен в PRO аккаунте
         </div>
-        <div class="pro-btn" @click="user.pro = !user.pro">
+        <div v-if="user.tariffName !== 'pro'" class="pro-btn" @click="user.pro = !user.pro">
           Перейти на Pro
         </div>
       </div>

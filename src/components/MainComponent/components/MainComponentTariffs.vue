@@ -2,7 +2,7 @@
   <div class="main-component-tariffs">
     <main-title text="Тарифы" :to="{ name: 'MainComponentMyPage' }" />
     <div class="share">
-      {{ user.url }}
+      tapme.site/{{ user.landing.urlcode }}
       <span>
         <b-link :to="{ name: 'MainComponentShare' }">
           <svg

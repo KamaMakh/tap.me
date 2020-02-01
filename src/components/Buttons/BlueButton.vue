@@ -1,16 +1,24 @@
 <template>
-  <b-link v-if="to" :to="to" class="blue-button">
+  <b-link v-if="to" :to="to" :class="getClass()">
     {{ text ? text : "Button" }}
   </b-link>
-  <div v-else class="blue-button">
+  <div v-else :class="getClass()">
     {{ text ? text : "Button" }}
   </div>
 </template>
 
 <script>
 export default {
-  props: ["text", "to"],
-  name: "BlueButton"
+  props: ["text", "to", "disabled"],
+  name: "BlueButton",
+  methods: {
+    getClass: function() {
+      if(this.disabled)
+        return "blue-button disabled";
+      else
+        return "blue-button";
+    }
+  }
 };
 </script>
 
@@ -35,5 +43,10 @@ export default {
   &:hover {
     opacity: 0.8;
   }
+}
+
+.blue-button.disabled {
+  background-color: #c3bec6;
+  cursor: inherit;
 }
 </style>
