@@ -79,4 +79,17 @@ body,
     }
   }
 }
+label {
+  word-break: break-all;
+  overflow: hidden;
+}
+input,
+textarea {
+  color: #000 !important;
+  &:focus {
+    &::placeholder {
+      color: transparent;
+    }
+  }
+}
 </style>
