@@ -233,6 +233,9 @@ export default {
     -moz-border-radius: 8px;
     border-radius: 8px;
     overflow: hidden;
+    background: #ffffff;
+    min-height: 500px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
     @media all and(max-width: 768px) {
       width: 327px;
     }
@@ -273,8 +276,6 @@ export default {
     .bio {
       margin-top: 103px;
       position: relative;
-      background: #ffffff;
-      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
       border-radius: 8px;
       display: flex;
       flex-direction: column;
@@ -282,6 +283,8 @@ export default {
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
+      background: #fff;
+      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
       .info {
         display: flex;
         .avatar {
