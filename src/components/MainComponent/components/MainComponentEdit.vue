@@ -102,7 +102,7 @@
     <div class="buttons-wrap">
       <div class="buttons-wrap__title">Ссылка на мессенджеры и соцсети</div>
       <div class="buttons-wrap__link">
-        <blue-button text="Добавить ссылку" to="main" />
+        <blue-button text="Добавить ссылку" to="socials" />
       </div>
       <div v-if="windowWidth > 640" @click="save" class="buttons-wrap__save">
         <basic-button text="Сохранить" />
