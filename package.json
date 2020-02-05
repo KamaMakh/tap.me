@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "animate.css": "^3.7.2",
-    "bootstrap-vue": "^2.1.0",
+    "bootstrap-vue": "^2.4.0",
     "core-js": "^3.4.4",
     "fullpage-vue": "^1.9.0",
     "qrcode.vue": "^1.7.0",
