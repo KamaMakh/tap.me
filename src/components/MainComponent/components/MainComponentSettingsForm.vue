@@ -81,7 +81,9 @@
       }"
     >
       <b-form-checkbox size="lg" v-model="user.subscribe"
-        >Подписка на новые обновления и функции TapMe.</b-form-checkbox
+        >Подписка на новые обновления и
+        <br/>функции TapMe.
+      </b-form-checkbox
       >
     </b-form-group>
     <div @click="save">
