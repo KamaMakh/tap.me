@@ -255,7 +255,7 @@ function updateLanding(context, data) {
     delete data["background"];
   }
 
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     Vue.backend.updateLanding(
       data.id,
       data,
@@ -271,7 +271,7 @@ function updateLanding(context, data) {
 }
 
 function getAccount({ commit }) {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     Vue.backend.getAccount(
       data => {
         if (data["lang"] == 1) {

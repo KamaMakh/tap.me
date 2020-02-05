@@ -57,22 +57,28 @@ export default {
   name: "MainComponent",
   created() {
     this.$store
-      .dispatch("user/loadLanding")
+      .dispatch("user/getAccount")
       .then(() => {
-        this.$store.dispatch("user/loadProducts");
-        this.$store.dispatch("user/loadLinks");
-        this.$store.dispatch("user/setLandingFormData");
-        this.$store.dispatch("user/getAccount");
-      })
-      .catch(() => {
-        this.$store.dispatch("user/makeDefaultLanding").then(() => {
-          this.$store.dispatch("user/loadLanding").then(() => {
+        this.$store
+          .dispatch("user/loadLanding")
+          .then(() => {
             this.$store.dispatch("user/loadProducts");
             this.$store.dispatch("user/loadLinks");
             this.$store.dispatch("user/setLandingFormData");
-            this.$store.dispatch("user/getAccount");
+          })
+          .catch(() => {
+            this.$store.dispatch("user/makeDefaultLanding").then(() => {
+              this.$store.dispatch("user/loadLanding").then(() => {
+                this.$store.dispatch("user/loadProducts");
+                this.$store.dispatch("user/loadLinks");
+                this.$store.dispatch("user/setLandingFormData");
+                this.$store.dispatch("user/getAccount");
+              });
+            });
           });
-        });
+      })
+      .catch(() => {
+        this.$router.push('/auth');
       });
   },
   components: {
