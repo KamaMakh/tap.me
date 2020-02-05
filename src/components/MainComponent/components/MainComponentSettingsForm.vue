@@ -344,19 +344,30 @@ export default {
   }
   .custom-checkbox {
     margin-bottom: 20px;
+    padding-left: 0 !important;
     label {
       font-weight: 200;
       font-size: 16px;
       color: #151515;
-      padding-left: 30px;
+      padding-left: 50px;
+      outline: none !important;
+      &:focus {
+        outline: none !important;
+      }
       &:after,
       &:before {
         width: 40px !important;
         height: 40px !important;
         border-radius: 5px !important;
+        left: 5px !important;
       }
       @media all and(max-width: 960px) {
         font-size: 12px;
+        &:after,
+        &:before {
+          width: 30px !important;
+          height: 30px !important;
+        }
       }
       @media all and(max-width: 640px) {
         font-size: 13px;
