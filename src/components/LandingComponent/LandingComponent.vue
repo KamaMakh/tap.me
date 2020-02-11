@@ -222,8 +222,12 @@
     </div>
     <div class="bot-form">
       <div class="wr">
-        <div class="bot-form__title">
+        <div v-if="windowWidth > 700" class="bot-form__title">
           Создай свою страницу и начни больше продавать
+        </div>
+        <div v-else class="bot-form__title">
+          Каждый месяц наши пользователи суммарно получают более 1 миллиона
+          переходов через свои Страницы
         </div>
         <div class="bot-form__btn">
           <basic-button class="basic" text="Создать бесплатно" />
@@ -319,6 +323,11 @@ export default {
       justify-content: center;
       margin-top: 99px;
     }
+    @media all and(max-width: 480px) {
+      margin-top: 84px;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
     .sale-block {
       display: flex;
       flex-direction: column;
@@ -348,6 +357,7 @@ export default {
         }
         @media all and(max-width: 700px) {
           font-size: 35px;
+          line-height: 43px;
         }
       }
       &__sub-title {
@@ -359,6 +369,12 @@ export default {
         }
         @media all and(max-width: 700px) {
           font-size: 13px;
+        }
+        @media all and(max-width: 480px) {
+          font-weight: bold;
+          font-size: 13px;
+          line-height: 22px;
+          margin-bottom: 8px;
         }
       }
       &__btn {
@@ -377,6 +393,14 @@ export default {
           }
           @media all and(max-width: 700px) {
             font-size: 13px;
+          }
+          @media all and(max-width: 480px) {
+            width: 208px;
+            height: 55px;
+            font-weight: 600;
+            font-size: 13px;
+            line-height: 30px;
+            margin: 0 auto;
           }
         }
       }
@@ -397,6 +421,10 @@ export default {
         margin-top: 0;
         align-self: center;
       }
+      @media all and(max-width: 480px) {
+        width: 260px;
+        height: 335px;
+      }
     }
   }
   .how-it-works {
@@ -404,6 +432,9 @@ export default {
     flex-direction: column;
     @media all and(max-width: 768px) {
       margin-bottom: 25px;
+    }
+    @media all and(max-width: 480px) {
+      margin-bottom: 0;
     }
     &__title {
       font-weight: bold;
@@ -421,6 +452,9 @@ export default {
         width: 100%;
         line-height: 43px;
         margin-bottom: 25px;
+      }
+      @media all and(max-width: 480px) {
+        margin-bottom: 44px;
       }
     }
     .first {
@@ -451,6 +485,9 @@ export default {
           width: 100%;
           max-width: 100%;
         }
+        @media all and(max-width: 480px) {
+          padding-bottom: 15px;
+        }
       }
       &__title {
         color: #101010;
@@ -463,6 +500,9 @@ export default {
         @media all and(max-width: 700px) {
           font-size: 20px;
         }
+        @media all and(max-width: 480px) {
+          line-height: 40px;
+        }
       }
       &__text {
         font-size: 19px;
@@ -472,6 +512,9 @@ export default {
         }
         @media all and(max-width: 700px) {
           font-size: 12px;
+        }
+        @media all and(max-width: 480px) {
+          line-height: 21px;
         }
       }
       .form {
@@ -507,6 +550,9 @@ export default {
         flex-direction: column-reverse;
         justify-content: center;
       }
+      @media all and(max-width: 480px) {
+        margin-top: 43px;
+      }
       &__right {
         display: flex;
         flex-direction: column;
@@ -518,6 +564,9 @@ export default {
         }
         @media all and(max-width: 700px) {
           width: 100%;
+        }
+        @media all and(max-width: 480px) {
+          padding-bottom: 0;
         }
       }
       &__title {
@@ -531,6 +580,9 @@ export default {
         @media all and(max-width: 700px) {
           font-size: 20px;
         }
+        @media all and(max-width: 480px) {
+          line-height: 40px;
+        }
       }
       &__text {
         font-size: 19px;
@@ -540,6 +592,9 @@ export default {
         }
         @media all and(max-width: 700px) {
           font-size: 12px;
+        }
+        @media all and(max-width: 480px) {
+          line-height: 21px;
         }
       }
       &__left {
@@ -579,6 +634,9 @@ export default {
         flex-direction: column;
         justify-content: center;
       }
+      @media all and(max-width: 480px) {
+        margin-top: 31px;
+      }
       &__left {
         display: flex;
         flex-direction: column;
@@ -595,6 +653,9 @@ export default {
           width: auto;
           max-width: 100%;
         }
+        @media all and(max-width: 480px) {
+          padding-bottom: 0;
+        }
       }
       &__title {
         margin-top: -100px;
@@ -609,6 +670,9 @@ export default {
         @media all and(max-width: 700px) {
           font-size: 20px;
         }
+        @media all and(max-width: 480px) {
+          line-height: 40px;
+        }
       }
       &__text {
         font-size: 19px;
@@ -618,6 +682,9 @@ export default {
         }
         @media all and(max-width: 700px) {
           font-size: 12px;
+        }
+        @media all and(max-width: 480px) {
+          line-height: 21px;
         }
       }
       .form {
@@ -653,6 +720,10 @@ export default {
           &:after {
             left: -80px;
           }
+        }
+        @media all and(max-width: 480px) {
+          width: 212px;
+          height: 313px;
         }
       }
     }
@@ -725,8 +796,9 @@ export default {
           margin: 0 auto;
         }
         @media all and(max-width: 400px) {
-          width: 300px;
+          width: 232px;
           height: auto;
+          min-height: 280px;
         }
       }
       .first {
@@ -969,6 +1041,9 @@ export default {
       background: none;
       justify-content: center;
     }
+    @media all and(max-width: 480px) {
+      margin-bottom: 0;
+    }
     .wr {
       width: 100%;
       padding: 0px 68px 80px 54px;
@@ -987,6 +1062,7 @@ export default {
         width: 320px;
         max-width: 100%;
         background: url("./assets/bot_form_mob.png") 0px 0px no-repeat;
+        padding: 85px 15px 80px;
       }
     }
     &__title {
@@ -1058,12 +1134,18 @@ export default {
         @media all and(max-width: 755px) {
           flex: 0 1 25px;
         }
+        @media all and(max-width: 480px) {
+          max-width: 50%;
+        }
       }
       @media all and(max-width: 755px) {
         height: 207px;
       }
       @media all and(max-width: 400px) {
         height: auto;
+      }
+      @media all and(max-width: 480px) {
+        height: 200px;
       }
     }
     .bottom-tg {
@@ -1076,6 +1158,12 @@ export default {
       }
       @media all and(max-width: 755px) {
         margin-top: auto;
+      }
+      @media all and(max-width: 480px) {
+        width: 98px;
+        height: 39px;
+        -webkit-background-size: contain;
+        background-size: contain;
       }
     }
   }
