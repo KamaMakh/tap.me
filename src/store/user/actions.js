@@ -243,24 +243,26 @@ function loadLanding({ commit }) {
 function createLanding() {}
 
 function updateLanding(context, data) {
-  if (data.avatarObj) {
-    data["avatar"] = data.avatarObj;
+  var localData = Object.assign({}, data);
+
+  if (localData.avatarObj) {
+    localData["avatar"] = localData.avatarObj;
   } else {
-    delete data["avatar"];
+    delete localData["avatar"];
   }
 
-  if (data.backgroundObj) {
-    data["background"] = data.backgroundObj;
+  if (localData.backgroundObj) {
+    localData["background"] = localData.backgroundObj;
   } else {
-    delete data["background"];
+    delete localData["background"];
   }
 
   return new Promise((resolve, reject) => {
     Vue.backend.updateLanding(
-      data.id,
-      data,
+      localData.id,
+      localData,
       () => {
-        context.commit("loadLanding", data);
+        context.commit("loadLanding", localData);
         resolve();
       },
       () => {
