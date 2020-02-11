@@ -12,11 +12,11 @@ export default {
     tariffName: "free",
     products: [],
     landing: {
-      id: null,
-      name: null,
-      avatar: null,
-      urlcode: null,
-      description: null
+      id: "",
+      name: "",
+      avatar: "",
+      urlcode: "",
+      description: ""
     },
     categories: [
       { value: 1, text: "Category 1" },

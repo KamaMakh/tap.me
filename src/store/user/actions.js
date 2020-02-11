@@ -217,11 +217,11 @@ function loadLanding({ commit }) {
                 name: data.name,
                 user_id: data.user_id,
                 urlcode: data.urlcode,
-                description: data.description,
+                description: data.description ? data.description : "",
                 avatar: data.avatarsrc,
                 background: data.backgroundsrc,
-                instlogin: data.instlogin,
-                linkfeed: data.linkfeed
+                instlogin: data.instlogin ? data.instlogin : "",
+                linkfeed: data.linkfeed ? data.linkfeed : ""
               });
               resolve(data);
             },
