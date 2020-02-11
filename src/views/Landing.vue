@@ -87,10 +87,8 @@ export default {
     }
     @media all and (max-width: 480px) {
       padding: 28px 10px;
-    }
-    @media all and(max-width: 330px) {
       background: url("../components/LandingComponent/assets/landing_sm.png") 0px
-      0px no-repeat,
+      0px / contain no-repeat,
       url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
     }
   }
