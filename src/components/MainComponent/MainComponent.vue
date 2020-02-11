@@ -41,7 +41,7 @@
         v-else-if="(hideLeft && windowWidth <= 640) || windowWidth > 640"
         class="right-nav"
       >
-        <MainComponentCard is-admin="true" />
+        <MainComponentCard :is-admin="true" />
       </b-col>
     </b-row>
   </div>
