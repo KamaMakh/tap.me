@@ -35,7 +35,7 @@
         "
         class="right-nav"
       >
-        <product-card />
+        <productCard :isAdmin="true"/>
       </b-col>
       <b-col
         v-else-if="(hideLeft && windowWidth <= 640) || windowWidth > 640"
