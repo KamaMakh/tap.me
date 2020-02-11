@@ -78,7 +78,7 @@ export default {
           });
       })
       .catch(() => {
-        this.$router.push('/auth');
+        this.$router.push("/auth");
       });
   },
   components: {

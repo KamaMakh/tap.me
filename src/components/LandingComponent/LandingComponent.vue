@@ -1,72 +1,117 @@
 <template>
-  <div class="landing-component fullpage-container">
-    <div class="fullpage-wp" v-fullpage="opts" ref="example">
+  <div class="landing-component">
+    <div class="sale-more">
+      <div class="sale-more__left sale-block">
+        <div class="sale-block__title">
+          Продавайте больше
+        </div>
+        <div class="sale-block__sub-title">
+          Страница, которая помогает вашим клиентам найти наилучший способ связи
+          с вами
+        </div>
+        <div class="sale-block__btn">
+          <HeaderButton text="Создать бесплатно" fSize="19" :reverse="true" />
+        </div>
+      </div>
+      <div class="sale-more__right pic-block"></div>
+    </div>
+    <div class="how-it-works">
+      <div class="how-it-works__title">
+        Как это работает?
+      </div>
+      <div class="how-it-works__first first">
+        <div class="first__left">
+          <div class="first__title">1. Создайте страницу</div>
+          <div class="first__text">
+            Легкая настройка. Расскажите своим покупателям о себе и о своих
+            товарах или услугах.
+          </div>
+        </div>
+        <div class="first__right form"></div>
+      </div>
+      <div class="how-it-works__second second">
+        <div class="second__left"></div>
+        <div class="second__right">
+          <div class="second__title">2. Поделитесь ссылкой</div>
+          <div class="second__text">
+            Где угодно. Поставьте её в Instagram профиль, как подпись в email...
+          </div>
+        </div>
+      </div>
+      <div class="how-it-works__third third">
+        <div class="third__left">
+          <div class="third__title">3. Начните продавать</div>
+          <div class="third__text">
+            Держите руку на пульсе. Покупатели кликают на вашу ссылку и выбирают
+            удобный для них способ связи.
+          </div>
+        </div>
+        <div class="third__right form"></div>
+      </div>
+    </div>
+    <div class="opportunities">
+      <div v-if="windowWidth > 768" class="opportunities__title">
+        Возможности, которые <br />
+        всем понравятся
+      </div>
+      <div v-else class="opportunities__title">
+        Возможности,<br />
+        которые <br />
+        всем понравятся
+      </div>
       <div
-        class="sale-more page-1 page"
-        style="flex-wrap: wrap; margin-top: 0;"
+        v-if="windowWidth > 700"
+        class="opportunities__first-list first-list"
       >
-        <general-header class="part-1 general-header" style="flex: 1 1 100%;" />
-        <div class="sale-more__left sale-block part-1">
-          <div class="sale-block__title">
-            Продавайте больше
+        <div class="first-list__item first">
+          <div class="first__top">
+            mssg.me/robinhood
           </div>
-          <div class="sale-block__sub-title">
-            Страница, которая помогает вашим клиентам найти наилучший способ
-            связи с вами
-          </div>
-          <div class="sale-block__btn">
-            <HeaderButton to="/auth" text="Создать бесплатно" :reverse="true" />
-          </div>
-        </div>
-        <div class="sale-more__right pic-block part-1"></div>
-      </div>
-      <div class="how-it-works page-2 page">
-        <div class="how-it-works__title part-2">
-          Как это работает?
-        </div>
-        <div class="how-it-works__first first part-2">
-          <div class="first__left">
-            <div class="first__title">1. Создайте страницу</div>
+          <div class="first__bottom">
+            <div class="first__title">
+              Короткая ссылка
+            </div>
             <div class="first__text">
-              Легкая настройка. Расскажите своим покупателям о себе и о своих
-              товарах или услугах.
+              Получите красивую и короткую ссылку, которая просто призывает к
+              действию: «Напиши мне»
             </div>
           </div>
-          <div class="first__right form"></div>
         </div>
-      </div>
-      <div class="how-it-works page-3 page">
-        <div class="how-it-works__second second part-3">
-          <div class="second__left"></div>
-          <div class="second__right">
-            <div class="second__title">2. Поделитесь ссылкой</div>
+        <div class="first-list__item second">
+          <div class="second__top"></div>
+          <div class="second__bottom">
+            <div class="second__title">
+              QR код
+            </div>
             <div class="second__text">
-              Где угодно. Поставьте её в Instagram профиль, как подпись в
-              email...
+              Используйте его офлайн. Привлекайте клиентов на свою страницу с
+              помощью QR кода.
             </div>
           </div>
         </div>
-      </div>
-      <div class="how-it-works page-4 page">
-        <div class="how-it-works__third third part-4">
-          <div class="third__left">
-            <div class="third__title">3. Начните продавать</div>
+        <div class="first-list__item third">
+          <div class="third__top"></div>
+          <div class="third__bottom">
+            <div class="third__title">
+              E-mail подпись
+            </div>
             <div class="third__text">
-              Держите руку на пульсе. Покупатели кликают на вашу ссылку и
-              выбирают удобный для них способ связи.
+              Оставьте почту для чего-то скучного. Перенесите важные разговоры в
+              мессенджеры.
             </div>
           </div>
-          <div class="third__right form"></div>
         </div>
       </div>
-      <div class="opportunities page-5 page" style="margin-bottom: 0">
-        <div class="opportunities__title part-5">
-          Возможности, которые всем понравятся
-        </div>
-        <div
-          v-if="windowWidth > 1200"
-          class="opportunities__first-list first-list part-5"
-        >
+      <carousel
+        v-else
+        :perPageCustom="[
+          [320, 1],
+          [480, 1],
+          [768, 1]
+        ]"
+        class="opportunities__first-list first-list second-list"
+      >
+        <slide>
           <div class="first-list__item first">
             <div class="first__top">
               mssg.me/robinhood
@@ -81,6 +126,8 @@
               </div>
             </div>
           </div>
+        </slide>
+        <slide>
           <div class="first-list__item second">
             <div class="second__top"></div>
             <div class="second__bottom">
@@ -93,6 +140,8 @@
               </div>
             </div>
           </div>
+        </slide>
+        <slide>
           <div class="first-list__item third">
             <div class="third__top"></div>
             <div class="third__bottom">
@@ -105,100 +154,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <carousel
-          v-else
-          :perPageCustom="[
-            [320, 1],
-            [480, 1],
-            [768, 1],
-            [960, 2]
-          ]"
-          class="opportunities__first-list first-list second-list part-5"
-        >
-          <slide>
-            <div class="first-list__item first">
-              <div class="first__top">
-                mssg.me/robinhood
-              </div>
-              <div class="first__bottom">
-                <div class="first__title">
-                  Короткая ссылка
-                </div>
-                <div class="first__text">
-                  Получите красивую и короткую ссылку, которая просто призывает
-                  к действию: «Напиши мне»
-                </div>
-              </div>
-            </div>
-          </slide>
-          <slide>
-            <div class="first-list__item second">
-              <div class="second__top"></div>
-              <div class="second__bottom">
-                <div class="second__title">
-                  QR код
-                </div>
-                <div class="second__text">
-                  Используйте его офлайн. Привлекайте клиентов на свою страницу
-                  с помощью QR кода.
-                </div>
-              </div>
-            </div>
-          </slide>
-          <slide>
-            <div class="first-list__item third">
-              <div class="third__top"></div>
-              <div class="third__bottom">
-                <div class="third__title">
-                  E-mail подпись
-                </div>
-                <div class="third__text">
-                  Оставьте почту для чего-то скучного. Перенесите важные
-                  разговоры в мессенджеры.
-                </div>
-              </div>
-            </div>
-          </slide>
-          <slide>
-            <div class="second-list__item first2">
-              <div class="first2__top">
-                <div class="search"></div>
-                <div class="fb"></div>
-              </div>
-              <div class="first2__bottom">
-                <div class="first2__title">
-                  Аналитика
-                </div>
-                <div class="first2__text">
-                  Анализируйте уровень влияния вашей страницы. Оптимизируйте
-                  свои рекламные кампании с помощью Google Analytics и Facebook
-                  Pixel.
-                </div>
-              </div>
-            </div>
-          </slide>
-          <slide>
-            <div class="second-list__item second2">
-              <div class="second2__top"></div>
-              <div class="second2__bottom">
-                <div class="second2__title">
-                  Виджет для сайта
-                </div>
-                <div class="second2__text">
-                  Замените старую форму контакта на своем сайте на наш виджет,
-                  тем самым давая пользователям новый опыт связи с вами.
-                </div>
-              </div>
-            </div>
-          </slide>
-        </carousel>
-      </div>
-      <div v-if="windowWidth > 1200" class="opportunities page-6 page">
-        <div
-          v-if="windowWidth > 1200"
-          class="opportunities__second-list second-list part-6"
-        >
+        </slide>
+        <slide>
           <div class="second-list__item first2">
             <div class="first2__top">
               <div class="search"></div>
@@ -214,6 +171,8 @@
               </div>
             </div>
           </div>
+        </slide>
+        <slide>
           <div class="second-list__item second2">
             <div class="second2__top"></div>
             <div class="second2__bottom">
@@ -226,55 +185,83 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="page-7 page">
-        <div class="bot-form part-7">
-          <div class="wr">
-            <div class="bot-form__title">
-              Создай свою страницу и начни больше продавать
+        </slide>
+      </carousel>
+      <div
+        v-if="windowWidth > 700"
+        class="opportunities__second-list second-list"
+      >
+        <div class="second-list__item first2">
+          <div class="first2__top">
+            <div class="search"></div>
+            <div class="fb"></div>
+          </div>
+          <div class="first2__bottom">
+            <div class="first2__title">
+              Аналитика
             </div>
-            <div class="bot-form__btn">
-              <basic-button class="basic" text="Создать бесплатно" />
+            <div class="first2__text">
+              Анализируйте уровень влияния вашей страницы. Оптимизируйте свои
+              рекламные кампании с помощью Google Analytics и Facebook Pixel.
+            </div>
+          </div>
+        </div>
+        <div class="second-list__item second2">
+          <div class="second2__top"></div>
+          <div class="second2__bottom">
+            <div class="second2__title">
+              Виджет для сайта
+            </div>
+            <div class="second2__text">
+              Замените старую форму контакта на своем сайте на наш виджет, тем
+              самым давая пользователям новый опыт связи с вами.
             </div>
           </div>
         </div>
       </div>
-      <div class="page page-8">
-        <div class="footer part-8">
-          <div class="bottom-menu">
-            <div class="menu-item">
-              <b-link to="/">Политика конфиденциальности</b-link>
-            </div>
-            <div class="menu-item">
-              <b-link to="/">Условия использования</b-link>
-            </div>
-            <div class="menu-item">
-              <b-link to="/">Тарифы</b-link>
-            </div>
-            <div class="menu-item">
-              <b-link to="/">Задайте вопрос</b-link>
-            </div>
-            <div class="menu-item">
-              <b-link to="/">База знаний</b-link>
-            </div>
-            <div class="menu-item">
-              <b-link to="/">Блог</b-link>
-            </div>
-            <div class="menu-item">
-              <b-link to="/">English</b-link>
-            </div>
-            <div class="menu-item">
-              <b-link to="/">Русский</b-link>
-            </div>
-            <div class="menu-item">
-              <b-link to="/">telegram icon</b-link>
-            </div>
-            <div v-if="windowWidth <= 755" class="bottom-tg"></div>
-          </div>
-          <div v-if="windowWidth > 755" class="bottom-tg"></div>
+    </div>
+    <div class="bot-form">
+      <div class="wr">
+        <div class="bot-form__title">
+          Создай свою страницу и начни больше продавать
+        </div>
+        <div class="bot-form__btn">
+          <basic-button class="basic" text="Создать бесплатно" />
         </div>
       </div>
+    </div>
+    <div class="footer">
+      <div class="bottom-menu">
+        <div class="menu-item">
+          <b-link to="/">Политика конфиденциальности</b-link>
+        </div>
+        <div class="menu-item">
+          <b-link to="/">Условия использования</b-link>
+        </div>
+        <div class="menu-item">
+          <b-link to="/">Тарифы</b-link>
+        </div>
+        <div class="menu-item">
+          <b-link to="/">Задайте вопрос</b-link>
+        </div>
+        <div class="menu-item">
+          <b-link to="/">База знаний</b-link>
+        </div>
+        <div class="menu-item">
+          <b-link to="/">Блог</b-link>
+        </div>
+        <div class="menu-item">
+          <b-link to="/">English</b-link>
+        </div>
+        <div class="menu-item">
+          <b-link to="/">Русский</b-link>
+        </div>
+        <div class="menu-item">
+          <b-link to="/">telegram icon</b-link>
+        </div>
+        <div v-if="windowWidth <= 755" class="bottom-tg"></div>
+      </div>
+      <div v-if="windowWidth > 755" class="bottom-tg"></div>
     </div>
   </div>
 </template>
@@ -312,52 +299,23 @@ export default {
 
 <style scoped lang="scss">
 .landing-component {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  .general-header {
-    align-items: center;
-  }
-  .page {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    max-height: 100%;
-    margin-bottom: 0 !important;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    @media all and(max-width: 768px) {
-      &.page-7 {
-        overflow-y: scroll;
-      }
-    }
-    .part-4 {
-      margin-bottom: 0 !important;
-    }
-    &.page-1 {
-      margin-bottom: 0 !important;
-      padding: 0;
-      flex-direction: row;
-    }
-    &.page-6 {
-      justify-content: center;
-      margin-bottom: 0 !important;
-    }
-  }
   .sale-more {
     display: flex;
     justify-content: space-between;
     padding-bottom: 30px;
-    margin-bottom: 55px;
+    margin-bottom: 67px;
     margin-top: 145px;
     @media all and(max-width: 1170px) {
       flex-direction: column;
     }
-    @media all and(max-width: 724px) {
+    @media all and(max-width: 768px) {
+      margin-top: 149px;
+    }
+    @media all and(max-width: 700px) {
+      justify-content: center;
+      margin-top: 99px;
+    }
+    @media all and(max-width: 700px) {
       justify-content: center;
       margin-top: 99px;
     }
@@ -384,6 +342,10 @@ export default {
         @media all and(max-width: 1170px) {
           font-size: 51px;
         }
+        @media all and(max-width: 768px) {
+          font-size: 51px;
+          line-height: 62px;
+        }
         @media all and(max-width: 700px) {
           font-size: 35px;
         }
@@ -409,6 +371,10 @@ export default {
           @media all and(max-width: 1170px) {
             font-size: 15px;
           }
+          @media all and(max-width: 768px) {
+            width: 253px;
+            height: 67px;
+          }
           @media all and(max-width: 700px) {
             font-size: 13px;
           }
@@ -427,16 +393,18 @@ export default {
         -webkit-background-size: contain;
         background-size: contain;
       }
-      @media all and(max-width: 724px) {
-        /*margin-top: 0;*/
-        /*align-self: center;*/
-        display: none;
+      @media all and(max-width: 700px) {
+        margin-top: 0;
+        align-self: center;
       }
     }
   }
   .how-it-works {
     display: flex;
     flex-direction: column;
+    @media all and(max-width: 768px) {
+      margin-bottom: 25px;
+    }
     &__title {
       font-weight: bold;
       font-size: 72px;
@@ -457,8 +425,12 @@ export default {
     }
     .first {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       margin-bottom: 28px;
+      @media all and(min-width: 1171px) {
+        padding-left: 47px;
+        justify-content: flex-start;
+      }
       @media all and(max-width: 700px) {
         flex-direction: column;
         align-items: center;
@@ -469,6 +441,12 @@ export default {
         justify-content: center;
         width: 48%;
         max-width: 419px;
+        @media all and(min-width: 1171px) {
+          padding-bottom: 47px;
+        }
+        @media all and(max-width: 768px) {
+          padding-bottom: 43px;
+        }
         @media all and(max-width: 700px) {
           width: 100%;
           max-width: 100%;
@@ -501,6 +479,10 @@ export default {
         width: 372px;
         height: 398px;
         background: url("./assets/first_step.png") 0 0 no-repeat;
+        @media all and(min-width: 1170px) {
+          margin-left: auto;
+          margin-right: auto;
+        }
         @media all and(max-width: 1170px) {
           width: 279px;
           height: 298px;
@@ -530,6 +512,10 @@ export default {
         flex-direction: column;
         justify-content: center;
         width: 48%;
+        @media all and(max-width: 768px) {
+          width: 51%;
+          padding-bottom: 89px;
+        }
         @media all and(max-width: 700px) {
           width: 100%;
         }
@@ -560,6 +546,12 @@ export default {
         width: 379px;
         height: 607px;
         background: url("./assets/second_step.png") 0 0 no-repeat;
+        @media all and(min-width: 1171px) {
+          padding-left: 27px;
+          padding-top: 47px;
+          background-position: 27px 47px;
+          width: 406px;
+        }
         @media all and(max-width: 1170px) {
           width: 305px;
           height: 382px;
@@ -576,7 +568,7 @@ export default {
     .third {
       display: flex;
       justify-content: flex-start;
-      /*margin-top: -47px;*/
+      margin-top: -47px;
       margin-bottom: 60px;
       @media all and(max-width: 1170px) {
         margin-top: 20px;
@@ -595,6 +587,9 @@ export default {
         margin-right: 208px;
         @media all and(max-width: 1170px) {
           margin-right: 0;
+        }
+        @media all and(max-width: 768px) {
+          padding-bottom: 180px;
         }
         @media all and(max-width: 700px) {
           width: auto;
@@ -666,22 +661,33 @@ export default {
     display: flex;
     flex-direction: column;
     margin-bottom: 249px;
+    @media all and(min-width: 1171px) {
+      margin-bottom: 229px;
+    }
+    @media all and(max-width: 768px) {
+      margin-bottom: 135px;
+    }
     @media all and(max-width: 700px) {
       margin-bottom: 50px;
     }
     &__title {
       font-weight: bold;
-      font-size: 50px;
+      font-size: 72px;
       line-height: 80px;
       color: #101010;
-      margin-bottom: 20px;
+      margin-bottom: 88px;
       @media all and(max-width: 1170px) {
         font-size: 51px;
       }
+      @media all and(max-width: 768px) {
+        font-size: 51px;
+        line-height: 62px;
+        margin-bottom: 80px;
+      }
       @media all and(max-width: 700px) {
-        font-size: 19px;
-        line-height: 1;
-        margin-bottom: 10px;
+        font-size: 35px;
+        line-height: 43px;
+        margin-bottom: 44px;
       }
     }
     .first-list {
@@ -691,6 +697,9 @@ export default {
       @media all and(max-width: 1170px) {
         flex-wrap: wrap;
         justify-content: space-around;
+      }
+      @media all and(max-width: 768px) {
+        margin-bottom: 4px;
       }
       &__item {
         display: flex;
@@ -702,16 +711,18 @@ export default {
         border-radius: 10px;
         padding: 94px 30px 65px;
         height: 450px;
-        box-shadow: 0px 0px 109px rgba(0, 0, 0, 0.09);
+        box-shadow: 0 0 109px rgba(0, 0, 0, 0.09);
         background: #fff;
         @media all and(max-width: 1170px) {
           margin-bottom: 20px;
         }
-        @media all and(max-width: 1200px) {
-          margin: 0 auto;
-        }
         @media all and(max-width: 768px) {
-          padding: 30px;
+          width: 226px;
+          height: 273px;
+          padding: 46px 15px 15px;
+        }
+        @media all and(max-width: 700px) {
+          margin: 0 auto;
         }
         @media all and(max-width: 400px) {
           width: 300px;
@@ -735,17 +746,30 @@ export default {
           font-size: 18px;
           text-align: center;
           color: #101010;
+          @media all and(max-width: 768px) {
+            font-size: 12px;
+            height: 41px;
+          }
         }
         &__title {
           font-weight: 600;
           font-size: 25px;
           line-height: 80px;
           color: #fff;
+          @media all and(max-width: 768px) {
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 35px;
+          }
         }
         &__text {
           font-size: 16px;
           line-height: 26px;
           color: #fff;
+          @media all and(max-width: 768px) {
+            font-size: 12px;
+            line-height: 23px;
+          }
         }
       }
       .second {
@@ -753,17 +777,32 @@ export default {
           width: 60px;
           height: 60px;
           background: url("./assets/qr.png") 0 0 no-repeat;
+          -webkit-background-size: contain;
+          background-size: contain;
+          @media all and(max-width: 768px) {
+            width: 44px;
+            height: 44px;
+          }
         }
         &__title {
           font-weight: 600;
           font-size: 25px;
           line-height: 80px;
           color: #ff5c03;
+          @media all and(max-width: 768px) {
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 35px;
+          }
         }
         &__text {
           font-size: 16px;
           line-height: 26px;
           color: #343434;
+          @media all and(max-width: 768px) {
+            font-size: 12px;
+            line-height: 23px;
+          }
         }
       }
       .third {
@@ -771,17 +810,32 @@ export default {
           width: 56px;
           height: 42px;
           background: url("./assets/sms.png") 0 0 no-repeat;
+          -webkit-background-size: contain;
+          background-size: contain;
+          @media all and(max-width: 768px) {
+            width: 44px;
+            height: 44px;
+          }
         }
         &__title {
           font-weight: 600;
           font-size: 25px;
           line-height: 80px;
           color: #ff5c03;
+          @media all and(max-width: 768px) {
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 35px;
+          }
         }
         &__text {
           font-size: 16px;
           line-height: 26px;
           color: #343434;
+          @media all and(max-width: 768px) {
+            font-size: 12px;
+            line-height: 23px;
+          }
         }
       }
     }
@@ -807,12 +861,15 @@ export default {
           margin-bottom: 20px;
           width: 372px;
         }
-        @media all and(max-width: 1200px) {
+        @media all and(max-width: 768px) {
+          width: 48%;
+          padding: 50px 15px 46px;
+          height: 273px;
+          border-radius: 0;
+        }
+        @media all and(max-width: 700px) {
           margin: 0 auto;
           padding: 114px 30px 59px;
-        }
-        @media all and(max-width: 768px) {
-          padding: 30px;
         }
         @media all and(max-width: 400px) {
           width: 300px;
@@ -820,7 +877,6 @@ export default {
         }
       }
       .first2 {
-        background: #fff;
         &__top {
           display: flex;
           align-items: center;
@@ -829,12 +885,24 @@ export default {
             height: 54px;
             background: url("./assets/search.png") 0 0 no-repeat;
             margin-right: 19px;
+            -webkit-background-size: contain;
+            background-size: contain;
+            @media all and(max-width: 768px) {
+              width: 45px;
+              height: 45px;
+            }
           }
           .fb {
             width: 30px;
             height: 51px;
             margin-left: 19px;
             background: url("./assets/fb.png") 0 0 no-repeat;
+            -webkit-background-size: contain;
+            background-size: contain;
+            @media all and(max-width: 768px) {
+              width: 45px;
+              height: 45px;
+            }
           }
         }
         &__title {
@@ -842,25 +910,44 @@ export default {
           font-size: 25px;
           line-height: 80px;
           color: #ff5c03;
+          @media all and(max-width: 768px) {
+            font-size: 17px;
+            line-height: 40px;
+          }
         }
         &__text {
           font-size: 16px;
           line-height: 26px;
           color: #343434;
+          @media all and(max-width: 768px) {
+            font-size: 12px;
+            line-height: 19px;
+          }
         }
       }
       .second2 {
         background: url("./assets/widget.png") 0 0 no-repeat;
+        @media all and(max-width: 768px) {
+          background: url("./assets/widget_mob.png") 0 0 no-repeat;
+        }
         &__title {
           font-weight: 600;
           font-size: 25px;
           line-height: 80px;
           color: #ff5c03;
+          @media all and(max-width: 768px) {
+            font-size: 17px;
+            line-height: 40px;
+          }
         }
         &__text {
           font-size: 16px;
           line-height: 26px;
           color: #fff;
+          @media all and(max-width: 768px) {
+            font-size: 12px;
+            line-height: 19px;
+          }
         }
       }
     }
@@ -870,6 +957,14 @@ export default {
     background: url("./assets/form_bg.png") -108px -108px no-repeat;
     min-height: 376px;
     margin-bottom: 50px;
+    @media all and(min-width: 1171px) {
+      margin-bottom: 68px;
+    }
+    @media all and(max-width: 768px) {
+      min-height: 228px;
+      background: url("./assets/form_bg_mob.png") -28px -109px no-repeat;
+      margin-bottom: 30px;
+    }
     @media all and(max-width: 700px) {
       background: none;
       justify-content: center;
@@ -882,6 +977,9 @@ export default {
       justify-content: space-between;
       @media all and(max-width: 1170px) {
         padding: 0px 20px 80px 20px;
+      }
+      @media all and(max-width: 768px) {
+        padding: 40px 20px 80px 20px;
       }
       @media all and(max-width: 700px) {
         flex-direction: column;
@@ -922,6 +1020,9 @@ export default {
         }
         @media all and(max-width: 700px) {
           font-size: 15px;
+        }
+        @media all and(max-width: 700px) {
+          font-size: 15px;
           width: 208px;
           height: 55px;
         }
@@ -945,6 +1046,10 @@ export default {
           font-weight: 600;
           font-size: 16px;
           line-height: 36px;
+          @media all and(max-width: 768px) {
+            font-size: 12px;
+            line-height: 27px;
+          }
           @media all and(max-width: 755px) {
             line-height: 25px;
             font-size: 11px;
@@ -958,7 +1063,6 @@ export default {
         height: 207px;
       }
       @media all and(max-width: 400px) {
-        min-height: 400px;
         height: auto;
       }
     }

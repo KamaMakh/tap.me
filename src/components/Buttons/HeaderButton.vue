@@ -4,6 +4,7 @@
     :to="to"
     class="header-button"
     :class="{ reverse: reverse }"
+    :style="{ 'font-size': fSize ? fSize + 'px' : '16px' }"
   >
     {{ text ? text : "text" }}
   </b-link>
@@ -14,7 +15,7 @@
 
 <script>
 export default {
-  props: ["text", "to", "reverse"],
+  props: ["text", "to", "reverse", "fSize"],
   name: "HeaderButton"
 };
 </script>
@@ -30,7 +31,7 @@ export default {
   padding: 10px 35px;
   text-decoration: none;
   cursor: pointer;
-  max-height: 50px;
+  /*max-height: 50px;*/
   display: flex;
   align-items: center;
   justify-content: center;

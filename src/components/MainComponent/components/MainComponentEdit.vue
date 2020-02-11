@@ -122,7 +122,11 @@
         drop-placeholder="Перетащите сюда..."
         browse-text="Выбрать"
       ></b-form-file>
-      <div class="modal-buttons" style="margin-top: 25px" @click="readURL('avatar')">
+      <div
+        class="modal-buttons"
+        style="margin-top: 25px"
+        @click="readURL('avatar')"
+      >
         <basic-button text="Добавить" />
       </div>
     </b-modal>
@@ -138,7 +142,11 @@
         drop-placeholder="Перетащите сюда..."
         browse-text="Выбрать"
       ></b-form-file>
-      <div class="modal-buttons" style="margin-top: 25px" @click="readURL('background')">
+      <div
+        class="modal-buttons"
+        style="margin-top: 25px"
+        @click="readURL('background')"
+      >
         <basic-button text="Добавить" />
       </div>
     </b-modal>
@@ -182,7 +190,7 @@ export default {
       this.$store.dispatch("user/toggleLeftColumn");
     },
     readURL(type) {
-      if (type == 'avatar' && this.avatarFile) {
+      if (type == "avatar" && this.avatarFile) {
         let reader = new FileReader();
         this.landing.avatarObj = this.avatarFile;
 
@@ -191,7 +199,7 @@ export default {
         };
         reader.readAsDataURL(this.avatarFile);
         this.modalAvatar = false;
-      } else if (type == 'background' && this.backgroundFile) {
+      } else if (type == "background" && this.backgroundFile) {
         let reader = new FileReader();
         this.landing.backgroundObj = this.backgroundFile;
 

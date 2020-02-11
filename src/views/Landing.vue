@@ -1,17 +1,8 @@
 <template>
-  <div
-    class="landing"
-    :class="{
-      secondBg: secondBg,
-      thirdBg: thirdBg,
-      fourthBg: fourthBg,
-      noBg: noBg
-    }"
-  >
-    <div class="inner" :style="{ minHeight: wHeight + 'px' }">
-      <!--<general-header />-->
-      <LandingComponent @on-scroll-block="changeBg" />
-      <div class="scroll-ic"></div>
+  <div class="landing">
+    <div class="inner">
+      <general-header />
+      <LandingComponent />
     </div>
   </div>
 </template>
@@ -59,67 +50,42 @@ export default {
 </script>
 
 <style lang="scss">
-.landing {
-  background: url("../components/LandingComponent/assets/top_bg.png") -285px 0px
-      no-repeat;
-  &.secondBg {
-    background: url("../components/LandingComponent/assets/left_bg.png") -282px 0 no-repeat;
-  }
-  &.thirdBg {
-    background: url("../components/LandingComponent/assets/right_bg.png") 133% 0 no-repeat;
-  }
-  &.fourthBg {
-    background: url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
-    -webkit-background-size: cover;
-    background-size: cover;
-  }
-  &.noBg {
-    background: #fff;
-  }
-  .inner {
-    max-width: 1172px;
-    margin: 0 auto;
-    padding: 30px 0;
-    position: relative;
-  }
-  @media all and(max-width: 1170px) {
-    padding: 28px;
+  .landing {
     background: url("../components/LandingComponent/assets/top_bg.png") -285px 0px
-        no-repeat;
-    /*url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x*/
-  }
-  @media all and(max-width: 768px) {
-    background: url("../components/LandingComponent/assets/landing_mob.png") 0px
-        0px no-repeat,
-      url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
-    .header-button {
-      color: #fff;
-      &:hover {
-        color: #7f360d;
+    no-repeat,
+    url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x,
+    url("../components/LandingComponent/assets/left_bg.png") -282px 1605px no-repeat,
+    url("../components/LandingComponent/assets/right_bg.png") 133% 3182px
+    no-repeat;
+    .inner {
+      max-width: 1172px;
+      margin: 0 auto;
+      padding: 57px 0 57px;
+      @media all and(max-width: 768px) {
+        padding-top: 25px;
       }
     }
-  }
-  @media all and(max-width: 330px) {
-    background: url("../components/LandingComponent/assets/landing_sm.png") 0px
-        0px no-repeat,
+    @media all and(max-width: 1170px) {
+      padding: 28px;
+      background: url("../components/LandingComponent/assets/top_bg.png") -285px 0px
+      no-repeat,
       url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
-  }
-  .scroll-ic {
-    position: fixed;
-    top: auto;
-    right: 50px;
-    bottom: 50px;
-    width: 100px;
-    height: 100px;
-    background: url("../assets/scroll_ic.png") 0 0 no-repeat;
-    -webkit-background-size: contain;
-    background-size: contain;
-    @media all and(max-width: 700px) {
-      right: 20px;
-      bottom: 20px;
-      width: 70px;
-      height: 70px;
+    }
+    @media all and(max-width: 768px) {
+      background: url("../components/LandingComponent/assets/landing_mob.png") 0px
+      0px no-repeat,
+      url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
+      .header-button {
+        color: #fff;
+        &:hover {
+          color: #7f360d;
+        }
+      }
+    }
+    @media all and(max-width: 330px) {
+      background: url("../components/LandingComponent/assets/landing_sm.png") 0px
+      0px no-repeat,
+      url("../components/LandingComponent/assets/footer.png") -440px bottom repeat-x;
     }
   }
-}
 </style>
