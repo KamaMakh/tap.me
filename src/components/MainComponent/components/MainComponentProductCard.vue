@@ -68,8 +68,11 @@ import { mapState } from "vuex";
 
 export default {
   name: "MainComponentProductCard",
+  props: {
+    isAdmin: Boolean
+  },
   created() {
-    if (!this.product.id) {
+    if (!this.isAdmin && !this.product.id) {
       if (this.user.landing.urlcode) {
         this.$router.push("/" + this.user.landing.urlcode);
       } else {
