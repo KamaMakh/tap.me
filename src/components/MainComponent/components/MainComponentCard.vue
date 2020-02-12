@@ -84,7 +84,7 @@
           <div class="pic">
             <img :src="prod.photo" alt="" />
           </div>
-          <div class="name">{{ prod.name }}</div>
+          <div class="name">{{ prod.name | truncate }}</div>
           <div class="price-wrap">
             <div class="price">
               {{ prod.discount_price ? prod.discount_price : prod.price }}
@@ -110,6 +110,15 @@ export default {
     ...mapState({
       user: state => state.user.user
     })
+  },
+  filters: {
+    truncate: function(value) {
+      if (!value) return "";
+      if (value.length > 10) {
+        value = value.substring(0, 7) + "...";
+      }
+      return value;
+    }
   },
   methods: {
     getSocialIcon(item) {
