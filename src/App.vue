@@ -14,6 +14,9 @@ body,
 #app {
   height: 100%;
   min-height: 100%;
+  @media all and(max-width: 1440px) {
+    height: 100vh;
+  }
 }
 #app {
   font-family: "Montserrat", sans-serif !important;
