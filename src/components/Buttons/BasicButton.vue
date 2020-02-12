@@ -35,4 +35,8 @@ export default {
     box-shadow: none;
   }
 }
+
+.basic-button:hover {
+  text-decoration: none;
+}
 </style>
