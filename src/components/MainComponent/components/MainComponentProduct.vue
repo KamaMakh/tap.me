@@ -16,9 +16,6 @@
         :text="mainTitle"
         :to="{ name: 'MainComponentShop' }"
       />
-      <div class="buttons-wrap__save" @click="save">
-        <basic-button text="Сохранить" />
-      </div>
     </div>
     <div class="mobile-btn" @click="toggleLeftColumn">
       <span class="eye">
@@ -134,11 +131,6 @@
     <div
       class="input-wrap"
       role="group"
-      :class="{
-        'is-danger':
-          $v.product.discount_price.$invalid &&
-          (product.discount_price || showFormErrors)
-      }"
     >
       <label for="input-live7">Цена со скидкой</label>
       <b-form-input
@@ -148,7 +140,7 @@
         trim
       ></b-form-input>
     </div>
-    <div v-if="windowWidth > 640" @click="save">
+    <div @click="save">
       <basic-button text="Сохранить" />
     </div>
     <div v-if="product.id" @click="modalRemove = !modalRemove" class="remove">
@@ -209,9 +201,6 @@ export default {
         url
       },
       price: {
-        required
-      },
-      discount_price: {
         required
       }
     }
