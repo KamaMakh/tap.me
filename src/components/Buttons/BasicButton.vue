@@ -1,10 +1,11 @@
 <template>
-  <div class="basic-button">{{ text ? text : "Button" }}</div>
+  <b-link v-if="to" :to="to" class="basic-button">{{ text ? text : "Button" }}</b-link>
+  <div v-else class="basic-button">{{ text ? text : "Button" }}</div>
 </template>
 
 <script>
 export default {
-  props: ["text"],
+  props: ["text", "to"],
   name: "BasicButton"
 };
 </script>

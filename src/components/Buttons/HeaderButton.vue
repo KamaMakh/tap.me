@@ -4,7 +4,6 @@
     :to="to"
     class="header-button"
     :class="{ reverse: reverse }"
-    :style="{ 'font-size': fSize ? fSize + 'px' : '16px' }"
   >
     {{ text ? text : "text" }}
   </b-link>

@@ -10,7 +10,7 @@
           с вами
         </div>
         <div class="sale-block__btn">
-          <HeaderButton text="Создать бесплатно" fSize="19" :reverse="true" />
+          <HeaderButton to="/auth" text="Создать бесплатно" :reverse="true" />
         </div>
       </div>
       <div class="sale-more__right pic-block"></div>
@@ -230,7 +230,7 @@
           переходов через свои Страницы
         </div>
         <div class="bot-form__btn">
-          <basic-button class="basic" text="Создать бесплатно" />
+          <basic-button to="/auth" class="basic" text="Создать бесплатно" />
         </div>
       </div>
     </div>
