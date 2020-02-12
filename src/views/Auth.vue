@@ -1,6 +1,6 @@
 <template>
   <div class="auth">
-    <general-header />
+    <general-header :noButton="true" />
     <div class="inner">
       <AuthComponent />
     </div>

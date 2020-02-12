@@ -53,7 +53,7 @@
       </span>
       <span class="text">логотип</span>
     </b-link>
-    <div class="buttons">
+    <div v-if="!noButton" class="buttons">
       <HeaderButton class="sign-in" text="Войти" to="/auth" />
     </div>
   </div>
@@ -63,6 +63,7 @@
 import HeaderButton from "@/components/Buttons/HeaderButton";
 export default {
   name: "GeneralComponentHeader",
+  props: ["noButton"],
   components: {
     HeaderButton
   }

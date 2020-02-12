@@ -55,7 +55,7 @@
       </div>
     </div>
     <div style="width: 100%" @click="register">
-      <basic-button text="Зарегестрироваться" />
+      <basic-button text="Зарегистрироваться" />
     </div>
   </div>
 </template>
