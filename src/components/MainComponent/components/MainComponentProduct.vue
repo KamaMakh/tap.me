@@ -128,10 +128,7 @@
         trim
       ></b-form-input>
     </div>
-    <div
-      class="input-wrap"
-      role="group"
-    >
+    <div class="input-wrap" role="group">
       <label for="input-live7">Цена со скидкой</label>
       <b-form-input
         id="input-live7"
