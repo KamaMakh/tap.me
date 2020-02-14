@@ -467,12 +467,12 @@ function forgotPassword(context, email){
   });
 }
 
-function resetPassword(email, token, newPassword){
+function resetPassword(context, dataPass){
   return new Promise((resolve, reject) => {
     Vue.backend.resetPassword(
-      email,
-      token,
-      newPassword,
+      dataPass.email,
+      dataPass.token,
+      dataPass.newPassword,
       data => {
         resolve(data);
       },
