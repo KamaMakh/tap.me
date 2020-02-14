@@ -177,11 +177,9 @@ export default {
       }
     },
     loginWithInstagram() {
-      this.$store.dispatch('user/getInstagramAuthLink').then(
-          data => {
-            document.location = data.url;
-          }
-      )
+      this.$store.dispatch("user/getInstagramAuthLink").then(data => {
+        document.location = data.url;
+      });
     }
   }
 };

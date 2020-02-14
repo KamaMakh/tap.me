@@ -5,7 +5,7 @@
     </div>
     <div class="errors" v-if="errors">
       <ul>
-        <li v-for="error in errors" v-bind:key="error">{{error}}</li>
+        <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
       </ul>
     </div>
     <div
@@ -22,16 +22,16 @@
       ></b-form-input>
     </div>
     <div
-        class="input-wrap"
-        :class="{
+      class="input-wrap"
+      :class="{
         'is-danger': showFormErrors && $v.form.password_confirmation.$invalid
       }"
     >
       <b-form-input
-          size="lg"
-          placeholder="Пароль еще раз"
-          type="password"
-          v-model.trim="form.password_confirmation"
+        size="lg"
+        placeholder="Пароль еще раз"
+        type="password"
+        v-model.trim="form.password_confirmation"
       ></b-form-input>
     </div>
     <div class="input-wrap submit" @click="reset">
@@ -64,7 +64,7 @@ export default {
         required
       },
       password_confirmation: {
-        sameAsPassword: sameAs('password')
+        sameAsPassword: sameAs("password")
       }
     }
   },
@@ -76,8 +76,8 @@ export default {
         this.$v.form.$invalid
       ) {
         this.showFormErrors = true;
-        if(!this.$v.form.password_confirmation.sameAsPassword) {
-          this.errors.push('Пароль не совпадает');
+        if (!this.$v.form.password_confirmation.sameAsPassword) {
+          this.errors.push("Пароль не совпадает");
         }
         return;
       } else {
@@ -87,31 +87,30 @@ export default {
           token: this.token,
           newPassword: this.form.password
         };
-        this.$store.dispatch('user/resetPassword', dataPass).then(
-            (data) => {
-              if(data.status == 'ok') {
-                this.$router.push('/auth');
-              } else if (data.status == 'fail') {
-                if(data.error == 'passwords.token') {
-                  this.errors.push('Не верный токен');
-                } else {
-                  this.errors.push('Не удалось сменить пароль');
-                }
+        this.$store
+          .dispatch("user/resetPassword", dataPass)
+          .then(data => {
+            if (data.status == "ok") {
+              this.$router.push("/auth");
+            } else if (data.status == "fail") {
+              if (data.error == "passwords.token") {
+                this.errors.push("Не верный токен");
               } else {
-                this.errors.push('Не удалось сменить пароль');
+                this.errors.push("Не удалось сменить пароль");
               }
+            } else {
+              this.errors.push("Не удалось сменить пароль");
             }
-        ).catch(
-            data => {
-              if(data.errors) {
-                for(var i in data.errors) {
-                  for(var a in data.errors[i]) {
-                    this.errors.push(data.errors[i][a]);
-                  }
+          })
+          .catch(data => {
+            if (data.errors) {
+              for (var i in data.errors) {
+                for (var a in data.errors[i]) {
+                  this.errors.push(data.errors[i][a]);
                 }
               }
             }
-        );
+          });
       }
     }
   }

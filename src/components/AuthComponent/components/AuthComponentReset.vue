@@ -12,7 +12,7 @@
     >
       <div class="errors" v-if="errors">
         <ul>
-          <li v-for="error in errors" v-bind:key="error">{{error}}</li>
+          <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
         </ul>
       </div>
       <b-form-input
@@ -65,19 +65,19 @@ export default {
         return;
       } else {
         this.errors = [];
-        this.$store.dispatch('user/forgotPassword', this.form.email).then(
-            (data) => {
-              if(data.status == 'ok') {
-                this.sendStatus = true;
-              } else {
-                if(data.error == 'passwords.user') {
-                  this.errors.push('Такой e-mail не зарегистрирован');
-                } else if (data.error == 'passwords.throttled') {
-                  this.errors.push('Слишком частая отправка');
-                }
+        this.$store
+          .dispatch("user/forgotPassword", this.form.email)
+          .then(data => {
+            if (data.status == "ok") {
+              this.sendStatus = true;
+            } else {
+              if (data.error == "passwords.user") {
+                this.errors.push("Такой e-mail не зарегистрирован");
+              } else if (data.error == "passwords.throttled") {
+                this.errors.push("Слишком частая отправка");
               }
             }
-        );
+          });
       }
     }
   }
