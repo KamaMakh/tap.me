@@ -145,9 +145,7 @@
     >
       Введите иям пользователя в {{ social.name }}
     </div>
-    <span @click="save">
-      <basic-button text="Сохранить" />
-    </span>
+    <basic-button text="Сохранить" :loading="loading" @event="save()" />
   </div>
 </template>
 
@@ -159,7 +157,8 @@ export default {
   name: "MainComponentSocialEdit",
   data() {
     return {
-      showFormErrors: false
+      showFormErrors: false,
+      loading: false
     };
   },
   methods: {
@@ -172,26 +171,37 @@ export default {
         this.showFormErrors = true;
         return;
       } else {
+        this.loading = true;
         if (!this.social.id) {
-          this.$store.dispatch("user/createLink", this.social).then(
-            () => {
-              this.$router.push("/main/socials");
-              this.$store.dispatch("user/loadLinks");
-            },
-            () => {
-              alert("fail");
-            }
-          );
+          this.$store
+            .dispatch("user/createLink", this.social)
+            .then(
+              () => {
+                this.$router.push("/main/socials");
+                this.$store.dispatch("user/loadLinks");
+              },
+              () => {
+                alert("fail");
+              }
+            )
+            .finally(() => {
+              this.loading = false;
+            });
         } else {
-          this.$store.dispatch("user/updateLink", this.social).then(
-            () => {
-              this.$router.push("/main/socials");
-              this.$store.dispatch("user/loadLinks");
-            },
-            () => {
-              alert("fail");
-            }
-          );
+          this.$store
+            .dispatch("user/updateLink", this.social)
+            .then(
+              () => {
+                this.$router.push("/main/socials");
+                this.$store.dispatch("user/loadLinks");
+              },
+              () => {
+                alert("fail");
+              }
+            )
+            .finally(() => {
+              this.loading = false;
+            });
         }
       }
     }

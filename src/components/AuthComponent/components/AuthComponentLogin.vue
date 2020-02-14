@@ -113,8 +113,11 @@
         <b-link :to="{ name: 'AuthComponentReset' }">Восстановить</b-link>
       </div>
     </div>
-    <div style="width: 100%" @click="login">
+    <div v-if="!loading" style="width: 100%" @click="login">
       <basic-button text="Войти" />
+    </div>
+    <div v-else>
+      <basic-button text="Войти" :loading="true" />
     </div>
   </div>
 </template>
@@ -131,7 +134,8 @@ export default {
     return {
       form: {},
       showFormErrors: false,
-      authFailed: false
+      authFailed: false,
+      loading: false
     };
   },
   validations: {
@@ -155,6 +159,7 @@ export default {
         this.showFormErrors = true;
         return;
       } else {
+        this.loading = true;
         this.$store
           .dispatch("user/login", {
             login: this.form.email,
@@ -165,6 +170,9 @@ export default {
           })
           .catch(() => {
             this.authFailed = true;
+          })
+          .finally(() => {
+            this.loading = false;
           });
       }
     }

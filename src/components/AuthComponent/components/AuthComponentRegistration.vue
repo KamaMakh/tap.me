@@ -54,8 +54,11 @@
         {{ passwordFieldErrors }}
       </div>
     </div>
-    <div style="width: 100%" @click="register">
+    <div v-if="!loading" style="width: 100%" @click="register">
       <basic-button text="Зарегистрироваться" />
+    </div>
+    <div v-else>
+      <basic-button text="Войти" :loading="true" />
     </div>
   </div>
 </template>
@@ -73,7 +76,8 @@ export default {
       form: {},
       showFormErrors: false,
       emailFieldErrors: false,
-      passwordFieldErrors: false
+      passwordFieldErrors: false,
+      loading: false
     };
   },
   validations: {
@@ -99,6 +103,7 @@ export default {
         this.showFormErrors = true;
         return;
       } else {
+        this.loading = true;
         this.$store
           .dispatch("user/registration", {
             email: this.form.email,
@@ -116,6 +121,9 @@ export default {
               this.passwordFieldErrors = data["errors"]["password"].join(", ");
             }
             this.showFormErrors = true;
+          })
+          .finally(() => {
+            this.loading = false;
           });
       }
     }

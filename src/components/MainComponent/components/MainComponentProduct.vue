@@ -137,8 +137,8 @@
         trim
       ></b-form-input>
     </div>
-    <div @click="save">
-      <basic-button text="Сохранить" />
+    <div>
+      <basic-button text="Сохранить" @event="save" :loading="loading" />
     </div>
     <div v-if="product.id" @click="modalRemove = !modalRemove" class="remove">
       Удалить
@@ -167,8 +167,8 @@
       :title="'Удалить товар' + ' ' + product.name"
       hide-footer
     >
-      <div @click="remove">
-        <basic-button text="Удалить" />
+      <div>
+        <basic-button text="Удалить" @event="remove" :loading="loading" />
       </div>
     </b-modal>
   </div>
@@ -186,7 +186,8 @@ export default {
       modalAvatar: false,
       modalRemove: false,
       showFormErrors: false,
-      errors: []
+      errors: [],
+      loading: false
     };
   },
   validations: {
@@ -246,6 +247,7 @@ export default {
         this.showFormErrors = true;
         return;
       } else {
+        this.loading = true;
         var promise = false;
         if (this.isNewProduct()) {
           this.product.show = true;
@@ -261,6 +263,9 @@ export default {
             })
             .catch(data => {
               this.errors = Vue.backend.fetchErrorsFrom(data);
+            })
+            .finally(() => {
+              this.loading = false;
             });
         }
       }
@@ -269,6 +274,7 @@ export default {
       this.$store.dispatch("user/deleteProduct", this.product.id);
       this.modalRemove = false;
       this.$router.push("/main/shop");
+      this.loading = false;
     },
     toggleLeftColumn() {
       this.$store.dispatch("user/toggleLeftColumn");

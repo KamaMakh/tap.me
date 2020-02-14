@@ -1,14 +1,24 @@
 <template>
-  <b-link v-if="to" :to="to" class="basic-button">{{
+  <div v-if="loading" class="basic-button">
+    <b-spinner small></b-spinner>
+  </div>
+  <b-link v-else-if="to" :to="to" class="basic-button" @click="callEvent">{{
     text ? text : "Button"
   }}</b-link>
-  <div v-else class="basic-button">{{ text ? text : "Button" }}</div>
+  <div v-else class="basic-button" @click="callEvent">
+    {{ text ? text : "Button" }}
+  </div>
 </template>
 
 <script>
 export default {
-  props: ["text", "to"],
-  name: "BasicButton"
+  props: ["text", "to", "loading"],
+  name: "BasicButton",
+  methods: {
+    callEvent() {
+      this.$emit("event");
+    }
+  }
 };
 </script>
 

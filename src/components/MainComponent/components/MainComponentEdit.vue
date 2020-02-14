@@ -10,8 +10,8 @@
         text="Настройте вашу страницу"
         :to="{ name: 'MainComponentMyPage' }"
       />
-      <div class="buttons-wrap__save" @click="save">
-        <basic-button text="Сохранить" />
+      <div class="buttons-wrap__save">
+        <basic-button text="Сохранить" :loading="loading" @event="save" />
       </div>
     </div>
     <div class="pics">
@@ -104,8 +104,8 @@
       <div class="buttons-wrap__link">
         <blue-button text="Добавить ссылку" to="socials" />
       </div>
-      <div v-if="windowWidth > 640" @click="save" class="buttons-wrap__save">
-        <basic-button text="Сохранить" />
+      <div v-if="windowWidth > 640" class="buttons-wrap__save">
+        <basic-button text="Сохранить" @event="save" :loading="loading" />
       </div>
     </div>
 
@@ -167,7 +167,8 @@ export default {
       modalBackground: false,
       showFormErrors: false,
       avatarFile: false,
-      backgroundFile: false
+      backgroundFile: false,
+      loading: false
     };
   },
   computed: {
@@ -219,10 +220,16 @@ export default {
         this.showFormErrors = true;
         return;
       } else {
+        this.loading = true;
         this.$store.dispatch("user/updateLanding", this.landing).then(() => {
-          this.$store.dispatch("user/loadLanding").then(() => {
-            this.$router.push("/main");
-          });
+          this.$store
+            .dispatch("user/loadLanding")
+            .then(() => {
+              this.$router.push("/main");
+            })
+            .finally(() => {
+              this.loading = false;
+            });
         });
       }
     }
