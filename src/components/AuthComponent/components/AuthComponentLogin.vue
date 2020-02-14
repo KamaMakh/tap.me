@@ -1,6 +1,6 @@
 <template>
   <div class="auth-component-login">
-    <instbtn @click.native="loginWithInstagram" />
+    <instbtn />
     <div class="email-title">
       <span>
         или войти через e-mail
