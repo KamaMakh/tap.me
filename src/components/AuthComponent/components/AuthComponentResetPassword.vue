@@ -1,32 +1,41 @@
 <template>
-  <div class="auth-component-reset">
+  <div class="auth-component-reset-password">
     <div class="title">
-      Восстановить пароль
+      Установите новый пароль
+    </div>
+    <div class="errors" v-if="errors">
+      <ul>
+        <li v-for="error in errors" v-bind:key="error">{{error}}</li>
+      </ul>
     </div>
     <div
-      class="input-wrap email"
-      v-if="sendStatus === null"
+      class="input-wrap"
       :class="{
-        'is-danger': $v.form.email.$invalid && (form.email || showFormErrors)
+        'is-danger': showFormErrors && $v.form.password.$invalid
       }"
     >
-      <div class="errors" v-if="errors">
-        <ul>
-          <li v-for="error in errors" v-bind:key="error">{{error}}</li>
-        </ul>
-      </div>
       <b-form-input
         size="lg"
-        placeholder="Электронная почта"
-        type="email"
-        v-model.trim="form.email"
+        placeholder="Пароль"
+        type="password"
+        v-model.trim="form.password"
       ></b-form-input>
     </div>
-    <div v-if="sendStatus === null" style="width: 100%" @click="reset">
-      <basic-button text="Восстановить" />
+    <div
+        class="input-wrap"
+        :class="{
+        'is-danger': showFormErrors && $v.form.password_confirmation.$invalid
+      }"
+    >
+      <b-form-input
+          size="lg"
+          placeholder="Пароль еще раз"
+          type="password"
+          v-model.trim="form.password_confirmation"
+      ></b-form-input>
     </div>
-    <div class="text-block" v-if="sendStatus">
-      Вам на почту отправлена ссылка для восстановления пароля
+    <div class="input-wrap submit" @click="reset">
+      <basic-button text="Восстановить" />
     </div>
     <b-link :to="{ name: 'AuthComponentTabs' }" class="back-button">
       Назад
@@ -35,22 +44,27 @@
 </template>
 
 <script>
-import { required, email } from "vuelidate/lib/validators";
+import { required, sameAs } from "vuelidate/lib/validators";
 export default {
-  name: "AuthComponentReset",
+  name: "AuthComponentResetPassword",
+  props: {
+    token: String,
+    email: String
+  },
   data() {
     return {
       form: {},
       showFormErrors: false,
-      sendStatus: null,
       errors: []
     };
   },
   validations: {
     form: {
-      email: {
-        required,
-        email
+      password: {
+        required
+      },
+      password_confirmation: {
+        sameAsPassword: sameAs('password')
       }
     }
   },
@@ -62,18 +76,38 @@ export default {
         this.$v.form.$invalid
       ) {
         this.showFormErrors = true;
+        if(!this.$v.form.password_confirmation.sameAsPassword) {
+          this.errors.push('Пароль не совпадает');
+        }
         return;
       } else {
         this.errors = [];
-        this.$store.dispatch('user/forgotPassword', this.form.email).then(
+        var dataPass = {
+          email: this.email,
+          token: this.token,
+          newPassword: this.form.password
+        };
+        this.$store.dispatch('user/resetPassword', dataPass).then(
             (data) => {
               if(data.status == 'ok') {
-                this.sendStatus = true;
+                this.$router.push('/auth');
+              } else if (data.status == 'fail') {
+                if(data.error == 'passwords.token') {
+                  this.errors.push('Не верный токен');
+                } else {
+                  this.errors.push('Не удалось сменить пароль');
+                }
               } else {
-                if(data.error == 'passwords.user') {
-                  this.errors.push('Такой e-mail не зарегистрирован');
-                } else if (data.error == 'passwords.throttled') {
-                  this.errors.push('Слишком частая отправка');
+                this.errors.push('Не удалось сменить пароль');
+              }
+            }
+        ).catch(
+            data => {
+              if(data.errors) {
+                for(var i in data.errors) {
+                  for(var a in data.errors[i]) {
+                    this.errors.push(data.errors[i][a]);
+                  }
                 }
               }
             }
@@ -85,7 +119,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.auth-component-reset {
+.auth-component-reset-password {
   width: 430px;
   max-width: 100%;
   padding: 35px 39px;
@@ -102,11 +136,11 @@ export default {
     color: #2a2a2a;
   }
   .input-wrap {
-    margin-top: 20px;
+    margin: 10px 0;
     width: 100%;
     position: relative;
-    &.email {
-      margin-bottom: 18px;
+    &.submit {
+      margin-top: 18px;
     }
     input {
       border: 1px solid #cccccc;

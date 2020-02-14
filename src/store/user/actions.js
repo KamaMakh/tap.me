@@ -413,6 +413,10 @@ function registration(context, data) {
   });
 }
 
+function setApiKeyAuth(context, apiKey) {
+  Vue.backend.setApiKeyAuth(apiKey);
+}
+
 function makeDefaultLanding() {
   return new Promise((resolve, reject) => {
     Vue.backend.makeDefaultLanding(
@@ -453,6 +457,49 @@ function getPayUrl() {
   });
 }
 
+function forgotPassword(context, email){
+  return new Promise((resolve, reject) => {
+    Vue.backend.forgotPassword(
+      email,
+      data => {
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    )
+  });
+}
+
+function resetPassword(context, dataPass){
+  return new Promise((resolve, reject) => {
+    Vue.backend.resetPassword(
+      dataPass.email,
+      dataPass.token,
+      dataPass.newPassword,
+      data => {
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    )
+  });
+}
+
+function getInstagramAuthLink() {
+  return new Promise((resolve, reject) => {
+    Vue.backend.instagramAuthLink(
+      data => {
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    )
+  });
+}
+
 export {
   setProduct,
   setSocial,
@@ -479,5 +526,9 @@ export {
   makeDefaultLanding,
   login,
   logout,
-  getPayUrl
+  getPayUrl,
+  forgotPassword,
+  resetPassword,
+  setApiKeyAuth,
+  getInstagramAuthLink
 };

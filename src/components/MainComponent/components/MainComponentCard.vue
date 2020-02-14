@@ -146,7 +146,9 @@ export default {
       }
     },
     createPage() {
-      this.$router.push("/");
+      if(!this.isAdmin) {
+        this.$router.push("/");
+      }
     },
     toggleLeftColumn() {
       this.$store.dispatch("user/toggleLeftColumn");

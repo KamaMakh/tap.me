@@ -8,7 +8,9 @@ import Landing from "../views/Landing";
 
 import AuthComponentTabs from "@/components/AuthComponent/components/AuthComponentTabs";
 import AuthComponentReset from "@/components/AuthComponent/components/AuthComponentReset";
+import AuthComponentResetPassword from "@/components/AuthComponent/components/AuthComponentResetPassword";
 import AuthComponentCreateLink from "@/components/AuthComponent/components/AuthComponentCreateLink";
+import AuthComponentExternal from "@/components/AuthComponent/components/AuthComponentExternal";
 
 import MainComponentMyPage from "@/components/MainComponent/components/MainComponentMyPage";
 import MainComponentEdit from "@/components/MainComponent/components/MainComponentEdit";
@@ -49,9 +51,21 @@ const routes = [
         component: AuthComponentReset
       },
       {
+        path: "reset-password/:token/:email",
+        name: "AuthComponentResetPassword",
+        component: AuthComponentResetPassword,
+        props: true
+      },
+      {
         path: "link",
         name: "AuthComponentCreateLink",
         component: AuthComponentCreateLink
+      },
+      {
+        path: "external/:token",
+        name: "AuthComponentExternal",
+        component: AuthComponentExternal,
+        props: true
       }
     ]
   },
