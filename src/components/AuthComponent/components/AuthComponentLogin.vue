@@ -1,6 +1,6 @@
 <template>
   <div class="auth-component-login">
-    <instbtn />
+    <instbtn @click.native="loginWithInstagram" />
     <div class="email-title">
       <span>
         или войти через e-mail
@@ -167,6 +167,13 @@ export default {
             this.authFailed = true;
           });
       }
+    },
+    loginWithInstagram() {
+      this.$store.dispatch('user/getInstagramAuthLink').then(
+          data => {
+            document.location = data.url;
+          }
+      )
     }
   }
 };

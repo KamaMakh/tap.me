@@ -413,6 +413,10 @@ function registration(context, data) {
   });
 }
 
+function setApiKeyAuth(context, apiKey) {
+  Vue.backend.setApiKeyAuth(apiKey);
+}
+
 function makeDefaultLanding() {
   return new Promise((resolve, reject) => {
     Vue.backend.makeDefaultLanding(
@@ -483,6 +487,19 @@ function resetPassword(context, dataPass){
   });
 }
 
+function getInstagramAuthLink() {
+  return new Promise((resolve, reject) => {
+    Vue.backend.instagramAuthLink(
+      data => {
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    )
+  });
+}
+
 export {
   setProduct,
   setSocial,
@@ -511,5 +528,7 @@ export {
   logout,
   getPayUrl,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  setApiKeyAuth,
+  getInstagramAuthLink
 };

@@ -10,6 +10,7 @@ import AuthComponentTabs from "@/components/AuthComponent/components/AuthCompone
 import AuthComponentReset from "@/components/AuthComponent/components/AuthComponentReset";
 import AuthComponentResetPassword from "@/components/AuthComponent/components/AuthComponentResetPassword";
 import AuthComponentCreateLink from "@/components/AuthComponent/components/AuthComponentCreateLink";
+import AuthComponentExternal from "@/components/AuthComponent/components/AuthComponentExternal";
 
 import MainComponentMyPage from "@/components/MainComponent/components/MainComponentMyPage";
 import MainComponentEdit from "@/components/MainComponent/components/MainComponentEdit";
@@ -59,6 +60,12 @@ const routes = [
         path: "link",
         name: "AuthComponentCreateLink",
         component: AuthComponentCreateLink
+      },
+      {
+        path: "external/:token",
+        name: "AuthComponentExternal",
+        component: AuthComponentExternal,
+        props: true
       }
     ]
   },
