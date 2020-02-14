@@ -147,8 +147,8 @@ export default {
       showFormErrors: false,
       tariffs: [
         {
-          name: "Pro",
-          code: "pro",
+          name: "Free",
+          code: "free",
           price: "$9.99 /месяц",
           desc: "Все что нужно для растущего бизнеса",
           options: [
@@ -165,8 +165,8 @@ export default {
           ]
         },
         {
-          name: "Free",
-          code: "free",
+          name: "Pro",
+          code: "pro",
           price: "$9.99 /месяц",
           desc: "Все что нужно для растущего бизнеса",
           options: [

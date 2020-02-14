@@ -1,5 +1,7 @@
 <template>
-  <b-link v-if="to" :to="to" class="basic-button">{{ text ? text : "Button" }}</b-link>
+  <b-link v-if="to" :to="to" class="basic-button">{{
+    text ? text : "Button"
+  }}</b-link>
   <div v-else class="basic-button">{{ text ? text : "Button" }}</div>
 </template>
 
