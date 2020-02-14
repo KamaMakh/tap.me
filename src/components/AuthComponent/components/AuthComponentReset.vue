@@ -5,10 +5,16 @@
     </div>
     <div
       class="input-wrap email"
+      v-if="sendStatus === null"
       :class="{
         'is-danger': $v.form.email.$invalid && (form.email || showFormErrors)
       }"
     >
+      <div class="errors" v-if="errors">
+        <ul>
+          <li v-for="error in errors" v-bind:key="error">{{error}}</li>
+        </ul>
+      </div>
       <b-form-input
         size="lg"
         placeholder="Электронная почта"
@@ -16,11 +22,11 @@
         v-model.trim="form.email"
       ></b-form-input>
     </div>
-    <div style="width: 100%" @click="reset">
+    <div v-if="sendStatus === null" style="width: 100%" @click="reset">
       <basic-button text="Восстановить" />
     </div>
-    <div class="text-block">
-      Ваш пароль будет отправлен Вам на почту
+    <div class="text-block" v-if="sendStatus">
+      Вам на почту отправлена ссылка для восстановления пароля
     </div>
     <b-link :to="{ name: 'AuthComponentTabs' }" class="back-button">
       Назад
@@ -35,7 +41,9 @@ export default {
   data() {
     return {
       form: {},
-      showFormErrors: false
+      showFormErrors: false,
+      sendStatus: null,
+      errors: []
     };
   },
   validations: {
@@ -55,6 +63,21 @@ export default {
       ) {
         this.showFormErrors = true;
         return;
+      } else {
+        this.errors = [];
+        this.$store.dispatch('user/forgotPassword', this.form.email).then(
+            (data) => {
+              if(data.status == 'ok') {
+                this.sendStatus = true;
+              } else {
+                if(data.error == 'passwords.user') {
+                  this.errors.push('Такой e-mail не зарегистрирован');
+                } else if (data.error == 'passwords.throttled') {
+                  this.errors.push('Слишком частая отправка');
+                }
+              }
+            }
+        );
       }
     }
   }
@@ -127,6 +150,16 @@ export default {
     font-size: 17px;
     text-align: center;
     color: #d5d5d5;
+  }
+  .errors ul {
+    margin: 0 0 10px 0;
+    padding: 0;
+  }
+  .errors li {
+    color: red;
+    font-size: 13px;
+    list-style-type: none;
+    text-align: center;
   }
 }
 </style>

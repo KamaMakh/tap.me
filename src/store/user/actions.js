@@ -453,6 +453,36 @@ function getPayUrl() {
   });
 }
 
+function forgotPassword(context, email){
+  return new Promise((resolve, reject) => {
+    Vue.backend.forgotPassword(
+      email,
+      data => {
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    )
+  });
+}
+
+function resetPassword(email, token, newPassword){
+  return new Promise((resolve, reject) => {
+    Vue.backend.resetPassword(
+      email,
+      token,
+      newPassword,
+      data => {
+        resolve(data);
+      },
+      data => {
+        reject(data);
+      }
+    )
+  });
+}
+
 export {
   setProduct,
   setSocial,
@@ -479,5 +509,7 @@ export {
   makeDefaultLanding,
   login,
   logout,
-  getPayUrl
+  getPayUrl,
+  forgotPassword,
+  resetPassword
 };
