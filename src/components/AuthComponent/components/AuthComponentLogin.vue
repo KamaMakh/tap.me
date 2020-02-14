@@ -113,11 +113,8 @@
         <b-link :to="{ name: 'AuthComponentReset' }">Восстановить</b-link>
       </div>
     </div>
-    <div v-if="!loading" style="width: 100%" @click="login">
-      <basic-button text="Войти" />
-    </div>
-    <div v-else>
-      <basic-button text="Войти" :loading="true" />
+    <div style="width: 100%">
+      <basic-button text="Войти" :loading="loading" @event="login" />
     </div>
   </div>
 </template>
@@ -177,11 +174,9 @@ export default {
       }
     },
     loginWithInstagram() {
-      this.$store.dispatch('user/getInstagramAuthLink').then(
-          data => {
-            document.location = data.url;
-          }
-      )
+      this.$store.dispatch("user/getInstagramAuthLink").then(data => {
+        document.location = data.url;
+      });
     }
   }
 };

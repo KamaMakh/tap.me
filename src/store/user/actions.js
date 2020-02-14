@@ -457,7 +457,7 @@ function getPayUrl() {
   });
 }
 
-function forgotPassword(context, email){
+function forgotPassword(context, email) {
   return new Promise((resolve, reject) => {
     Vue.backend.forgotPassword(
       email,
@@ -467,11 +467,11 @@ function forgotPassword(context, email){
       data => {
         reject(data);
       }
-    )
+    );
   });
 }
 
-function resetPassword(context, dataPass){
+function resetPassword(context, dataPass) {
   return new Promise((resolve, reject) => {
     Vue.backend.resetPassword(
       dataPass.email,
@@ -483,7 +483,7 @@ function resetPassword(context, dataPass){
       data => {
         reject(data);
       }
-    )
+    );
   });
 }
 
@@ -496,7 +496,7 @@ function getInstagramAuthLink() {
       data => {
         reject(data);
       }
-    )
+    );
   });
 }
 

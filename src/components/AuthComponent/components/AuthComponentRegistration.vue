@@ -54,11 +54,12 @@
         {{ passwordFieldErrors }}
       </div>
     </div>
-    <div v-if="!loading" style="width: 100%" @click="register">
-      <basic-button text="Зарегистрироваться" />
-    </div>
-    <div v-else>
-      <basic-button text="Войти" :loading="true" />
+    <div style="width: 100%">
+      <basic-button
+        text="Зарегистрироваться"
+        @event="register"
+        :loading="loading"
+      />
     </div>
   </div>
 </template>

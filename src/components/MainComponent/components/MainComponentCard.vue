@@ -146,7 +146,7 @@ export default {
       }
     },
     createPage() {
-      if(!this.isAdmin) {
+      if (!this.isAdmin) {
         this.$router.push("/");
       }
     },

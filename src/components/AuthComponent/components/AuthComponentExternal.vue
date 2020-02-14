@@ -1,6 +1,5 @@
 <template>
-  <div class="auth-component-reset">
-  </div>
+  <div class="auth-component-reset"></div>
 </template>
 
 <script>
@@ -10,8 +9,8 @@ export default {
     token: String
   },
   created() {
-    this.$store.dispatch('user/setApiKeyAuth', this.token);
-    this.$router.push('/main');
+    this.$store.dispatch("user/setApiKeyAuth", this.token);
+    this.$router.push("/main");
   }
 };
 </script>
