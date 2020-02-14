@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-component-inst-btn">
+  <div class="auth-component-inst-btn" @click="loginWithInstagram">
     <span style="margin-right: 17px">
       <svg
         width="25"
@@ -22,7 +22,14 @@
 
 <script>
 export default {
-  name: "AuthComponentInstBtn"
+  name: "AuthComponentInstBtn",
+  methods: {
+    loginWithInstagram() {
+      this.$store.dispatch("user/getInstagramAuthLink").then(data => {
+        document.location = data.url;
+      });
+    }
+  }
 };
 </script>
 

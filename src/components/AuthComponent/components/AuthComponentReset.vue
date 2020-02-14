@@ -77,7 +77,9 @@ export default {
                 this.errors.push("Слишком частая отправка");
               }
             }
-          });
+          }).catch(() => {
+          this.errors.push("Ошибка отправки");
+        });
       }
     }
   }
