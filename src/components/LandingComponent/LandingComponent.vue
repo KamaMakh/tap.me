@@ -237,10 +237,10 @@
     <div class="footer">
       <div class="bottom-menu">
         <div class="menu-item">
-          <b-link to="/">Политика конфиденциальности</b-link>
+          <b-link to="/files/policy.pdf">Политика конфиденциальности</b-link>
         </div>
         <div class="menu-item">
-          <b-link to="/">Условия использования</b-link>
+          <b-link to="/files/oferta.pdf">Оферта</b-link>
         </div>
         <div class="menu-item">
           <b-link to="/">Тарифы</b-link>
