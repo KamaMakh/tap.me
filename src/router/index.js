@@ -27,6 +27,7 @@ import MainComponentTariffs from "@/components/MainComponent/components/MainComp
 import GuestComponentLink from "@/components/GuestComponent/components/GuestComponentLink";
 import GuestComponentShare from "@/components/GuestComponent/components/GuestComponentShare";
 import GuestComponentProduct from "@/components/GuestComponent/components/GuestComponentProduct";
+import NotFoundComponent from "../components/NotFoundComponent/NotFoundComponent";
 
 Vue.use(VueRouter);
 
@@ -129,6 +130,10 @@ const routes = [
         component: MainComponentTariffs
       }
     ]
+  },
+  {
+    path: "/not-found",
+    component: NotFoundComponent
   },
   {
     path: "/:landing_code",
