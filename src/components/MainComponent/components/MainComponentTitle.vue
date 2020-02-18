@@ -58,7 +58,7 @@
         </svg>
       </b-link>
     </span>
-    {{ text }}
+    <b-link class="back-link" :to="to">{{ text }}</b-link>
   </div>
 </template>
 
@@ -92,6 +92,11 @@ export default {
   }
   @media all and(max-width: 640px) {
     font-size: 15px;
+  }
+
+  .back-link {
+    color: black;
+    text-decoration: none;
   }
 }
 </style>
