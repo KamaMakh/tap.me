@@ -2,7 +2,7 @@
   <div class="main-component-socials">
     <main-title
       text="Добавить ссылки на соц.сети"
-      :to="{ name: 'MainComponentMyPage' }"
+      v-on:click.native="goBack"
     />
     <div class="sub-title">
       Ссылки на мессенджеры
@@ -136,6 +136,9 @@ export default {
   methods: {
     setSocial(social) {
       this.$store.dispatch("user/setSocial", social);
+    },
+    goBack() {
+      this.$router.go(-1);
     }
   }
 };
