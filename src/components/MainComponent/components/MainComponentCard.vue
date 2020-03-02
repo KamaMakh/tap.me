@@ -28,8 +28,7 @@
       </span>
     </span>
     <div class="my-card">
-      <div class="bg-pic">
-        <img :src="user.landing.background" />
+      <div class="bg-pic" :style="{backgroundImage: `url(${user.landing.background})`}">
       </div>
       <div class="top">
         <div class="logo"></div>
@@ -44,8 +43,7 @@
       </div>
       <div class="bio">
         <div class="info">
-          <div class="avatar">
-            <img :src="user.landing.avatar" :alt="user.landing.name" />
+          <div class="avatar" :style="{backgroundImage: `url(${user.landing.avatar})`}">
           </div>
           <div class="name-wrap">
             <div class="name">{{ user.landing.name }}</div>
@@ -260,9 +258,7 @@ export default {
       right: 0;
       left: 0;
       height: 210px;
-      img {
-        max-width: 100%;
-      }
+      background-size: cover;
     }
     .top {
       display: flex;
@@ -307,9 +303,7 @@ export default {
           align-items: center;
           justify-content: center;
           margin-right: 15px;
-          img {
-            max-height: 100%;
-          }
+          background-size: cover;
         }
         .name-wrap {
           display: flex;
