@@ -72,5 +72,6 @@ export default {
   product: {},
   social: {},
   hideLeft: false,
-  uploadImage: {}
+  uploadImage: {},
+  goToEditForm: true
 };

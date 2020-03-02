@@ -65,6 +65,10 @@ function loadAccount(state, data) {
   state.user.tariffName = data["tariffName"];
 }
 
+function goToEditForm(state, val) {
+  state.goToEditForm = val;
+}
+
 export {
   setProduct,
   setSocial,
@@ -78,5 +82,6 @@ export {
   loadLinks,
   loadLanding,
   setLandingFormData,
-  loadAccount
+  loadAccount,
+  goToEditForm
 };

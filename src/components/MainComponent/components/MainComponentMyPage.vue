@@ -240,6 +240,9 @@ import { mapState } from "vuex";
 import MainComponentBtnEdit from "./MainComponentBtn/MainComponentBtnEdit";
 export default {
   name: "MainComponentMyPage",
+  created() {
+    this.$store.commit('user/goToEditForm', false);
+  },
   components: {
     editBtn: MainComponentBtnEdit
   },

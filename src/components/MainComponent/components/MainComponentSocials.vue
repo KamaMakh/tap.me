@@ -138,7 +138,11 @@ export default {
       this.$store.dispatch("user/setSocial", social);
     },
     goBack() {
-      this.$router.go(-1);
+      if(this.$store.state.user.goToEditForm){
+        this.$router.push('/main/edit');
+      } else {
+        this.$router.push('/main');
+      }
     }
   }
 };

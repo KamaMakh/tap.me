@@ -159,6 +159,7 @@ import { required } from "vuelidate/lib/validators";
 export default {
   name: "MainComponentEdit",
   created() {
+    this.$store.commit('user/goToEditForm', true);
     this.$store.dispatch("user/setLandingFormData");
   },
   data() {
