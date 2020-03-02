@@ -67,7 +67,6 @@
     <div
       v-if="
         social.type === 'viber' ||
-          social.type === 'telegram' ||
           social.type === 'whatsapp'
       "
       class="input-wrap"
@@ -81,6 +80,7 @@
       <b-form-input
         id="input-live4"
         v-model="social.value"
+        v-mask="'+7-###-###-##-##'"
         placeholder="+7-000-000-00-00"
         trim
       ></b-form-input>
@@ -103,7 +103,7 @@
       ></b-form-input>
     </div>
     <div
-      v-else-if="social.type === 'fb_messanger' || social.type === 'skype'"
+      v-else-if="social.type === 'fb_messanger' || social.type === 'skype' || social.type === 'telegram'"
       class="input-wrap"
       role="group"
       :class="{
@@ -123,7 +123,6 @@
     <div
       v-if="
         social.type === 'viber' ||
-          social.type === 'telegram' ||
           social.type === 'whatsapp'
       "
       class="info"
@@ -134,13 +133,13 @@
       • код оператора <br />
       • номер телефона <br />
       <br /><br />
-      Пример: +380734645261
+      Пример: +7-929-645-26-31
     </div>
     <div v-else-if="social.type === 'fb' || social.type === 'vk'" class="info">
       Введите ссылку на страницу вашего профиля в {{ social.name }}
     </div>
     <div
-      v-else-if="social.type === 'fb_messanger' || social.type === 'skype'"
+      v-else-if="social.type === 'fb_messanger' || social.type === 'skype' || social.type === 'telegram'"
       class="info"
     >
       Введите иям пользователя в {{ social.name }}
