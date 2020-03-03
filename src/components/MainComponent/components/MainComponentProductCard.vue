@@ -28,15 +28,13 @@
       </span>
     </span>
     <div class="my-card">
-      <div class="bg-pic">
-        <img :src="user.landing.background" />
+      <div class="bg-pic" :style="{backgroundImage: `url(${user.landing.background})`}">
       </div>
       <div class="top">
         <div class="logo"></div>
       </div>
       <div class="bio">
-        <div class="prod-pic">
-          <img :src="product.photo" />
+        <div class="prod-pic" :style="{backgroundImage: `url(${product.photo})`}">
         </div>
         <div class="prod-name">
           {{ product.name }}
@@ -151,9 +149,7 @@ export default {
       right: 0;
       left: 0;
       height: 210px;
-      img {
-        max-width: 100%;
-      }
+      background-size: cover;
     }
     .top {
       display: flex;
@@ -180,11 +176,10 @@ export default {
       box-sizing: border-box;
       padding-bottom: 23px;
       .prod-pic {
+        height: 200px;
         width: 100%;
         margin-bottom: 24px;
-        img {
-          max-width: 100%;
-        }
+        background-size: cover;
       }
       .prod-name {
         font-weight: 500;

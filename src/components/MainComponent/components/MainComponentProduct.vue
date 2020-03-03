@@ -56,7 +56,7 @@
           </div>
         </div>
       </div>
-      <div v-if="product.id !== undefined" class="pics__item">
+      <div v-if="false && product.id !== undefined" class="pics__item">
         <div class="pics__title">
           Отображение
         </div>
@@ -199,7 +199,6 @@ export default {
         url
       },
       price: {
-        required
       }
     }
   },
