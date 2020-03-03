@@ -23,7 +23,7 @@
       ></b-form-input>
     </div>
     <div v-if="sendStatus === null" style="width: 100%" @click="reset">
-      <basic-button text="Восстановить" />
+      <basic-button :loading="loading" text="Восстановить" />
     </div>
     <div class="text-block" v-if="sendStatus">
       Вам на почту отправлена ссылка для восстановления пароля
@@ -43,7 +43,8 @@ export default {
       form: {},
       showFormErrors: false,
       sendStatus: null,
-      errors: []
+      errors: [],
+      loading: false
     };
   },
   validations: {
@@ -64,10 +65,12 @@ export default {
         this.showFormErrors = true;
         return;
       } else {
+        this.loading = true;
         this.errors = [];
         this.$store
           .dispatch("user/forgotPassword", this.form.email)
           .then(data => {
+            this.loading = false;
             if (data.status == "ok") {
               this.sendStatus = true;
             } else {
