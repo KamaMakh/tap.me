@@ -487,6 +487,20 @@ function resetPassword(context, dataPass) {
   });
 }
 
+function changePassword(context, newPass) {
+  return new Promise((resolve, reject) => {
+    Vue.backend.changePassword(
+      newPass,
+      data => {
+        resolve(data);
+      },
+      data => {
+        reject(data)
+      }
+    )
+  })
+}
+
 function getInstagramAuthLink() {
   return new Promise((resolve, reject) => {
     Vue.backend.instagramAuthLink(
@@ -530,5 +544,6 @@ export {
   forgotPassword,
   resetPassword,
   setApiKeyAuth,
-  getInstagramAuthLink
+  getInstagramAuthLink,
+  changePassword
 };

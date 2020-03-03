@@ -25,67 +25,80 @@
         </b-link>
       </span>
     </span>
-    <b-form-group
-      id="input-group-3"
-      label="Имя"
-      label-for="input-3"
-      :class="{
+    <div v-if="!sendSettingsStatus">
+      <b-form-group
+          id="input-group-3"
+          label="Имя"
+          label-for="input-3"
+          :class="{
         'is-danger': $v.user.name.$invalid && (user.name || showFormErrors)
       }"
-    >
-      <b-form-input
-        id="input-3"
-        v-model="user.name"
-        placeholder="Имя"
-        type="text"
-        required
-      ></b-form-input>
-    </b-form-group>
-    <b-form-group
-      id="input-group-4"
-      label="Email"
-      label-for="input-4"
-      :class="{
+      >
+        <b-form-input
+            id="input-3"
+            v-model="user.name"
+            placeholder="Имя"
+            type="text"
+            required
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group
+          id="input-group-4"
+          label="Email"
+          label-for="input-4"
+          :class="{
         'is-danger': $v.user.email.$invalid && (user.email || showFormErrors)
       }"
-    >
-      <b-form-input
-        id="input-4"
-        v-model="user.email"
-        placeholder="Email"
-        type="text"
-        required
-      ></b-form-input>
-    </b-form-group>
-    <b-form-group
-      id="input-group-5"
-      label="Язык"
-      label-for="input-5"
-      :class="{
+      >
+        <b-form-input
+            id="input-4"
+            v-model="user.email"
+            placeholder="Email"
+            type="text"
+            required
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group
+          id="input-group-5"
+          label="Язык"
+          label-for="input-5"
+          :class="{
         'is-danger': $v.user.lang.$invalid && (user.lang || showFormErrors)
       }"
-    >
-      <b-form-select
-        v-model="user.lang"
-        :options="langs"
-        id="input-5"
-      ></b-form-select>
-    </b-form-group>
+      >
+        <b-form-select
+            v-model="user.lang"
+            :options="langs"
+            id="input-5"
+        ></b-form-select>
+      </b-form-group>
 
-    <div class="edit-pass" @click="resetPass = true">
-      Изменить пароль
-    </div>
-    <b-form-group
-      :class="{
+      <div class="edit-pass" @click="resetPass = true">
+        Изменить пароль
+      </div>
+      <b-form-group
+          :class="{
         'is-danger': !confirm && showFormErrors
       }"
-    >
-      <b-form-checkbox size="lg" v-model="user.subscribe"
+      >
+        <b-form-checkbox size="lg" v-model="user.subscribe"
         >Подписка на новые обновления и <br />функции TapMe.
-      </b-form-checkbox>
-    </b-form-group>
-    <div>
-      <basic-button @event="save" text="Сохранить" :loading="loading" />
+        </b-form-checkbox>
+      </b-form-group>
+      <div>
+        <basic-button @event="save" text="Сохранить" :loading="loading" />
+        <div class="back" @click="logOut">
+          Выйти из аккаунта
+        </div>
+      </div>
+    </div>
+    <div v-if="sendSettingsStatus">
+      <div class="text-block">
+        Настройки сохранены
+      </div>
+      <b-link class="back" :to="{ name: 'MainComponentMyPage' }">
+        Назад
+      </b-link>
     </div>
   </div>
   <div v-else class="main-component-settings-form">
@@ -114,44 +127,49 @@
         </b-link>
       </span>
     </span>
-    <b-form-group
-      id="input-group-44"
-      label="Введите новый пароль"
-      label-for="input-44"
-      :class="{
+    <div v-if="!sendNewPassStatus">
+      <b-form-group
+          id="input-group-44"
+          label="Введите новый пароль"
+          label-for="input-44"
+          :class="{
         'is-danger':
           $v.password.new_password.$invalid &&
           (password.new_password || showFormErrors)
       }"
-    >
-      <b-form-input
-        id="input-44"
-        v-model="password.new_password"
-        placeholder="Новый пароль"
-        type="password"
-        required
-      ></b-form-input>
-    </b-form-group>
-    <b-form-group
-      id="input-group-45"
-      label="Повторите Пароль"
-      label-for="input-45"
-      :class="{
+      >
+        <b-form-input
+            id="input-44"
+            v-model="password.new_password"
+            placeholder="Новый пароль"
+            type="password"
+            required
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group
+          id="input-group-45"
+          label="Повторите Пароль"
+          label-for="input-45"
+          :class="{
         'is-danger':
           $v.password.c_new_password.$invalid &&
           (password.c_new_password || showFormErrors)
       }"
-    >
-      <b-form-input
-        id="input-45"
-        v-model="password.c_new_password"
-        placeholder="Повторите Пароль"
-        type="password"
-        required
-      ></b-form-input>
-    </b-form-group>
-    <div @click="savePass">
-      <basic-button text="Сохранить" />
+      >
+        <b-form-input
+            id="input-45"
+            v-model="password.c_new_password"
+            placeholder="Повторите Пароль"
+            type="password"
+            required
+        ></b-form-input>
+      </b-form-group>
+      <div @click="savePass">
+        <basic-button text="Сохранить" />
+      </div>
+    </div>
+    <div class="text-block" v-if="sendNewPassStatus">
+      Пароль успешно изменен
     </div>
     <div class="back" @click="resetPass = false">
       Назад
@@ -166,6 +184,8 @@ export default {
   name: "MainComponentSettingsForm",
   data() {
     return {
+      sendNewPassStatus: false,
+      sendSettingsStatus: false,
       resetPass: false,
       showFormErrors: false,
       password: {},
@@ -202,9 +222,11 @@ export default {
               email: this.user.email,
               lang: this.user.lang,
               subscribe: this.user.subscribe
-            },
+            }
+          ).then(
             () => {
               this.$store.dispatch("user/loadAccount");
+              this.sendSettingsStatus = true;
             }
           )
           .finally(() => {
@@ -220,7 +242,17 @@ export default {
       ) {
         this.showFormErrors = true;
         return;
+      } else {
+        this.$store.dispatch("user/changePassword", this.password.c_new_password).then(
+            () => {
+              this.sendNewPassStatus = true;
+            }
+        );
       }
+    },
+    logOut() {
+      this.$store.dispatch("user/logout");
+      this.$router.push("/auth");
     },
     toggleLeftColumn() {
       this.$router.push("/main");
@@ -387,6 +419,46 @@ export default {
     margin-top: 30px;
     text-align: center;
     cursor: pointer;
+  }
+  a.back {
+    display: block;
+  }
+  .text-block {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 19px;
+    text-align: center;
+    color: #434343;
+    background: #f2f2f2;
+    margin-top: 21px;
+    border: 1px solid #e4e4e4;
+    width: 100%;
+    padding: 35px 10px;
+  }
+
+  .exit-button {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #dcdcdb;
+    font-weight: 600;
+    font-size: 17px;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    transition: all 0.3s;
+    cursor: pointer;
+    &:hover {
+      background: #dedede;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
   }
 }
 </style>
