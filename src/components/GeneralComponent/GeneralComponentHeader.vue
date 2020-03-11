@@ -115,6 +115,7 @@ export default {
     margin-bottom: 15px;
     .logo {
       margin-bottom: 5px;
+      margin-top: 10px;
     }
     .sign-in {
       margin-right: 5px;

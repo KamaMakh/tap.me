@@ -51,7 +51,7 @@
         </div>
         <div class="call-back">
           <div class="title">
-            Напишите нам!
+            {{user.landing.description}}
           </div>
           <div
             v-bind:key="item.id"
